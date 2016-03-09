@@ -1,2 +1,2 @@
 # go-native
-Javascript polyfills which let you use native javascript
+Javascript polyfills which let you use native javascript.

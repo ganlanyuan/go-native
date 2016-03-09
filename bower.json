@@ -1,0 +1,22 @@
+{
+  "name": "go-native",
+  "homepage": "https://github.com/ganlanyuan/go-native",
+  "authors": [
+    "WilliamLin <ganlanyuan@gmail.com>"
+  ],
+  "description": "Javascript polyfills which let you use native javascript",
+  "main": "",
+  "moduleType": [],
+  "keywords": [
+    "native",
+    "javascript",
+    "ie"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "classlist": "^2014.12.13",
+    "fix-ie": "^1.2.0",
+    "domtokenlist": "^1.0.0"
+  },
+  "dependencies": {}
+}
