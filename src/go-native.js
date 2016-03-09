@@ -16,5 +16,8 @@
 // @codekit-prepend "../bower_components/fix-ie/src/text-content.js";
 // @codekit-prepend "../bower_components/fix-ie/src/version-flags.js";
 
+// *** es5-shim *** //
+// @codekit-prepend "../bower_components/es5-shim/es5-shim.js";
+
 // *** helpers *** //
 // @codekit-prepend "components/helpers.js";

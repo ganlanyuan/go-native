@@ -16,7 +16,8 @@
   "devDependencies": {
     "classlist": "^2014.12.13",
     "fix-ie": "^1.2.0",
-    "domtokenlist": "^1.0.0"
+    "domtokenlist": "^1.0.0",
+    "es5-shim": "^4.5.7"
   },
   "dependencies": {}
 }
