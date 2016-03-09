@@ -17,7 +17,13 @@
 // @codekit-prepend "../bower_components/fix-ie/src/version-flags.js";
 
 // *** es5-shim *** //
-// @codekit-prepend "../bower_components/es5-shim/es5-shim.js";
+// codekit-prepend "../bower_components/es5-shim/es5-shim.js";
 
 // *** helpers *** //
+// @codekit-prepend "components/es5-function.bind.js";
+// @codekit-prepend "components/DOM.ready.js";
+// @codekit-prepend "components/isInViewport.js";
+// @codekit-prepend "components/getLeft.js";
+// @codekit-prepend "components/getTop.js";
+// @codekit-prepend "components/css.js";
 // @codekit-prepend "components/helpers.js";

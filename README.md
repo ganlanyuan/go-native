@@ -8,6 +8,7 @@ Contents and credits:
 
 **From the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)**
 - ES5 Array extensions (`every, filter, forEach, indexOf, lastIndexOf, map, reduce, reduceRight, some`)
+- ES5 Function extensions (`bind`)
 
 **From [Alhadis](https://github.com/Alhadis/Fix-IE)**
 - `addEventListener`
@@ -32,3 +33,4 @@ Contents and credits:
 - `String.prototype.repeat`
 
 **Others**
+- DOM ready
