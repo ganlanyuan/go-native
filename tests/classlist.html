@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <title>classList: add, remove, toggle</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  
+  <link rel="stylesheet" href="css/classlist.css">
+  <script type="text/javascript" src="/dist/go-native.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h3>Add / remove event listener</h3>
+    <p class="event-listener-output"></p>
+    <p class="window-width-output"></p>
+    <div class="btn add-event-listener">Add</div>
+    <div class="btn remove-event-listener">Remove</div>
+  </div>
+  <div class="container">
+    <h3>Add: bold, red, underline, heading</h3>
+    <p id="addClasses">Placeat eveniet, ea totam neque ab error facere nam maxime dolores molestiae tempore pariatur, consectetur fuga! Non deserunt, incidunt magnam.</p>
+    <h3>Remove:bold, red, underline, italic, heading</h3>
+    <p id="removeClasses" class="red bold italic underline heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem reiciendis eveniet suscipit? Reiciendis, molestiae unde, officia quisquam sunt corporis.</p>
+    <h3>Toggle: remove italic, add red</h3>
+    <p id="toggleClass" class="italic">Voluptatem dolor ratione sint nostrum dolore laudantium alias esse dolorum veniam quisquam, recusandae velit, omnis? Temporibus, porro. Repellat ipsa, adipisci.</p>
+  </div>
+
+  <script type="text/javascript">
+    var d = document,
+        w = window;
+
+    // addEventListener 
+    // removeEventListener 
+    // window.innerWidth 
+    // window.innerHeight
+    var 
+        addEventBtn = d.querySelector('.add-event-listener'),
+        removeEventBtn = d.querySelector('.remove-event-listener'),
+        eventOutput = d.querySelector('.event-listener-output'),
+        wwOutput = d.querySelector('.window-width-output');
+
+    function showWindowWidth() {
+      var 
+          ww = w.innerWidth,
+          wh = w.innerHeight;
+          
+      wwOutput.innerHTML = "Window: " + ww + " x " + wh;
+    }
+
+    w.addEventListener('load', showWindowWidth);
+
+    addEventBtn.addEventListener('click', function (e) {
+      eventOutput.innerHTML = "Resize Listener added";
+      w.addEventListener('resize', showWindowWidth);
+    });
+
+    removeEventBtn.addEventListener('click', function (e) {
+      eventOutput.innerHTML = "Resize Listener removed";
+      w.removeEventListener('resize', showWindowWidth);
+    });
+
+    // node.textContent
+    // classList
+    var 
+        ad = document.querySelector('#addClasses'),
+        rm = document.querySelector('#removeClasses'),
+        tg = document.querySelector('#toggleClass');
+
+    ad.classList.add('bold', 'red', 'underline', 'heading');
+    rm.classList.remove('bold', 'red', 'underline', 'italic', 'heading');
+    tg.classList.toggle('red', true);
+    tg.classList.toggle('italic', false);
+    // el.childElementCount
+    // el.firstElementChild
+    // el.lastElementChild
+    // el.nextElementSibling
+    // el.previousElementSibling
+    // ChildNode.remove
+    // window.getComputedStyle
+    // window.innerWidth
+    // window.innerHeight
+    // window.pageXOffset
+    // window.pageYOffset
+    // Array.isArray
+    // Number.isNaN
+    // Date.now
+    // String.prototype.trim
+    // String.prototype.repeat
+  </script>
+</body>
+</html>

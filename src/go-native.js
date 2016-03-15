@@ -8,7 +8,6 @@
 // @codekit-prepend "../bower_components/fix-ie/src/es5-arrays.js";
 // @codekit-prepend "../bower_components/fix-ie/src/es5-methods.js";
 // @codekit-prepend "../bower_components/fix-ie/src/html5-shiv.js";
-// @codekit-prepend "../bower_components/fix-ie/src/IE8-addEventListener.js";
 // @codekit-prepend "../bower_components/fix-ie/src/IE8-child-elements.js";
 // @codekit-prepend "../bower_components/fix-ie/src/IE8-getComputedStyle.js";
 // @codekit-prepend "../bower_components/fix-ie/src/IE8-offsets.js";
@@ -20,6 +19,7 @@
 // codekit-prepend "../bower_components/es5-shim/es5-shim.js";
 
 // *** helpers *** //
+// @codekit-prepend "components/IE8-addEventListener.js";
 // @codekit-prepend "components/es5-function.bind.js";
 // @codekit-prepend "components/DOM.ready.js";
 // @codekit-prepend "components/isInViewport.js";
