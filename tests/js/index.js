@@ -107,3 +107,40 @@ getTheStyle();
 // Date.now
 // String.prototype.trim
 // String.prototype.repeat
+
+// DOM ready
+w.addEventListener('load', function () {
+  // alert('load!');
+});
+ready(function () {
+  // alert('ready!');
+});
+
+// isInViewport
+function testInViewport() {
+  var el = d.querySelector('.inViewport'),
+      output1 = d.querySelector('.inViewport-output .offset'),
+      output2 = d.querySelector('.inViewport-output .viewport'),
+      st = getOffsetTop(el),
+      vp = isInViewport(el);
+  output1.innerHTML = st;
+  output2.innerHTML = vp;
+  // if (vp === true) {
+  //   document.body.style.background = "#66FFFF";
+  // } else {
+  //   document.body.style.background = "#fff";
+  // }
+}
+w.addEventListener('load', testInViewport);
+w.addEventListener('scroll', testInViewport);
+
+// getOuterWidth
+// getOuterHeight
+// getOffsetWidth
+// getOffsetHeight
+// getOffsetLeft
+// getOffsetTop
+
+// css
+// extend
+// getSupportedProp

@@ -36,6 +36,7 @@ p a:hover { text-decoration: underline; }
   padding: 10px;
   background: #f2f2f2;
 }
+.output span { display: block; }
 .btn {
   font-size: 14px;
   display: inline-block;
@@ -60,7 +61,6 @@ p a:hover { text-decoration: underline; }
 }
 
 /* Add / remove event listener */
-.window-width-output span { display: block; }
 
 /* classlist */
 .heading { font-size: 40px; }
@@ -94,3 +94,15 @@ p.next { background: #804000; }
 /* Date.now */
 /* String.prototype.trim */
 /* String.prototype.repeat */
+
+/* DOM ready */
+/* isInViewport */
+/* getOuterWidth */
+/* getOuterHeight */
+/* getOffsetWidth */
+/* getOffsetHeight */
+/* getOffsetLeft */
+/* getOffsetTop */
+/* css */
+/* extend */
+/* getSupportedProp */

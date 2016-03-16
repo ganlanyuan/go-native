@@ -1,10 +1,10 @@
 // *** isInViewport *** //
 var isInViewport = function ( elem ) {
-  var distance = elem.getBoundingClientRect();
+  var rect = elem.getBoundingClientRect();
   return (
-    distance.top >= 0 &&
-    distance.left >= 0 &&
-    distance.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-    distance.right <= (window.innerWidth || document.documentElement.clientWidth)
+    rect.bottom >= 0 &&
+    rect.right >= 0 &&
+    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.left <= (window.innerWidth || document.documentElement.clientWidth)
     );
 };

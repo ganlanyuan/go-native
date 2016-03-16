@@ -27,8 +27,8 @@
 // @codekit-prepend "components/extend.js";
 // @codekit-prepend "components/isInViewport.js";
 // @codekit-prepend "components/getSupportedProp.js";
-// @codekit-prepend "components/getScrollTop.js";
-// @codekit-prepend "components/getScrollLeft.js";
+// @codekit-prepend "components/getOffsetTop.js";
+// @codekit-prepend "components/getOffsetLeft.js";
 // @codekit-prepend "components/getElementSize.js";
 // @codekit-prepend "components/css.js";
 // @codekit-prepend "components/helpers.js";
