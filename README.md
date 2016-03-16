@@ -9,11 +9,13 @@ Contents and credits:
 **From the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)**
 - ES5 Array extensions (`every, filter, forEach, indexOf, lastIndexOf, map, reduce, reduceRight, some`)
 - ES5 Function extensions (`bind`)
+- `preventDefault`
+- `stopPropagation`
 - `addEventListener`
 - `removeEventListener`
+- `node.textContent`
 
 **From [Alhadis](https://github.com/Alhadis/Fix-IE)**
-- `node.textContent`
 - `el.classList`
 - `el.childElementCount`
 - `el.firstElementChild`
@@ -34,3 +36,4 @@ Contents and credits:
 
 **Others**
 - DOM ready
+- isInViewport

@@ -4,7 +4,7 @@
   "authors": [
     "WilliamLin <ganlanyuan@gmail.com>"
   ],
-  "description": "Javascript polyfills which let you use native javascript",
+  "description": "A Javascript polyfills' collection which let you use native javascript.",
   "main": "",
   "moduleType": [],
   "keywords": [
@@ -14,7 +14,6 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "classlist": "^2014.12.13",
     "fix-ie": "^1.2.0",
     "domtokenlist": "^1.0.0",
     "es5-shim": "^4.5.7"

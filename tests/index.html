@@ -1,20 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Go-native tests</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <title>classList: add, remove, toggle</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  
   <link rel="stylesheet" href="css/index.css">
+  <script type="text/javascript" src="/dist/go-native.js"></script>
 </head>
 <body>
   <div class="container">
-    <h3>go-native tests</h3>  
-    <ul>
-      <li><a href="classlist.html">classlist</a></li>
-      <li><a href=""></a></li>
-      <li><a href=""></a></li>
-      <li><a href=""></a></li>
+    <!-- preventDefault -->
+    <h2>preventDefault</h2>
+    <p class="preventDefault"><a href="http://www.nytimes.com/2016/03/16/us/politics/republican-primary-results.html">Donald J. Trump routed Senator</a> Marco Rubio in Florida and won two other states, giving Mr. Trump a delegate advantage that will be very difficult to overcome.</p>
+
+    <!-- stopPropagation -->
+    <h2>stopPropagation</h2>
+
+    <!-- addEventListener / 
+         removeEventListener / 
+         window.innerWidth / 
+         window.innerHeight -->
+    <h2>addEventListener / removeEventListener / window.innerWidth / window.innerHeight</h2>
+    <p class="event-listener-output"></p>
+    <p class="window-width-output"></p>
+    <div class="btn add-event-listener">Add</div>
+    <div class="btn remove-event-listener">Remove</div>
+    
+    <!-- node.textContent -->
+    <h2>node.textContent</h2>
+    <ol class="text-content">
+      <li><code>textContent</code> returns <code>null</code> if the element is a <a href="/en-US/docs/DOM/document" title="DOM/Document">document</a>, a document type, or a notation. To grab all of the text and CDATA data for the whole document, one could use<code> <a href="/en-US/docs/DOM/document.documentElement" title="DOM/document.documentElement">document.documentElement</a>.textContent</code>.</li>
+      <li>If the node is a CDATA section, a comment, a processing instruction, or a text node, <code>textContent</code> returns the text inside this node (the <a href="/en-US/docs/DOM/Node.nodeValue" title="DOM/Node/NodeValue/Node.nodeValue">nodeValue</a>).</li>
+      <li>For other node types, <code>textContent</code> returns the concatenation of the <code>textContent</code> attribute value of every child node, excluding comments and processing instruction nodes. This is an empty string if the node has no children.</li>
+      <li>Setting this property on a node removes all of its children and replaces them with a single text node with the given value.</li>
+    </ol>
+    <p class="text-content-output output"></p>
+
+    <!-- classList -->
+    <h2>classList</h2>
+    <h4>Add: bold, pink, underline, heading</h4>
+    <p id="addClasses">Placeat eveniet, ea totam neque ab error facere nam maxime dolores molestiae tempore pariatur, consectetur fuga!</p>
+    <h4>Remove:bold, pink, underline, italic, heading</h4>
+    <p id="removeClasses" class="pink bold italic underline heading">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolorem reiciendis eveniet suscipit? Reiciendis, molestiae unde, officia quisquam sunt corporis.</p>
+    <h4>Toggle: remove italic, add pink</h4>
+    <p id="toggleClass" class="italic">Voluptatem dolor ratione sint nostrum dolore laudantium alias esse dolorum veniam quisquam, recusandae velit, omnis? Temporibus, porro. Repellat ipsa, adipisci.</p>
+
+    <!-- el.childElementCount / 
+         el.firstElementChild / 
+         el.lastElementChild / 
+         el.nextElementSibling / 
+         el.previousElementSibling -->
+    <h2>el.childElementCount / el.firstElementChild / el.lastElementChild / el.nextElementSibling / el.previousElementSibling</h2>
+    <p>Disney to Bring Back ‘Indiana Jones,’ With Harrison Ford</p>
+    <ul class="parent-element">
+      <li>A Distant Second at Home, Marco Rubio Ends a Disappointing Campaign</li>
+      <li>Details of Baby-Killing Charge Prompt Gasps in Staten Island Court</li>
+      <li>Ben Affleck’s ‘Broken’ Batman</li>
+      <li>Allies Say Obama’s Court Pick Is Near, and Will Be Hard for Republicans to Ignore</li>
+      <li>What We’re Watching in Florida, Ohio and Other Primaries</li>
     </ul>
+    <p>Seth Rogen and Evan Goldberg at SXSW With ‘Preacher’ and ‘Sausage Party’</p>
+    <p class="parent-element-output output"></p>
+
+    <!-- ChildNode.remove -->
+    <h2>ChildNode.remove</h2>
+
+    <!-- window.getComputedStyle -->
+    <h2>window.getComputedStyle</h2>
+
+    <!-- window.pageXOffset -->
+    <h2>window.pageXOffset</h2>
+
+    <!-- window.pageYOffset -->
+    <h2>window.pageYOffset</h2>
+
+    <!-- Array.isArray -->
+    <h2>Array.isArray</h2>
+
+    <!-- Number.isNaN -->
+    <h2>Number.isNaN</h2>
+
+    <!-- Date.now -->
+    <h2>Date.now</h2>
+
+    <!-- String.prototype.trim -->
+    <h2>String.prototype.trim</h2>
+
+    <!-- String.prototype.repeat -->
+    <h2>String.prototype.repeat</h2>
   </div>
-<script src="js/index.js"></script> 
+
+  <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
