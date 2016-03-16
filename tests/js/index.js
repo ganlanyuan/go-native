@@ -5,30 +5,43 @@ var d = document,
 // removeEventListener 
 // window.innerWidth 
 // window.innerHeight
+// window.pageXOffset
+// window.pageYOffset
 var 
     addEventBtn = d.querySelector('.add-event-listener'),
     removeEventBtn = d.querySelector('.remove-event-listener'),
     eventOutput = d.querySelector('.event-listener-output'),
-    wwOutput = d.querySelector('.window-width-output');
+    wwOutputSize = d.querySelector('.window-width-output .size');
+    wwOutputOffset = d.querySelector('.window-width-output .offset');
 
-function showWindowWidth() {
+function showWindowSize() {
   var 
       ww = w.innerWidth,
       wh = w.innerHeight;
       
-  wwOutput.innerHTML = "Window: " + ww + " x " + wh;
+  wwOutputSize.innerHTML = "Window: " + ww + " x " + wh + "<br />";
+}
+function showPageOffset() {
+  var 
+      wx = w.pageXOffset,
+      wy = w.pageYOffset;
+      
+  wwOutputOffset.innerHTML = "Page offset: " + wx + " x " + wy;
 }
 
-w.addEventListener('load', showWindowWidth);
+w.addEventListener('load', showWindowSize);
+w.addEventListener('load', showPageOffset);
 
 addEventBtn.addEventListener('click', function (e) {
   eventOutput.innerHTML = "Resize Listener added";
-  w.addEventListener('resize', showWindowWidth);
+  w.addEventListener('resize', showWindowSize);
+  w.addEventListener('scroll', showPageOffset);
 });
 
 removeEventBtn.addEventListener('click', function (e) {
   eventOutput.innerHTML = "Resize Listener removed";
-  w.removeEventListener('resize', showWindowWidth);
+  w.removeEventListener('resize', showWindowSize);
+  w.removeEventListener('scroll', showPageOffset);
 });
 
 // preventDefault
@@ -69,15 +82,19 @@ var
     prevEl = parentEl.previousElementSibling,
     nextEl = parentEl.nextElementSibling;
 firstChild.classList.add('first');
-lastChild.classList.add('last');
+// lastChild.classList.add('last');
 prevEl.classList.add('prev');
 nextEl.classList.add('next');
 parentElO.textContent = "childElementCount: " + childCount;
 
 // ChildNode.remove
+var childRm = d.querySelector('.parent-remove strong'),
+    btnRm = d.querySelector('.btn-remove');
+btnRm.addEventListener('click', function () {
+  childRm.remove();
+});
+
 // window.getComputedStyle
-// window.pageXOffset
-// window.pageYOffset
 // Array.isArray
 // Number.isNaN
 // Date.now

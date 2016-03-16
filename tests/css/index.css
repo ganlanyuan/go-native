@@ -60,6 +60,7 @@ p a:hover { text-decoration: underline; }
 }
 
 /* Add / remove event listener */
+.window-width-output span { display: block; }
 
 /* classlist */
 .heading { font-size: 40px; }
