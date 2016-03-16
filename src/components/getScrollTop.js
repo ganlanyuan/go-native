@@ -1,10 +1,10 @@
-// *** getLeft *** //
-var getLeft = function (el) {
+/* getScrollTop */
+var getScrollTop = function (el) {
   var location = 0;
-
+  
   if (el.offsetParent) {
     do {
-      location += el.offsetLeft;
+      location += el.offsetTop;
       el = el.offsetParent;
     } while (el);
   }

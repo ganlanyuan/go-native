@@ -37,3 +37,11 @@ Contents and credits:
 **Others**
 - DOM ready
 - isInViewport
+- getOuterWidth
+- getOuterHeight
+- getOffsetWidth
+- getOffsetHeight
+- getScrollLeft
+- getScrollTop
+- css
+- 

@@ -80,3 +80,17 @@ p a:hover { text-decoration: underline; }
 .parent-element .last { background: #FF8000; }
 p.prev { background: #66CCFF; }
 p.next { background: #804000; }
+
+/* window.getComputedStyle */
+#elem-container{
+  height: 100px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px dashed #ccc;
+}
+
+/* Array.isArray */
+/* Number.isNaN */
+/* Date.now */
+/* String.prototype.trim */
+/* String.prototype.repeat */

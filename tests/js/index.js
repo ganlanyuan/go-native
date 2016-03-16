@@ -95,6 +95,13 @@ btnRm.addEventListener('click', function () {
 });
 
 // window.getComputedStyle
+function getTheStyle(){
+  var elem = document.getElementById("elem-container");
+  var theCSSprop = window.getComputedStyle(elem,null)["height"];
+  document.getElementById("output").innerHTML = theCSSprop;
+ }
+getTheStyle();
+
 // Array.isArray
 // Number.isNaN
 // Date.now

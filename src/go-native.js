@@ -14,15 +14,21 @@
 /* es5-shim */
 // codekit-prepend "../bower_components/es5-shim/es5-shim.js";
 
-/*  Mozilla Developer Network */
+/* Mozilla Developer Network */
 // @codekit-prepend "components/IE8-addEventListener.js";
 // @codekit-prepend "components/IE8-textContent.js";
 // @codekit-prepend "components/es5-function.bind.js";
 
+/* Token Posts */
+// @codekit-prepend "components/es5-object.keys.js";
+
 /* helpers */
 // @codekit-prepend "components/DOM.ready.js";
+// @codekit-prepend "components/extend.js";
 // @codekit-prepend "components/isInViewport.js";
-// @codekit-prepend "components/getLeft.js";
-// @codekit-prepend "components/getTop.js";
+// @codekit-prepend "components/getSupportedProp.js";
+// @codekit-prepend "components/getScrollTop.js";
+// @codekit-prepend "components/getScrollLeft.js";
+// @codekit-prepend "components/getElementSize.js";
 // @codekit-prepend "components/css.js";
 // @codekit-prepend "components/helpers.js";
