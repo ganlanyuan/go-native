@@ -15,8 +15,10 @@
   "license": "MIT",
   "devDependencies": {
     "fix-ie": "^1.2.0",
-    "domtokenlist": "^1.0.0",
-    "es5-shim": "^4.5.7"
+    "es5-shim": "^4.5.7",
+    "respond": "^1.4.2",
+    "matchMedia": "^0.3.0",
+    "Selectivizr-bower": "selectivizr-bower#^1.0.3"
   },
   "dependencies": {}
 }

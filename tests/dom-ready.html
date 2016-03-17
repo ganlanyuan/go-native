@@ -13,6 +13,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   
   <link rel="stylesheet" href="css/basic.css">
+  <script type="text/javascript" src="../dist/go-native.ie8.js"></script>
   <script type="text/javascript" src="../dist/go-native.js"></script>
 </head>
 <body>
@@ -23,7 +24,7 @@
 <script type="text/javascript"> 
   // DOM ready
   var output = document.querySelector('.output');
-  document.addEventListener('load', function () {
+  window.addEventListener('load', function () {
     output.innerHTML += 'DOM loaded!' + '<br>';
   });
   ready(function () {

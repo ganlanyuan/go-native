@@ -1,20 +1,12 @@
 /**
- * IE8 addEventListener
+ * IE8 
+ * addEventListener
+ * removeEventListener
  *
  *https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener?redirectlocale=en-US&redirectslug=DOM%2FEventTarget.addEventListener#Compatibility
  *
  */
 (function() {
-  if (!Event.prototype.preventDefault) {
-    Event.prototype.preventDefault=function() {
-      this.returnValue=false;
-    };
-  }
-  if (!Event.prototype.stopPropagation) {
-    Event.prototype.stopPropagation=function() {
-      this.cancelBubble=true;
-    };
-  }
   if (!Element.prototype.addEventListener) {
     var eventListeners=[];
     
