@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Go-native tests</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  
+  <link rel="stylesheet" href="css/basic.css">
+  <script type="text/javascript" src="../dist/go-native.js"></script>
+</head>
+<body>
+  <div class="container" style="margin: 700px auto 700px">
+    <!-- isInViewport -->
+    <h2>isInViewport</h2>
+    <p class="inViewport">The G.O.P. appears headed for disaster and the Democrats have their own conflicts. </p>
+    <p class="inViewport-output output">
+      <span class="offset"></span>
+      <span class="viewport">In viewport: </span>
+    </p>
+  </div>
+
+<script type="text/javascript"> 
+  var d = document,
+      w = window;
+
+  // isInViewport
+  function testInViewport() {
+    var el = d.querySelector('.inViewport'),
+        output1 = d.querySelector('.inViewport-output .offset'),
+        output2 = d.querySelector('.inViewport-output .viewport'),
+        st = getOffsetTop(el),
+        vp = isInViewport(el);
+    output1.innerHTML = st;
+    output2.innerHTML = vp;
+    // if (vp === true) {
+    //   document.body.style.background = "#66FFFF";
+    // } else {
+    //   document.body.style.background = "#fff";
+    // }
+  }
+  w.addEventListener('load', testInViewport);
+  w.addEventListener('scroll', testInViewport);
+</script>
+</body>
+</html>

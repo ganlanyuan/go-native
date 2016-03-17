@@ -1,1 +1,822 @@
-function extend(){for(var e,t,n,r=arguments[0]||{},o=1,i=arguments.length;i>o;o++)if(null!==(e=arguments[o]))for(t in e)n=e[t],r!==n&&void 0!==n&&(r[t]=n);return r}function getSupportedProp(e){for(var t=document.documentElement,n=0;n<e.length;n++)if(e[n]in t.style)return e[n]}function getOuterWidth(e){var t=e.getBoundingClientRect();return t.width||t.right-t.left}function getOuterHeight(e){var t=e.getBoundingClientRect();return t.height||t.bottom-t.top}function getOffsetWidth(e){return _getOffset(e)}function getOffsetHeight(e){return _getOffset(e,!0)}function _getOffset(e,t){var n=e.ownerDocument&&e.ownerDocument.defaultView&&e.ownerDocument.defaultView.getComputedStyle&&e.ownerDocument.defaultView.getComputedStyle(e,null),r=n&&n.getPropertyValue(t?"height":"width")||"";return r=r&&r.indexOf(".")>-1?parseFloat(r)+parseInt(n.getPropertyValue(t?"padding-top":"padding-left"))+parseInt(n.getPropertyValue(t?"padding-bottom":"padding-right"))+parseInt(n.getPropertyValue(t?"border-top-width":"border-left-width"))+parseInt(n.getPropertyValue(t?"border-bottom-width":"border-right-width")):t?e.offsetHeight:e.offsetWidth}function toCamelCase(e){return e.replace(/-([a-z])/gi,function(e,t){return t.toUpperCase()})}function css(e,t,n){var r=typeof t,o=typeof n,i=e.style;if("undefined"!==r&&"undefined"===o){if("object"!==r){if("string"===r)return getStyle(e,t);throw{message:"Invalid parameter passed to css()"}}for(var a in t)t.hasOwnProperty(a)&&(i[toCamelCase(a)]=t[a])}else{if("string"!==r||"string"!==o)throw{message:"Invalid parameters passed to css()"};i[toCamelCase(t)]=n}}!function(){"use strict";var e,t=window,n=document,r=Object,o=null,i=!0,a=!1,u=" ",c="Element",f="create"+c,l="DOMTokenList",p="__defineGetter__",s="defineProperty",d="class",h="List",y=d+h,m="rel",g=m+h,v="div",w="length",E="contains",b="apply",O="HTML",j=("item "+E+" add remove toggle toString toLocaleString").split(u),T=j[2],S=j[3],C=j[4],A="prototype",P=s in r||p in r[A]||o,D=function(e,t,n,o){r[s]?r[s](e,t,{configurable:a===P?i:!!o,get:n}):e[p](t,n)},L=function(t,n){var o=this,c=[],f={},l=0,p=0,d=function(){if(l>=p)for(;l>p;++p)(function(e){D(o,e,function(){return h(),c[e]},a)})(p)},h=function(){var e,r,o=arguments,a=/\s+/;if(o[w])for(r=0;r<o[w];++r)if(a.test(o[r]))throw e=new SyntaxError('String "'+o[r]+'" '+E+" an invalid character"),e.code=5,e.name="InvalidCharacterError",e;for(c=(""+t[n]).replace(/^\s+|\s+$/g,"").split(a),""===c[0]&&(c=[]),f={},r=0;r<c[w];++r)f[c[r]]=i;l=c[w],d()};return h(),D(o,w,function(){return h(),l}),o[j[6]]=o[j[5]]=function(){return h(),c.join(u)},o.item=function(e){return h(),c[e]},o[E]=function(e){return h(),!!f[e]},o[T]=function(){h[b](o,e=arguments);for(var e,r,a=0,p=e[w];p>a;++a)r=e[a],f[r]||(c.push(r),f[r]=i);l!==c[w]&&(l=c[w]>>>0,t[n]=c.join(u),d())},o[S]=function(){h[b](o,e=arguments);for(var e,r={},a=0,p=[];a<e[w];++a)r[e[a]]=i,delete f[e[a]];for(a=0;a<c[w];++a)r[c[a]]||p.push(c[a]);c=p,l=p[w]>>>0,t[n]=c.join(u),d()},o[C]=function(t,n){return h[b](o,[t]),e!==n?n?(o[T](t),i):(o[S](t),a):f[t]?(o[S](t),a):(o[T](t),i)},function(e,t){if(t)for(var n=0;7>n;++n)t(e,j[n],{enumerable:a})}(o,r[s]),o},x=function(e,t,r){D(e[A],t,function(){var e,o=this,u=p+s+t;if(o[u])return e;if(o[u]=i,a===P){for(var c,l=x.mirror=x.mirror||n[f](v),d=l.childNodes,h=d[w],y=0;h>y;++y)if(d[y]._R===o){c=d[y];break}c||(c=l.appendChild(n[f](v))),e=L.call(c,o,r)}else e=new L(o,r);return D(o,t,function(){return e}),delete o[u],e},i)},M,N,F;if(t[l])M=n[f](v)[y],A=t[l][A],M[T][b](M,j),2>M[w]&&(N=A[T],F=A[S],A[T]=function(){for(var e=0,t=arguments;e<t[w];++e)N.call(this,t[e])},A[S]=function(){for(var e=0,t=arguments;e<t[w];++e)F.call(this,t[e])}),M[C](h,a)&&(A[C]=function(t,n){var r=this;return r[(n=e===n?!r[E](t):n)?T:S](t),!!n});else{if(P)try{D({},"support")}catch(I){P=a}L.polyfill=i,t[l]=L,x(t[c],y,d+"Name"),x(t[O+"Link"+c],g,m),x(t[O+"Anchor"+c],g,m),x(t[O+"Area"+c],g,m)}}(),Array.prototype.every||(Array.prototype.every=function(e,t){"use strict";var n,r;if(null==this)throw new TypeError("'this' is null or not defined");var o=Object(this),i=o.length>>>0;if("function"!=typeof e)throw new TypeError;for(arguments.length>1&&(n=t),r=0;i>r;){var a;if(r in o){a=o[r];var u=e.call(n,a,r,o);if(!u)return!1}r++}return!0}),Array.prototype.filter||(Array.prototype.filter=function(e){"use strict";if(void 0===this||null===this)throw new TypeError;var t=Object(this),n=t.length>>>0;if("function"!=typeof e)throw new TypeError;for(var r=[],o=arguments.length>=2?arguments[1]:void 0,i,a=0;n>a;a++)a in t&&e.call(o,i=t[a],a,t)&&r.push(i);return r}),Array.prototype.forEach||(Array.prototype.forEach=function(e,t){var n,r;if(null===this)throw new TypeError(" this is null or not defined");var o=Object(this),i=o.length>>>0;if("function"!=typeof e)throw new TypeError(e+" is not a function");for(arguments.length>1&&(n=t),r=0;i>r;){var a;r in o&&(a=o[r],e.call(n,a,r,o)),r++}}),Array.prototype.indexOf||(Array.prototype.indexOf=function(e,t){var n;if(null==this)throw new TypeError('"this" is null or not defined');var r=Object(this),o=r.length>>>0;if(0===o)return-1;var i=+t||0;if(Math.abs(i)===1/0&&(i=0),i>=o)return-1;for(n=Math.max(i>=0?i:o-Math.abs(i),0);o>n;){if(n in r&&r[n]===e)return n;n++}return-1}),Array.prototype.lastIndexOf||(Array.prototype.lastIndexOf=function(e){"use strict";if(void 0===this||null===this)throw new TypeError;var t,n,r=Object(this),o=r.length>>>0;if(0===o)return-1;for(t=o-1,arguments.length>1&&(t=Number(arguments[1]),t!=t?t=0:0!=t&&t!=1/0&&t!=-(1/0)&&(t=(t>0||-1)*Math.floor(Math.abs(t)))),n=t>=0?Math.min(t,o-1):o-Math.abs(t);n>=0;n--)if(n in r&&r[n]===e)return n;return-1}),Array.prototype.map||(Array.prototype.map=function(e,t){var n,r,o;if(null==this)throw new TypeError('"this" is null or not defined');var i=Object(this),a=i.length>>>0;if("function"!=typeof e)throw new TypeError(e+" is not a function");for(arguments.length>1&&(n=t),r=new Array(a),o=0;a>o;){var u,c;o in i&&(u=i[o],c=e.call(n,u,o,i),r[o]=c),o++}return r}),Array.prototype.reduce||(Array.prototype.reduce=function(e){"use strict";if(null==this)throw new TypeError("Array.prototype.reduce called on null or undefined");if("function"!=typeof e)throw new TypeError(e+" is not a function");var t=Object(this),n=t.length>>>0,r=0,o;if(2===arguments.length)o=arguments[1];else{for(;n>r&&!(r in t);)r++;if(r>=n)throw new TypeError("Reduce of empty array with no initial value");o=t[r++]}for(;n>r;r++)r in t&&(o=e(o,t[r],r,t));return o}),Array.prototype.reduceRight||(Array.prototype.reduceRight=function(e){"use strict";if(null==this)throw new TypeError("Array.prototype.reduce called on null or undefined");if("function"!=typeof e)throw new TypeError(e+" is not a function");var t=Object(this),n=t.length>>>0,r=n-1,o;if(arguments.length>=2)o=arguments[1];else{for(;r>=0&&!(r in t);)r--;if(0>r)throw new TypeError("Reduce of empty array with no initial value");o=t[r--]}for(;r>=0;r--)r in t&&(o=e(o,t[r],r,t));return o}),Array.prototype.some||(Array.prototype.some=function(e){"use strict";if(null==this)throw new TypeError("Array.prototype.some called on null or undefined");if("function"!=typeof e)throw new TypeError;for(var t=Object(this),n=t.length>>>0,r=arguments.length>=2?arguments[1]:void 0,o=0;n>o;o++)if(o in t&&e.call(r,t[o],o,t))return!0;return!1}),Date.now=Date.now||function(){return+new Date},String.prototype.trim=String.prototype.trim||function(){return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,"")},Object.defineProperties=Object.defineProperties||function(e,t){for(var n in t)Object.defineProperty(e,n,t[n])},Array.isArray=Array.isArray||function(e){return"[object Array]"===Object.prototype.toString.call(e)},Number.isNaN=Number.isNaN||function(e){return e!==e},String.prototype.repeat=String.prototype.repeat||function(e){return Array(e+1).join(this)},!function(e,t){function n(e,t){var n=e.createElement("p"),r=e.getElementsByTagName("head")[0]||e.documentElement;return n.innerHTML="x<style>"+t+"</style>",r.insertBefore(n.lastChild,r.firstChild)}function r(){var e=w.elements;return"string"==typeof e?e.split(" "):e}function o(e,t){var n=w.elements;"string"!=typeof n&&(n=n.join(" ")),"string"!=typeof e&&(e=e.join(" ")),w.elements=n+" "+e,f(t)}function i(e){var t=v[e[m]];return t||(t={},g++,e[m]=g,v[g]=t),t}function a(e,n,r){if(n||(n=t),p)return n.createElement(e);r||(r=i(n));var o;return o=r.cache[e]?r.cache[e].cloneNode():y.test(e)?(r.cache[e]=r.createElem(e)).cloneNode():r.createElem(e),!o.canHaveChildren||h.test(e)||o.tagUrn?o:r.frag.appendChild(o)}function u(e,n){if(e||(e=t),p)return e.createDocumentFragment();n=n||i(e);for(var o=n.frag.cloneNode(),a=0,u=r(),c=u.length;c>a;a++)o.createElement(u[a]);return o}function c(e,t){t.cache||(t.cache={},t.createElem=e.createElement,t.createFrag=e.createDocumentFragment,t.frag=t.createFrag()),e.createElement=function(n){return w.shivMethods?a(n,e,t):t.createElem(n)},e.createDocumentFragment=Function("h,f","return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&("+r().join().replace(/[\w\-:]+/g,function(e){return t.createElem(e),t.frag.createElement(e),'c("'+e+'")'})+");return n}")(w,t.frag)}function f(e){e||(e=t);var r=i(e);return!w.shivCSS||l||r.hasCSS||(r.hasCSS=!!n(e,"article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}template{display:none}")),p||c(e,r),e}var l,p,s="3.7.3",d=e.html5||{},h=/^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,y=/^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,m="_html5shiv",g=0,v={};!function(){try{var e=t.createElement("a");e.innerHTML="<xyz></xyz>",l="hidden"in e,p=1==e.childNodes.length||function(){t.createElement("a");var e=t.createDocumentFragment();return"undefined"==typeof e.cloneNode||"undefined"==typeof e.createDocumentFragment||"undefined"==typeof e.createElement}()}catch(n){l=!0,p=!0}}();var w={elements:d.elements||"abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output picture progress section summary template time video",version:s,shivCSS:d.shivCSS!==!1,supportsUnknownElements:p,shivMethods:d.shivMethods!==!1,type:"default",shivDocument:f,createElement:a,createDocumentFragment:u,addElements:o};e.html5=w,f(t),"object"==typeof module&&module.exports&&(module.exports=w)}("undefined"!=typeof window?window:this,document),function(){"use strict";var e={firstElementChild:function(){for(var e=this.children,t,n=0,r=e.length;r>n;++n)if(t=e[n],1===t.nodeType)return t;return null},lastElementChild:function(){for(var e=this.children,t,n=e.length-1;n>=0;--n)if(t=e[n],1===t.nodeType)return t;return null},nextElementSibling:function(){for(var e=this.nextSibling;e&&1!==e.nodeType;)e=e.nextSibling;return e},previousElementSibling:function(){for(var e=this.previousSibling;e&&1!==e.nodeType;)e=e.previousSibling;return e},childElementCount:function(){for(var e=0,t=this.children,n,r=0,o=t.length;o>r;++r)n=t[r],1===n.nodeType&&++e;return e}};for(var t in e)t in document.documentElement||Object.defineProperty(Element.prototype,t,{get:e[t]})}(),window.getComputedStyle=window.getComputedStyle||function(e){if(!e)return null;var t=e.currentStyle,n=e.getBoundingClientRect(),r=document.createElement("div"),o=r.style;for(var i in t)o[i]=t[i];return o.cssFloat=o.styleFloat,"auto"===o.width&&(o.width=n.right-n.left+"px"),"auto"===o.height&&(o.height=n.bottom-n.top+"px"),o},"pageXOffset"in window||function(){var e=function(){return(document.documentElement||document.body.parentNode||document.body).scrollLeft},t=function(){return(document.documentElement||document.body.parentNode||document.body).scrollTop};Object.defineProperty(window,"pageXOffset",{get:e}),Object.defineProperty(window,"pageYOffset",{get:t}),Object.defineProperty(window,"scrollX",{get:e}),Object.defineProperty(window,"scrollY",{get:t})}(),"innerWidth"in window||(Object.defineProperty(window,"innerWidth",{get:function(){return(document.documentElement||document.body.parentNode||document.body).clientWidth}}),Object.defineProperty(window,"innerHeight",{get:function(){return(document.documentElement||document.body.parentNode||document.body).clientHeight}})),window.MouseEvent||"pageX"in Event.prototype||(Object.defineProperty(Event.prototype,"pageX",{get:function(){return this.clientX+window.pageXOffset}}),Object.defineProperty(Event.prototype,"pageY",{get:function(){return this.clientY+window.pageYOffset}})),"remove"in Element.prototype||(Element.prototype.remove=function(){this.parentNode&&this.parentNode.removeChild(this)}),function(){function e(e){var t=r.createElement("div");return t.innerHTML="<!--[if "+e+"]><i></i><![endif]-->",t.getElementsByTagName("i").length}for(var t=6,n=window,r=document,o="IE_VERSION";10>t;++t)e("IE "+t)&&(n["IS_IE"+t]=!0,n[o]=t);e("IEMobile")&&(n.IS_IEMobile=!0),r.documentElement.classList.add("ie","ie"+n[o])}(),function(){if(Event.prototype.preventDefault||(Event.prototype.preventDefault=function(){this.returnValue=!1}),Event.prototype.stopPropagation||(Event.prototype.stopPropagation=function(){this.cancelBubble=!0}),!Element.prototype.addEventListener){var e=[],t=function(t,n){var r=this,o=function(e){e.target=e.srcElement,e.currentTarget=r,"undefined"!=typeof n.handleEvent?n.handleEvent(e):n.call(r,e)};if("DOMContentLoaded"==t){var i=function(e){"complete"==document.readyState&&o(e)};if(document.attachEvent("onreadystatechange",i),e.push({object:this,type:t,listener:n,wrapper:i}),"complete"==document.readyState){var a=new Event;a.srcElement=window,i(a)}}else this.attachEvent("on"+t,o),e.push({object:this,type:t,listener:n,wrapper:o})},n=function(t,n){for(var r=0;r<e.length;){var o=e[r];if(o.object==this&&o.type==t&&o.listener==n){"DOMContentLoaded"==t?this.detachEvent("onreadystatechange",o.wrapper):this.detachEvent("on"+t,o.wrapper),e.splice(r,1);break}++r}};Element.prototype.addEventListener=t,Element.prototype.removeEventListener=n,HTMLDocument&&(HTMLDocument.prototype.addEventListener=t,HTMLDocument.prototype.removeEventListener=n),Window&&(Window.prototype.addEventListener=t,Window.prototype.removeEventListener=n)}}(),Object.defineProperty&&Object.getOwnPropertyDescriptor&&Object.getOwnPropertyDescriptor(Element.prototype,"textContent")&&!Object.getOwnPropertyDescriptor(Element.prototype,"textContent").get&&!function(){var e=Object.getOwnPropertyDescriptor(Element.prototype,"innerText");Object.defineProperty(Element.prototype,"textContent",{get:function(){return e.get.call(this)},set:function(t){return e.set.call(this,t)}})}(),Function.prototype.bind||(Function.prototype.bind=function(e){if("function"!=typeof this)throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");var t=Array.prototype.slice.call(arguments,1),n=this,r=function(){},o=function(){return n.apply(this instanceof r?this:e,t.concat(Array.prototype.slice.call(arguments)))};return this.prototype&&(r.prototype=this.prototype),o.prototype=new r,o}),Object.keys||(Object.keys=function(e){if(e!==Object(e))throw new TypeError("Object.keys called on a non-object");var t=[],n;for(n in e)Object.prototype.hasOwnProperty.call(e,n)&&t.push(n);return t});var ready=function(e){return"function"==typeof e?"complete"===document.readyState?e():void document.addEventListener("DOMContentLoaded",e,!1):void 0},isInViewport=function(e){var t=e.getBoundingClientRect();return t.bottom>=0&&t.right>=0&&t.top<=(window.innerHeight||document.documentElement.clientHeight)&&t.left<=(window.innerWidth||document.documentElement.clientWidth)},getOffsetTop=function(e){var t=0;if(e.offsetParent)do t+=e.offsetTop,e=e.offsetParent;while(e);return t>=0?t:0},getOffsetLeft=function(e){var t=0;if(e.offsetParent)do t+=e.offsetLeft,e=e.offsetParent;while(e);return t>=0?t:0};
+/**
+ * Adds support to IE8 for the following properties:
+ *
+ *     Element.childElementCount
+ *     Element.firstElementChild
+ *     Element.lastElementChild
+ *     Element.nextElementSibling
+ *     Element.previousElementSibling
+ */
+(function(){
+	"use strict";
+	
+	
+	var patches = {
+		
+		firstElementChild: function(){
+			for(var nodes = this.children, n, i = 0, l = nodes.length; i < l; ++i)
+				if(n = nodes[i], 1 === n.nodeType) return n;
+			return null;
+		},
+		
+		lastElementChild: function(){
+			for(var nodes = this.children, n, i = nodes.length - 1; i >= 0; --i)
+				if(n = nodes[i], 1 === n.nodeType) return n;
+			return null;
+		},
+		
+		nextElementSibling: function(){
+			var e = this.nextSibling;
+			while(e && 1 !== e.nodeType)
+				e = e.nextSibling;
+			return e;
+		},
+		
+		previousElementSibling: function(){
+			var e = this.previousSibling;
+			while(e && 1 !== e.nodeType)
+				e = e.previousSibling;
+			return e;
+		},
+		
+		childElementCount: function(){
+			for(var c = 0, nodes = this.children, n, i = 0, l = nodes.length; i < l; ++i)
+				(n = nodes[i], 1 === n.nodeType) && ++c;
+			return c;
+		}
+	};
+	
+	for(var i in patches)
+		i in document.documentElement ||
+		Object.defineProperty(Element.prototype, i, {get: patches[i]});
+}());
+
+
+window.getComputedStyle = window.getComputedStyle || function(el){
+	if(!el) return null;
+	
+	/**
+	 * currentStyle returns an instance of a non-standard class called "CSSCurrentStyleDeclaration"
+	 * instead of "CSSStyleDeclaration", which has a few methods and properties missing (such as cssText).
+	 * https://msdn.microsoft.com/en-us/library/cc848941(v=vs.85).aspx
+	 *
+	 * Instead of returning the currentStyle value directly, we'll copy its properties to the style
+	 * of a shadow element. This ensures cssText is included, and ensures the result is an instance of
+	 * the correct DOM interface.
+	 *
+	 * There'll still be some minor discrepancies in the style values. For example, IE preserves the way
+	 * colour values were authored, whereas standards-compliant browsers will expand colours to use "rgb()"
+	 * notation. We won't bother to fix things like these, as they'd involve too much fiddling for little
+	 * gain.
+	 */
+	
+	var style   = el.currentStyle;
+	var box     = el.getBoundingClientRect();
+	var shadow  = document.createElement("div");
+	var output  = shadow.style;
+	for(var i in style)
+		output[i] = style[i];
+	
+	/** Fix some glitches */
+	output.cssFloat = output.styleFloat;
+	if("auto" === output.width)  output.width  = (box.right - box.left) + "px";
+	if("auto" === output.height) output.height = (box.bottom - box.top) + "px";
+	return output;
+};
+
+
+/** window.pageXOffset / window.pageYOffset */
+if(!("pageXOffset" in window)) (function(){
+	var x = function(){ return (document.documentElement || document.body.parentNode || document.body).scrollLeft; };
+	var y = function(){ return (document.documentElement || document.body.parentNode || document.body).scrollTop;  };
+	Object.defineProperty(window, "pageXOffset", {get: x});
+	Object.defineProperty(window, "pageYOffset", {get: y});
+	Object.defineProperty(window, "scrollX",     {get: x});
+	Object.defineProperty(window, "scrollY",     {get: y});
+}());
+
+/** window.innerWidth / window.innerHeight */
+if(!("innerWidth" in window)){
+	Object.defineProperty(window, "innerWidth",  {get: function(){ return (document.documentElement || document.body.parentNode || document.body).clientWidth; }});
+	Object.defineProperty(window, "innerHeight", {get: function(){ return (document.documentElement || document.body.parentNode || document.body).clientHeight; }});
+}
+
+/** event.pageX / event.pageY */
+if(!window.MouseEvent && !("pageX" in Event.prototype)){
+	Object.defineProperty(Event.prototype, "pageX", {get: function(){ return this.clientX + window.pageXOffset; }});
+	Object.defineProperty(Event.prototype, "pageY", {get: function(){ return this.clientY + window.pageYOffset; }});
+}
+
+
+/** IE8< polyfill for addEventListener */
+(function(){
+	if(!document.createElement("div").addEventListener){
+
+		var cache = "_eventListeners",
+
+
+		/** Ties an event listener to an element. */
+		addEvent = function(name, fn){
+			var THIS = this;
+			if(!(cache in THIS))    THIS[cache]       = {};
+			if(!THIS[cache][name])  THIS[cache][name] = [];
+
+			/** Check that we're not adding duplicate listeners for this event type. */
+			var handlers = THIS[cache][name], i;
+			for(i in handlers)
+				if(fn === handlers[i][0]) return;
+
+			handlers.push([fn, fn = function(fn){
+				return function(e){
+					var e = e || window.event;
+					if(!("target" in e))    e.target          = e.srcElement;
+					if(!e.preventDefault)   e.preventDefault  = function(){this.returnValue = false;}
+					return fn.call(THIS, e);
+				};
+			}(fn)]);
+
+			THIS.attachEvent("on" + name, fn);
+		},
+
+
+
+		/** Removes an event listener from an element. */
+		removeEvent = function(name, fn){
+			var THIS = this;
+			if(!(cache in THIS))    THIS[cache]       = {};
+			if(!THIS[cache][name])  THIS[cache][name] = [];
+
+			var handlers = THIS[cache][name], i;
+			for(i in handlers){
+				if(fn === handlers[i][0]){
+					THIS.detachEvent("on"+name, handlers[i][1]);
+					delete handlers[i];
+				}
+			}
+		};
+
+
+		Object.defineProperty(Element.prototype, "addEventListener",    {value: addEvent});
+		Object.defineProperty(Element.prototype, "removeEventListener", {value: removeEvent});
+		document.addEventListener     = addEvent;
+		document.removeEventListener  = removeEvent;
+
+		/** Reroute the window's add/removeEventListener methods to the document, since IE8 has "issues" with events bubbling to the window, apparently. */
+		window.addEventListener       = function(){ addEvent.apply(document, arguments);    };
+		window.removeEventListener    = function(){ removeEvent.apply(document, arguments); };
+	}
+}());
+
+
+(function(){
+	"use strict";
+	
+	if(!("textContent" in Element.prototype)){
+		var interfaces = "Element Text HTMLDocument HTMLCommentElement".split(" ");
+		var haveText   = {3:1, 8:1, 4:1, 7:1};
+		var haveNull   = {9:1, 10:1, 12:1};
+		var srcTags    = {SCRIPT:1, STYLE:1};
+		for(var I, i = 0; i < 4; ++i){
+			I = window[interfaces[i]];
+			I && Object.defineProperty(I.prototype, "textContent", {
+				get: function(){ return getText(this); },
+				set: function(input){
+					var type = this.nodeType;
+					
+					/** Text nodes: set nodeValue */
+					if(haveText[type])
+						this.nodeValue = input;
+					
+					/** For everything that isn't a document, DOCTYPE or notation */
+					else if(!haveNull[type]){
+						var name = this.nodeName;
+						
+						/** IE8 throws a runtime error trying to set the innerHTML of a <style> element */
+						if("STYLE" === name)
+							this.styleSheet.cssText = input;
+						
+						/** Scripts have a similar issue */
+						else if(srcTags[name])
+							this.text = input;
+						
+						else this.innerText = input;
+					}
+				},
+			});
+		}
+		
+		
+		function getText(node){
+			var type = node.nodeType;
+			
+			/** Return `nodeValue` if input is a text node, comment, CDATA section, or processing instruction */
+			if(haveText[type])
+				return node.nodeValue;
+			
+			/** Return null for documents, DOCTYPE declarations, and notations */
+			if(haveNull[type])
+				return null;
+			
+			/** Use the innerHTML property of <script> and <style> tags */
+			var name = node.nodeName;
+			if(name && srcTags[name])
+				return node.innerHTML;
+			
+			
+			/** Everything else: Concatenate the textContent of each child node, except comments and processing instructions */
+			var result   = "";
+			var children = node.childNodes;
+			for(var i = 0, l = children.length; i < l; ++i){
+				var child = children[i];
+				if(child.nodeType !== 7 && child.nodeType !== 8)
+					result += child.textContent;
+			}
+			
+			return result;
+		}
+	}	
+}());
+
+
+/**
+ * Polyfills for Array methods defined in ECMA-262, 5th edition (ES5).
+ *
+ * All implementations taken from the Mozilla Developer Network, with
+ * inline annotations removed and shit indentation corrected (dear world:
+ * stop using 2-space tabs, SERIOUSLY.)
+ */
+
+
+/** Every */
+if(!Array.prototype.every){
+	
+	Array.prototype.every = function(fn, thisArg){
+		"use strict";
+		var T, k;
+		
+		if(this == null)
+			throw new TypeError("'this' is null or not defined");
+		
+		var O = Object(this);
+		var l = O.length >>> 0;
+		if("function" !== typeof fn)
+			throw new TypeError();
+		
+		if(arguments.length > 1)
+			T = thisArg;
+		
+		k = 0;
+		while (k < l){
+			var kValue;
+			if(k in O){
+				kValue = O[k];
+				var testResult = fn.call(T, kValue, k, O);
+				if(!testResult) return false;
+			}
+			k++;
+		}
+		return true;
+	};
+}
+
+
+
+
+/** Filter */
+if(!Array.prototype.filter){	
+	Array.prototype.filter = function(fn){
+		"use strict";
+		
+		if(this === void 0 || this === null)
+			throw new TypeError();
+		
+		var t      = Object(this);
+		var length = t.length >>> 0;
+		if("function" !== typeof fn)
+			throw new TypeError();
+		
+		var res = [];
+		var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+		for(var val, i = 0; i < length; i++){
+			if(i in t){
+				if(fn.call(thisArg, val = t[i], i, t))
+					res.push(val);
+			}
+		}
+		
+		return res;
+	};
+}
+
+
+
+/** forEach */
+if(!Array.prototype.forEach){
+
+	Array.prototype.forEach = function(callback, thisArg){
+		var T, k;
+		
+		if(this === null)
+			throw new TypeError(" this is null or not defined");
+		
+		var O = Object(this);
+		var l = O.length >>> 0;
+		
+		if("function" !== typeof callback)
+			throw new TypeError(callback + " is not a function");
+		
+		if(arguments.length > 1)
+			T = thisArg;
+		
+		k = 0;
+		while(k < l){
+			var kValue;
+			if(k in O){
+				kValue = O[k];
+				callback.call(T, kValue, k, O);
+			}
+			k++;
+		}
+	};
+}
+
+
+
+/** indexOf */
+if(!Array.prototype.indexOf){
+	
+	Array.prototype.indexOf = function(searchElement, fromIndex){
+		var k;
+		
+		if(this == null)
+			throw new TypeError('"this" is null or not defined');
+		
+		var o = Object(this);
+		var l = o.length >>> 0;
+		if(l === 0)
+			return -1;
+		
+		var n = +fromIndex || 0;
+		if(Math.abs(n) === Infinity)
+			n = 0;
+		
+		if(n >= l)
+			return -1;
+		k = Math.max(n >= 0 ? n : l - Math.abs(n), 0);
+		
+		while(k < l){
+			if(k in o && o[k] === searchElement)
+				return k;
+			k++;
+		}
+		return -1;
+	};
+}
+
+
+
+/** lastIndexOf */
+if(!Array.prototype.lastIndexOf){
+	
+	Array.prototype.lastIndexOf = function(searchElement){
+		"use strict";
+		
+		if(this === void 0 || this === null)
+			throw new TypeError();
+		
+		var n, k,
+		t   = Object(this),
+		len = t.length >>> 0;
+		
+		if(len === 0)
+			return -1;
+		
+		n = len - 1;
+		if(arguments.length > 1){
+			n = Number(arguments[1]);
+			if(n != n) n = 0;
+			else if(n != 0 && n != (1 / 0) && n != -(1 / 0))
+				n = (n > 0 || -1) * Math.floor(Math.abs(n));
+		}
+		
+		for(k = n >= 0 ? Math.min(n, len - 1) : len - Math.abs(n); k >= 0; k--)
+			if(k in t && t[k] === searchElement) return k;
+		return -1;
+	};
+}
+
+
+
+/** Map */
+if(!Array.prototype.map){
+	
+	Array.prototype.map = function(fn, thisArg){
+		var T, A, k;
+		
+		if(this == null)
+			throw new TypeError('"this" is null or not defined');
+		
+		var O = Object(this);
+		var l = O.length >>> 0;
+		
+		if("function" !== typeof fn)
+			throw new TypeError(fn + " is not a function");
+		
+		if(arguments.length > 1)
+			T = thisArg;
+		
+		A = new Array(l);
+		k = 0;
+		while (k < l){
+			var kValue, mappedValue;
+			if(k in O){
+				kValue = O[k];
+				mappedValue = fn.call(T, kValue, k, O);
+				A[k] = mappedValue;
+			}
+			k++;
+		}
+		
+		return A;
+	};
+}
+
+
+
+/** Reduce */
+if(!Array.prototype.reduce){
+	Array.prototype.reduce = function(fn){
+		"use strict";
+		
+		if(this == null)
+			throw new TypeError("Array.prototype.reduce called on null or undefined");
+		
+		if("function" !== typeof fn)
+			throw new TypeError(fn + " is not a function");
+		
+		var t = Object(this), len = t.length >>> 0, k = 0, value;
+		if(2 === arguments.length)
+			value = arguments[1];
+		
+		else{
+			while(k < len && !(k in t)) k++;
+			if(k >= len)
+				throw new TypeError("Reduce of empty array with no initial value");
+			value = t[k++];
+		}
+		
+		for(; k < len; k++)
+			if(k in t) value = fn(value, t[k], k, t);
+		
+		return value;
+	};
+}
+
+
+
+/** reduceRight */
+if(!Array.prototype.reduceRight){
+	
+	Array.prototype.reduceRight = function(fn){
+		"use strict";
+		
+		if(null == this)
+			throw new TypeError("Array.prototype.reduce called on null or undefined");
+		
+		if("function" !== typeof fn)
+			throw new TypeError(fn + " is not a function");
+		
+		var t = Object(this), len = t.length >>> 0, k = len - 1, value;
+		if(arguments.length >= 2)
+			value = arguments[1];
+		
+		else{
+			while(k >= 0 && !(k in t)) k--;
+			if(k < 0)
+				throw new TypeError("Reduce of empty array with no initial value");
+			value = t[k--];
+		}
+		
+		for(; k >= 0; k--)
+			if(k in t) value = fn(value, t[k], k, t);
+		return value;
+	};
+}
+
+
+
+/** Some */
+if(!Array.prototype.some){
+	
+	Array.prototype.some = function(fn){
+		"use strict";
+		
+		if(this == null)
+			throw new TypeError("Array.prototype.some called on null or undefined");
+		
+		if(typeof fn !== "function")
+			throw new TypeError();
+		
+		var t = Object(this);
+		var l = t.length >>> 0;
+		var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+		for(var i = 0; i < l; i++)
+			if(i in t && fn.call(thisArg, t[i], i, t)) return true;
+		return false;
+	};
+}
+
+
+Date.now                = Date.now                || function(){return +new Date};
+String.prototype.trim   = String.prototype.trim   || function(){return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");};
+Object.defineProperties = Object.defineProperties || function(obj, props){for(var i in props) Object.defineProperty(obj, i, props[i]);};
+Array.isArray           = Array.isArray           || function(obj){return "[object Array]" === Object.prototype.toString.call(obj)};
+Number.isNaN            = Number.isNaN            || function(val){return val !== val};
+String.prototype.repeat = String.prototype.repeat || function(num){return Array(num + 1).join(this)};
+
+
+/**
+ * ES5 Function bind
+ *
+ *https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind#Compatibility
+ *
+ */
+if (!Function.prototype.bind) {
+  Function.prototype.bind = function(oThis) {
+    if (typeof this !== 'function') {
+      // closest thing possible to the ECMAScript 5
+      // internal IsCallable function
+      throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+    }
+
+    var aArgs   = Array.prototype.slice.call(arguments, 1),
+        fToBind = this,
+        fNOP    = function() {},
+        fBound  = function() {
+          return fToBind.apply(this instanceof fNOP
+                 ? this
+                 : oThis,
+                 aArgs.concat(Array.prototype.slice.call(arguments)));
+        };
+
+    if (this.prototype) {
+      // Function.prototype doesn't have a prototype property
+      fNOP.prototype = this.prototype; 
+    }
+    fBound.prototype = new fNOP();
+
+    return fBound;
+  };
+}
+
+/** 
+  * Object.keys polyfill 
+  * from Token Posts
+  * http://tokenposts.blogspot.com.au/2012/04/javascript-objectkeys-browser.html
+  */
+if (!Object.keys) {
+  Object.keys = function(o) {
+    if (o !== Object(o)) { throw new TypeError('Object.keys called on a non-object'); }
+    var k=[],p;
+    for (p in o) {
+      if (Object.prototype.hasOwnProperty.call(o,p)) { k.push(p); }
+    }
+    return k;
+  };
+}
+
+/* HTML5 Shiv 3.7.3 */
+!function(a,b){function c(a,b){var c=a.createElement("p"),d=a.getElementsByTagName("head")[0]||a.documentElement;return c.innerHTML="x<style>"+b+"</style>",d.insertBefore(c.lastChild,d.firstChild)}function d(){var a=t.elements;return"string"==typeof a?a.split(" "):a}function e(a,b){var c=t.elements;"string"!=typeof c&&(c=c.join(" ")),"string"!=typeof a&&(a=a.join(" ")),t.elements=c+" "+a,j(b)}function f(a){var b=s[a[q]];return b||(b={},r++,a[q]=r,s[r]=b),b}function g(a,c,d){if(c||(c=b),l)return c.createElement(a);d||(d=f(c));var e;return e=d.cache[a]?d.cache[a].cloneNode():p.test(a)?(d.cache[a]=d.createElem(a)).cloneNode():d.createElem(a),!e.canHaveChildren||o.test(a)||e.tagUrn?e:d.frag.appendChild(e)}function h(a,c){if(a||(a=b),l)return a.createDocumentFragment();c=c||f(a);for(var e=c.frag.cloneNode(),g=0,h=d(),i=h.length;i>g;g++)e.createElement(h[g]);return e}function i(a,b){b.cache||(b.cache={},b.createElem=a.createElement,b.createFrag=a.createDocumentFragment,b.frag=b.createFrag()),a.createElement=function(c){return t.shivMethods?g(c,a,b):b.createElem(c)},a.createDocumentFragment=Function("h,f","return function(){var n=f.cloneNode(),c=n.createElement;h.shivMethods&&("+d().join().replace(/[\w\-:]+/g,function(a){return b.createElem(a),b.frag.createElement(a),'c("'+a+'")'})+");return n}")(t,b.frag)}function j(a){a||(a=b);var d=f(a);return!t.shivCSS||k||d.hasCSS||(d.hasCSS=!!c(a,"article,aside,dialog,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}mark{background:#FF0;color:#000}template{display:none}")),l||i(a,d),a}var k,l,m="3.7.3",n=a.html5||{},o=/^<|^(?:button|map|select|textarea|object|iframe|option|optgroup)$/i,p=/^(?:a|b|code|div|fieldset|h1|h2|h3|h4|h5|h6|i|label|li|ol|p|q|span|strong|style|table|tbody|td|th|tr|ul)$/i,q="_html5shiv",r=0,s={};!function(){try{var a=b.createElement("a");a.innerHTML="<xyz></xyz>",k="hidden"in a,l=1==a.childNodes.length||function(){b.createElement("a");var a=b.createDocumentFragment();return"undefined"==typeof a.cloneNode||"undefined"==typeof a.createDocumentFragment||"undefined"==typeof a.createElement}()}catch(c){k=!0,l=!0}}();var t={elements:n.elements||"abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output picture progress section summary template time video",version:m,shivCSS:n.shivCSS!==!1,supportsUnknownElements:l,shivMethods:n.shivMethods!==!1,type:"default",shivDocument:j,createElement:g,createDocumentFragment:h,addElements:e};a.html5=t,j(b),"object"==typeof module&&module.exports&&(module.exports=t)}("undefined"!=typeof window?window:this,document);
+
+
+/** ChildNode.remove */
+if(!("remove" in Element.prototype)){
+	Element.prototype.remove = function(){
+		if(this.parentNode)
+			this.parentNode.removeChild(this);
+	};
+}
+
+
+/** DOMTokenList */
+!function(){"use strict";var n,r,t,e,i=window,o=document,u=Object,f=null,a=!0,c=!1,l=" ",s="Element",d="create"+s,h="DOMTokenList",m="__defineGetter__",p="defineProperty",v="class",g="List",y=v+g,w="rel",L=w+g,_="div",b="length",j="contains",S="apply",k="HTML",E=("item "+j+" add remove toggle toString toLocaleString").split(l),A=E[2],C=E[3],M=E[4],N="prototype",O=p in u||m in u[N]||f,T=function(n,r,t,e){u[p]?u[p](n,r,{configurable:c===O?a:!!e,get:t}):n[m](r,t)},x=function(r,t){var e=this,i=[],o={},f=0,s=0,d=function(){if(f>=s)for(;f>s;++s)(function(n){T(e,n,function(){return h(),i[n]},c)})(s)},h=function(){var n,e,u=arguments,c=/\s+/;if(u[b])for(e=0;e<u[b];++e)if(c.test(u[e]))throw n=new SyntaxError('String "'+u[e]+'" '+j+" an invalid character"),n.code=5,n.name="InvalidCharacterError",n;for(i=(""+r[t]).replace(/^\s+|\s+$/g,"").split(c),""===i[0]&&(i=[]),o={},e=0;e<i[b];++e)o[i[e]]=a;f=i[b],d()};return h(),T(e,b,function(){return h(),f}),e[E[6]]=e[E[5]]=function(){return h(),i.join(l)},e.item=function(n){return h(),i[n]},e[j]=function(n){return h(),!!o[n]},e[A]=function(){h[S](e,n=arguments);for(var n,u,c=0,s=n[b];s>c;++c)u=n[c],o[u]||(i.push(u),o[u]=a);f!==i[b]&&(f=i[b]>>>0,r[t]=i.join(l),d())},e[C]=function(){h[S](e,n=arguments);for(var n,u={},c=0,s=[];c<n[b];++c)u[n[c]]=a,delete o[n[c]];for(c=0;c<i[b];++c)u[i[c]]||s.push(i[c]);i=s,f=s[b]>>>0,r[t]=i.join(l),d()},e[M]=function(r,t){return h[S](e,[r]),n!==t?t?(e[A](r),a):(e[C](r),c):o[r]?(e[C](r),c):(e[A](r),a)},function(n,r){if(r)for(var t=0;7>t;++t)r(n,E[t],{enumerable:c})}(e,u[p]),e},D=function(n,r,t){T(n[N],r,function(){var n,e=this,i=m+p+r;if(e[i])return n;if(e[i]=a,c===O){for(var u,f=D.mirror=D.mirror||o[d](_),l=f.childNodes,s=l[b],h=0;s>h;++h)if(l[h]._R===e){u=l[h];break}u||(u=f.appendChild(o[d](_))),n=x.call(u,e,t)}else n=new x(e,t);return T(e,r,function(){return n}),delete e[i],n},a)};if(i[h])r=o[d](_)[y],N=i[h][N],r[A][S](r,E),2>r[b]&&(t=N[A],e=N[C],N[A]=function(){for(var n=0,r=arguments;n<r[b];++n)t.call(this,r[n])},N[C]=function(){for(var n=0,r=arguments;n<r[b];++n)e.call(this,r[n])}),r[M](g,c)&&(N[M]=function(r,t){var e=this;return e[(t=n===t?!e[j](r):t)?A:C](r),!!t});else{if(O)try{T({},"support")}catch(G){O=c}x.polyfill=a,i[h]=x,D(i[s],y,v+"Name"),D(i[k+"Link"+s],L,w),D(i[k+"Anchor"+s],L,w),D(i[k+"Area"+s],L,w)}}();
+
+
+/** Store "constants" on the window object to flag specific versions of Explorer. */
+(function(){
+	var i      = 6,
+	WIN        = window,
+	DOC        = document,
+	IE_VERSION = "IE_VERSION";
+	
+	function is(v){
+		var div = DOC.createElement("div");
+		div.innerHTML = "<!--[if " + v + "]><i></i><![endif]-->";
+		return div.getElementsByTagName("i").length;
+	}
+	
+	for(; i < 10; ++i) if(is("IE " + i))
+		WIN["IS_IE" + i ] = true,
+		WIN[ IE_VERSION ] = i;
+
+	is("IEMobile") && (WIN.IS_IEMobile = true);
+	
+	/** Might as well flag the root element with CSS classes while we're here. */
+	DOC.documentElement.classList.add("ie", "ie"+WIN[ IE_VERSION ]);
+}());
+
+
+var ready = function ( fn ) {
+
+  // Sanity check
+  if ( typeof fn !== 'function' ) return;
+
+  // If document is already loaded, run method
+  if ( document.readyState === 'complete'  ) {
+    return fn();
+  }
+
+  // Otherwise, wait until document is loaded
+  document.addEventListener( 'DOMContentLoaded', fn, false );
+
+};
+
+// ** extend ** //
+function extend() {
+  var obj, name, copy,
+  target = arguments[0] || {},
+  i = 1,
+  length = arguments.length;
+
+  for (; i < length; i++) {
+    if ((obj = arguments[i]) !== null) {
+      for (name in obj) {
+        copy = obj[name];
+
+        if (target === copy) {
+          continue;
+        } else if (copy !== undefined) {
+          target[name] = copy;
+        }
+      }
+    }
+  }
+  return target;
+}
+
+// *** isInViewport *** //
+var isInViewport = function ( elem ) {
+  var rect = elem.getBoundingClientRect();
+  return (
+    rect.bottom >= 0 &&
+    rect.right >= 0 &&
+    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.left <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+};
+
+/* get supported property */
+function getSupportedProp(proparray){
+  var root = document.documentElement;
+  for (var i=0; i<proparray.length; i++){
+    if (proparray[i] in root.style){
+      return proparray[i];
+    }
+  }
+}
+// var getTD = getSupportedProp(['transitionDuration', 'WebkitTransitionDuration', 'MozTransitionDuration', 'OTransitionDuration']),
+// getTransform = getSupportedProp(['transform', 'WebkitTransform', 'MozTransform', 'OTransform']);
+
+/* getOffsetTop */
+var getOffsetTop = function (el) {
+  var location = 0;
+  
+  if (el.offsetParent) {
+    do {
+      location += el.offsetTop;
+      el = el.offsetParent;
+    } while (el);
+  }
+  return location >= 0 ? location : 0;
+};
+
+/* getOffsetLeft */
+var getOffsetLeft = function (el) {
+  var location = 0;
+
+  if (el.offsetParent) {
+    do {
+      location += el.offsetLeft;
+      el = el.offsetParent;
+    } while (el);
+  }
+  return location >= 0 ? location : 0;
+};
+
+/* get elements size */
+// 1. outer sizes: content + padding + border + margin
+// 2. offset sizes: content + padding + border
+// 3. client sizes: content + padding
+
+// 1. outer size //
+function getOuterWidth(el) {
+  var box = el.getBoundingClientRect();
+  return box.width || (box.right - box.left);
+}
+
+function getOuterHeight(el) {
+  var box = el.getBoundingClientRect();
+  return box.height || (box.bottom - box.top);
+}
+
+// 2. offset size //
+// http://vadikom.com/dailies/offsetwidth-offsetheight-useless-in-ie9-firefox4/
+function getOffsetWidth(el) { return _getOffset(el); }
+function getOffsetHeight(el) { return _getOffset(el, true); }
+
+function _getOffset(el, height) {
+  var cStyle = el.ownerDocument && el.ownerDocument.defaultView && el.ownerDocument.defaultView.getComputedStyle
+    && el.ownerDocument.defaultView.getComputedStyle(el, null),
+    ret = cStyle && cStyle.getPropertyValue(height ? 'height' : 'width') || '';
+  if (ret && ret.indexOf('.') > -1) {
+    ret = parseFloat(ret)
+      + parseInt(cStyle.getPropertyValue(height ? 'padding-top' : 'padding-left'))
+      + parseInt(cStyle.getPropertyValue(height ? 'padding-bottom' : 'padding-right'))
+      + parseInt(cStyle.getPropertyValue(height ? 'border-top-width' : 'border-left-width'))
+      + parseInt(cStyle.getPropertyValue(height ? 'border-bottom-width' : 'border-right-width'));
+  } else {
+    ret = height ? el.offsetHeight : el.offsetWidth;
+  }
+  return ret;
+}
+
+// 3. client size: el.clientWidth & el.clientHeight
+
+// ** get & set styles ** //
+function toCamelCase(str) {
+  return str.replace(/-([a-z])/ig, function( all, letter ) {
+    return letter.toUpperCase();
+  });
+}
+
+function css(el, css, value) {
+  var cssType = typeof css,
+      valueType = typeof value,
+      elStyle = el.style;
+
+  if (cssType !== "undefined" && valueType === "undefined") {
+    if (cssType === "object") {
+      // set style info
+      for (var prop in css) {
+        if (css.hasOwnProperty(prop)) {
+          elStyle[toCamelCase(prop)] = css[prop];
+        }
+      }
+    } else if (cssType === "string") {
+      // get style info for specified property
+      return getStyle(el, css);
+    } else {
+      throw { message: "Invalid parameter passed to css()" };
+    }
+
+  } else if (cssType === "string" && valueType === "string") {
+    elStyle[toCamelCase(css)] = value;
+
+  } else {
+    throw { message: "Invalid parameters passed to css()" };
+  }
+}
+
+
+/**
+  * IE8
+  */
+// @codekit-prepend "../bower_components/fix-ie/src/IE8-child-elements.js";
+// @codekit-prepend "../bower_components/fix-ie/src/IE8-getComputedStyle.js";
+// @codekit-prepend "../bower_components/fix-ie/src/IE8-offsets.js";
+// @codekit-prepend "../bower_components/fix-ie/src/IE8-addEventListener.js";
+// codekit-prepend "components/IE8-addEventListener.js";
+// @codekit-prepend "../bower_components/fix-ie/src/text-content.js";
+
+
+// codekit-prepend "../bower_components/es5-shim/es5-shim.js";
+// @codekit-prepend "../bower_components/fix-ie/src/es5-arrays.js";
+// @codekit-prepend "../bower_components/fix-ie/src/es5-methods.js";
+// @codekit-prepend "components/es5-function.bind.js";
+// @codekit-prepend "components/es5-object.keys.js";
+// @codekit-prepend "../bower_components/fix-ie/src/html5-shiv.js";
+// @codekit-prepend "../bower_components/fix-ie/src/remove.js";
+// @codekit-prepend "../bower_components/fix-ie/src/token-list.js";
+// @codekit-prepend "../bower_components/fix-ie/src/version-flags.js";
+
+
+// @codekit-prepend "components/DOM.ready.js";
+// @codekit-prepend "components/extend.js";
+// @codekit-prepend "components/isInViewport.js";
+// @codekit-prepend "components/getSupportedProp.js";
+// @codekit-prepend "components/getOffsetTop.js";
+// @codekit-prepend "components/getOffsetLeft.js";
+// @codekit-prepend "components/getElementSize.js";
+// @codekit-prepend "components/css.js";
+
+

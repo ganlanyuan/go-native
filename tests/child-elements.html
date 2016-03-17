@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Go-native tests</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  
+  <link rel="stylesheet" href="css/basic.css">
+  <style rel="stylesheet">
+    .parent-element .first { background: #FF66FF; }
+    .parent-element .last { background: #FF8000; }
+    p.prev { background: #66CCFF; }
+    p.next { background: #804000; }
+  </style>
+  
+  <script type="text/javascript" src="../dist/go-native.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- el.childElementCount / 
+         el.firstElementChild / 
+         el.lastElementChild / 
+         el.nextElementSibling / 
+         el.previousElementSibling -->
+    <h2>el.childElementCount / el.firstElementChild / el.lastElementChild / el.nextElementSibling / el.previousElementSibling</h2>
+    <p>Disney to Bring Back ‘Indiana Jones,’ With Harrison Ford</p>
+    <ul class="parent-element">
+      <li>A Distant Second at Home, Marco Rubio Ends a Disappointing Campaign</li>
+      <li>Details of Baby-Killing Charge Prompt Gasps in Staten Island Court</li>
+      <li>Ben Affleck’s ‘Broken’ Batman</li>
+      <li>Allies Say Obama’s Court Pick Is Near, and Will Be Hard for Republicans to Ignore</li>
+      <li>What We’re Watching in Florida, Ohio and Other Primaries</li>
+    </ul>
+    <p>Seth Rogen and Evan Goldberg at SXSW With ‘Preacher’ and ‘Sausage Party’</p>
+    <p class="parent-element-output output"></p>
+  </div>
+
+<script type="text/javascript"> 
+  var d = document,
+      w = window;
+
+  // el.childElementCount
+  // el.firstElementChild
+  // el.lastElementChild
+  // el.nextElementSibling
+  // el.previousElementSibling
+  var 
+      parentEl = d.querySelector('.parent-element'),
+      parentElO = d.querySelector('.parent-element-output'),
+      childCount = parentEl.childElementCount,
+      firstChild = parentEl.firstElementChild,
+      lastChild = parentEl.lastElementChild,
+      prevEl = parentEl.previousElementSibling,
+      nextEl = parentEl.nextElementSibling;
+  firstChild.classList.add('first');
+  lastChild.classList.add('last');
+  prevEl.classList.add('prev');
+  nextEl.classList.add('next');
+  parentElO.textContent = "childElementCount: " + childCount;
+</script>
+</body>
+</html>

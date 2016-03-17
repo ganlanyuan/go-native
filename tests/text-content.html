@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Go-native tests</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  
+  <link rel="stylesheet" href="css/basic.css">
+  <style rel="stylesheet">
+    .text-content a { color: #66CCFF; }
+    .text-content code { 
+      display: inline-block;
+      padding: 0 6px;
+      border-radius: 3px;
+      background: #f2f2f2; 
+    }
+  </style>
+  
+  <script type="text/javascript" src="../dist/go-native.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- node.textContent -->
+    <h2>node.textContent</h2>
+    <ol class="text-content">
+      <li><code>textContent</code> returns <code>null</code> if the element is a <a href="/en-US/docs/DOM/document" title="DOM/Document">document</a>, a document type, or a notation. To grab all of the text and CDATA data for the whole document, one could use<code> <a href="/en-US/docs/DOM/document.documentElement" title="DOM/document.documentElement">document.documentElement</a>.textContent</code>.</li>
+      <li>If the node is a CDATA section, a comment, a processing instruction, or a text node, <code>textContent</code> returns the text inside this node (the <a href="/en-US/docs/DOM/Node.nodeValue" title="DOM/Node/NodeValue/Node.nodeValue">nodeValue</a>).</li>
+      <li>For other node types, <code>textContent</code> returns the concatenation of the <code>textContent</code> attribute value of every child node, excluding comments and processing instruction nodes. This is an empty string if the node has no children.</li>
+      <li>Setting this property on a node removes all of its children and replaces them with a single text node with the given value.</li>
+    </ol>
+    <p class="text-content-output output"></p>
+  </div>
+
+<script type="text/javascript"> 
+  var d = document,
+      w = window;
+      
+  // node.textContent
+  var txtNode = d.querySelector('.text-content'),
+      txtNodeO = d.querySelector('.text-content-output');
+  txtNodeO.textContent = txtNode.textContent;
+  // alert(txtNode);
+</script>
+</body>
+</html>

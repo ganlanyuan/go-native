@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Go-native tests</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  
+  <link rel="stylesheet" href="css/basic.css">
+  <script type="text/javascript" src="../dist/go-native.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- ChildNode.remove -->
+    <h2>ChildNode.remove</h2>
+    <p class="parent-remove">The <strong>G.O.P. appears headed</strong> for disaster and the Democrats have their own conflicts.</p>
+    <div class="btn btn-remove">Remove</div>
+
+  </div>
+
+<script type="text/javascript"> 
+  var d = document,
+      w = window;
+
+  // ChildNode.remove
+  var childRm = d.querySelector('.parent-remove strong'),
+      btnRm = d.querySelector('.btn-remove');
+  btnRm.addEventListener('click', function () {
+    childRm.remove();
+  });
+</script>
+</body>
+</html>
