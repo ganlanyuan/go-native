@@ -18,7 +18,6 @@
 // @codekit-prepend "components/getOffsetTop.js";
 // @codekit-prepend "components/getOffsetLeft.js";
 // @codekit-prepend "components/getElementSize.js";
-// @codekit-prepend "components/css.js";
 
 /**
   * not includeed

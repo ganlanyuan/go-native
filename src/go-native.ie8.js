@@ -2,9 +2,9 @@
   * IE8
   */
 // @codekit-prepend "../bower_components/fix-ie/src/IE8-child-elements.js";
-// @codekit-prepend "../bower_components/fix-ie/src/IE8-getComputedStyle.js";
 // @codekit-prepend "../bower_components/fix-ie/src/IE8-offsets.js";
 // @codekit-prepend "../bower_components/fix-ie/src/text-content.js";
+// @codekit-prepend "../bower_components/fix-ie/src/IE8-getComputedStyle.js";
 // @codekit-prepend "components/IE8-preventDefault.js";
 // @codekit-prepend "components/IE8-stopPropagation.js";
 // @codekit-prepend "components/IE8-addEventListener.js";
@@ -28,3 +28,5 @@
   */
 // @codekit-prepend "../bower_components/matchMedia/matchMedia.js";
 // @codekit-prepend "../bower_components/respond/dest/respond.src.js";
+
+// codekit-prepend "components/IE8-getComputedStyle.js";

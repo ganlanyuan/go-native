@@ -24,7 +24,6 @@ Contents and credits:
 - `el.nextElementSibling`
 - `el.previousElementSibling`
 - `ChildNode.remove`
-- `window.getComputedStyle`
 - `window.innerWidth`
 - `window.innerHeight`
 - `window.pageXOffset`
@@ -35,6 +34,9 @@ Contents and credits:
 - `String.prototype.trim`
 - `String.prototype.repeat`
 
+**From [thednp](https://github.com/thednp/minifill/blob/master/minifill.js)
+- `window.getComputedStyle`
+
 **Others**
 - DOM ready
 - isInViewport
@@ -44,6 +46,5 @@ Contents and credits:
 - getOffsetHeight
 - getScrollLeft
 - getScrollTop
-- css
 - extend
 - getSupportedProp
