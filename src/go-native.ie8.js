@@ -1,6 +1,7 @@
 /**
   * IE8
   */
+// @codekit-prepend "../bower_components/html5shiv/dist/html5shiv.js";
 // @codekit-prepend "../bower_components/fix-ie/src/IE8-child-elements.js";
 // @codekit-prepend "../bower_components/fix-ie/src/IE8-offsets.js";
 // @codekit-prepend "../bower_components/fix-ie/src/text-content.js";
@@ -17,7 +18,7 @@
   * https://github.com/keithclark/selectivizr
   */
 // @codekit-prepend "components/nwmatcher-1.2.3-min.js";
-// @codekit-prepend "../bower_components/Selectivizr bower/selectivizr.js";
+// @codekit-prepend "../bower_components/Selectivizr-bower/selectivizr.js";
 
 /**
   * matchmedia 
@@ -28,5 +29,3 @@
   */
 // @codekit-prepend "../bower_components/matchMedia/matchMedia.js";
 // @codekit-prepend "../bower_components/respond/dest/respond.src.js";
-
-// codekit-prepend "components/IE8-getComputedStyle.js";
