@@ -14,7 +14,7 @@
   
   <link rel="stylesheet" href="css/basic.css">
   <script type="text/javascript" src="../dist/go-native.ie8.js"></script>
-  <script type="text/javascript" src="../dist/go-native.js"></script>
+  <script type="text/javascript" src="../dist/go-native.all.js"></script>
 </head>
 <body>
   <div class="container" style="margin: 700px auto 700px">
@@ -36,7 +36,7 @@
     var el = d.querySelector('.inViewport'),
         output1 = d.querySelector('.inViewport-output .offset'),
         output2 = d.querySelector('.inViewport-output .viewport'),
-        st = getOffsetTop(el),
+        st = offsetTop(el),
         vp = isInViewport(el);
     output1.innerHTML = st;
     output2.innerHTML = vp;

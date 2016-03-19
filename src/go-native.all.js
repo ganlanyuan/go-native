@@ -1,5 +1,5 @@
 /**
-  * Other browsers
+  * All
   */
 // @codekit-prepend "../bower_components/fix-ie/src/remove.js";
 // @codekit-prepend "../bower_components/fix-ie/src/token-list.js";
@@ -10,12 +10,12 @@
 // @codekit-prepend "../bower_components/fix-ie/src/version-flags.js";
 
 
+// @codekit-prepend "components/Length.js";
 // @codekit-prepend "components/DOM.ready.js";
 // @codekit-prepend "components/extend.js";
 // @codekit-prepend "components/isInViewport.js";
 // @codekit-prepend "components/getSupportedProp.js";
-// @codekit-prepend "components/getOffsetTop.js";
-// @codekit-prepend "components/getOffsetLeft.js";
+// @codekit-prepend "components/getElementOffset.js";
 // @codekit-prepend "components/getElementSize.js";
 
 /**

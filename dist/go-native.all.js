@@ -382,6 +382,158 @@ if (!Object.keys) {
 }());
 
 
+/**
+  * https://github.com/heygrady/Units
+  */
+  
+(function(window, document, undefined){
+"use strict";
+
+// create a test element
+var testElem = document.createElement('test'),
+    docElement = document.documentElement,
+    defaultView = document.defaultView,
+    getComputedStyle = defaultView && defaultView.getComputedStyle,
+    computedValueBug,
+    runit = /^(-?[\d+\.\-]+)([a-z]+|%)$/i,
+    convert = {},
+    conversions = [1/25.4, 1/2.54, 1/72, 1/6],
+    units = ['mm', 'cm', 'pt', 'pc', 'in', 'mozmm'],
+    i = 6; // units.length
+
+// add the test element to the dom
+docElement.appendChild(testElem);
+
+// test for the WebKit getComputedStyle bug
+// @see http://bugs.jquery.com/ticket/10639
+if (getComputedStyle) {
+    // add a percentage margin and measure it
+    testElem.style.marginTop = '1%';
+    computedValueBug = getComputedStyle(testElem).marginTop === '1%';
+}
+
+// pre-calculate absolute unit conversions
+while(i--) {
+    convert[units[i] + "toPx"] = conversions[i] ? conversions[i] * convert.inToPx : toPx(testElem, '1' + units[i]);
+}
+
+// remove the test element from the DOM and delete it
+docElement.removeChild(testElem);
+testElem = undefined;
+
+// convert a value to pixels
+function toPx(elem, value, prop, force) {
+    // use width as the default property, or specify your own
+    prop = prop || 'width';
+
+    var style,
+        inlineValue,
+        ret,
+        unit = (value.match(runit)||[])[2],
+        conversion = unit === 'px' ? 1 : convert[unit + 'toPx'],
+        rem = /r?em/i;
+
+    if (conversion || rem.test(unit) && !force) {
+        // calculate known conversions immediately
+        // find the correct element for absolute units or rem or fontSize + em or em
+        elem = conversion ? elem : unit === 'rem' ? docElement : prop === 'fontSize' ? elem.parentNode || elem : elem;
+
+        // use the pre-calculated conversion or fontSize of the element for rem and em
+        conversion = conversion || parseFloat(curCSS(elem, 'fontSize'));
+
+        // multiply the value by the conversion
+        ret = parseFloat(value) * conversion;
+    } else {
+        // begin "the awesome hack by Dean Edwards"
+        // @see http://erik.eae.net/archives/2007/07/27/18.54.15/#comment-102291
+
+        // remember the current style
+        style = elem.style;
+        inlineValue = style[prop];
+
+        // set the style on the target element
+        try {
+            style[prop] = value;
+        } catch(e) {
+            // IE 8 and below throw an exception when setting unsupported units
+            return 0;
+        }
+
+        // read the computed value
+        // if style is nothing we probably set an unsupported unit
+        ret = !style[prop] ? 0 : parseFloat(curCSS(elem, prop));
+
+        // reset the style back to what it was or blank it out
+        style[prop] = inlineValue !== undefined ? inlineValue : null;
+    }
+
+    // return a number
+    return ret;
+}
+
+// return the computed value of a CSS property
+function curCSS(elem, prop) {
+    var value,
+        pixel,
+        unit,
+        rvpos = /^top|bottom/,
+        outerProp = ["paddingTop", "paddingBottom", "borderTop", "borderBottom"],
+        innerHeight,
+        parent,
+        i = 4; // outerProp.length
+    
+    if (getComputedStyle) {
+        // FireFox, Chrome/Safari, Opera and IE9+
+        value = getComputedStyle(elem)[prop];
+    } else if (pixel = elem.style['pixel' + prop.charAt(0).toUpperCase() + prop.slice(1)]) {
+        // IE and Opera support pixel shortcuts for top, bottom, left, right, height, width
+        // WebKit supports pixel shortcuts only when an absolute unit is used
+        value = pixel + 'px';
+    } else if (prop === 'fontSize') {
+        // correct IE issues with font-size
+        // @see http://bugs.jquery.com/ticket/760
+        value = toPx(elem, '1em', 'left', 1) + 'px';
+    } else {
+        // IE 8 and below return the specified style
+        value = elem.currentStyle[prop];
+    }
+
+    // check the unit
+    unit = (value.match(runit)||[])[2];
+    if (unit === '%' && computedValueBug) {
+        // WebKit won't convert percentages for top, bottom, left, right, margin and text-indent
+        if (rvpos.test(prop)) {
+            // Top and bottom require measuring the innerHeight of the parent.
+            innerHeight = (parent = elem.parentNode || elem).offsetHeight;
+            while (i--) {
+              innerHeight -= parseFloat(curCSS(parent, outerProp[i]));
+            }
+            value = parseFloat(value) / 100 * innerHeight + 'px';
+        } else {
+            // This fixes margin, left, right and text-indent
+            // @see https://bugs.webkit.org/show_bug.cgi?id=29084
+            // @see http://bugs.jquery.com/ticket/10639
+            value = toPx(elem, value);
+        }
+    } else if ((value === 'auto' || (unit && unit !== 'px')) && getComputedStyle) {
+        // WebKit and Opera will return auto in some cases
+        // Firefox will pass back an unaltered value when it can't be set, like top on a static element
+        value = 0;
+    } else if (unit && unit !== 'px' && !getComputedStyle) {
+        // IE 8 and below won't convert units for us
+        // try to convert using a prop that will return pixels
+        // this will be accurate for everything (except font-size and some percentages)
+        value = toPx(elem, value) + 'px';
+    }
+    return value;
+}
+
+// expose the conversion function to the window object
+window.Length = {
+    toPx: toPx
+};
+}(this, this.document));
+
 var ready = function ( fn ) {
 
   // Sanity check
@@ -443,73 +595,51 @@ function getSupportedProp(proparray){
 // var getTD = getSupportedProp(['transitionDuration', 'WebkitTransitionDuration', 'MozTransitionDuration', 'OTransitionDuration']),
 // getTransform = getSupportedProp(['transform', 'WebkitTransform', 'MozTransform', 'OTransform']);
 
-/* getOffsetTop */
-var getOffsetTop = function (el) {
-  var location = 0;
-  
-  if (el.offsetParent) {
-    do {
-      location += el.offsetTop;
-      el = el.offsetParent;
-    } while (el);
-  }
-  return location >= 0 ? location : 0;
+/* offsetLeft */
+var offsetLeft = function (el) {
+  var rect = el.getBoundingClientRect(),
+      left = rect.left + document.body.scrollLeft;
+  return Math.round(left);
 };
 
-/* getOffsetLeft */
-var getOffsetLeft = function (el) {
-  var location = 0;
 
-  if (el.offsetParent) {
-    do {
-      location += el.offsetLeft;
-      el = el.offsetParent;
-    } while (el);
-  }
-  return location >= 0 ? location : 0;
+/* offsetTop */
+var offsetTop = function (el) {
+  var rect = el.getBoundingClientRect(),
+      top = rect.top + document.body.scrollTop;
+  return Math.round(top);
 };
+
+
 
 /* get elements size */
-// 1. outer sizes: content + padding + border + margin
-// 2. offset sizes: content + padding + border
-// 3. client sizes: content + padding
+// 1. outer size: content + padding + border + margin //
+function outerWidth(el) {
+  var width = el.offsetWidth;
+  var style = el.currentStyle || getComputedStyle(el);
 
-// 1. outer size //
-function getOuterWidth(el) {
-  var box = el.getBoundingClientRect();
-  return box.width || (box.right - box.left);
+  width += parseInt(style.marginLeft) + parseInt(style.marginRight);
+  return width;
 }
 
-function getOuterHeight(el) {
-  var box = el.getBoundingClientRect();
-  return box.height || (box.bottom - box.top);
+function outerHeight(el) {
+  var height = el.offsetHeight;
+  var style = el.currentStyle || getComputedStyle(el);
+
+  height += parseInt(Length.toPx(el, style.marginTop)) + parseInt(Length.toPx(el, style.marginBottom));
+  return height;
 }
 
-// 2. offset size //
-// http://vadikom.com/dailies/offsetwidth-offsetheight-useless-in-ie9-firefox4/
-function getOffsetWidth(el) { return _getOffset(el); }
-function getOffsetHeight(el) { return _getOffset(el, true); }
+// 2. offset size: content + padding + border //
+//    el.offsetWidth  
+//    el.offsetHeight
 
-function _getOffset(el, height) {
-  var cStyle = el.ownerDocument && el.ownerDocument.defaultView && el.ownerDocument.defaultView.getComputedStyle
-    && el.ownerDocument.defaultView.getComputedStyle(el, null),
-    ret = cStyle && cStyle.getPropertyValue(height ? 'height' : 'width') || '';
-  if (ret && ret.indexOf('.') > -1) {
-    ret = parseFloat(ret)
-      + parseInt(cStyle.getPropertyValue(height ? 'padding-top' : 'padding-left'))
-      + parseInt(cStyle.getPropertyValue(height ? 'padding-bottom' : 'padding-right'))
-      + parseInt(cStyle.getPropertyValue(height ? 'border-top-width' : 'border-left-width'))
-      + parseInt(cStyle.getPropertyValue(height ? 'border-bottom-width' : 'border-right-width'));
-  } else {
-    ret = height ? el.offsetHeight : el.offsetWidth;
-  }
-  return ret;
-}
-
-// 3. client size: el.clientWidth & el.clientHeight
+// 3. client size: content + padding
+//    el.clientWidth  
+//    el.clientHeight
 
 /**
-  * Other browsers
+  * All
   */
 // @codekit-prepend "../bower_components/fix-ie/src/remove.js";
 // @codekit-prepend "../bower_components/fix-ie/src/token-list.js";
@@ -520,12 +650,12 @@ function _getOffset(el, height) {
 // @codekit-prepend "../bower_components/fix-ie/src/version-flags.js";
 
 
+// @codekit-prepend "components/Length.js";
 // @codekit-prepend "components/DOM.ready.js";
 // @codekit-prepend "components/extend.js";
 // @codekit-prepend "components/isInViewport.js";
 // @codekit-prepend "components/getSupportedProp.js";
-// @codekit-prepend "components/getOffsetTop.js";
-// @codekit-prepend "components/getOffsetLeft.js";
+// @codekit-prepend "components/getElementOffset.js";
 // @codekit-prepend "components/getElementSize.js";
 
 /**

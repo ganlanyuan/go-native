@@ -15,49 +15,36 @@
   <link rel="stylesheet" href="css/basic.css">
   <style rel="stylesheet">
     .box {
-      display: inline-block;
-      width: 300px;
-      height: 200px;
       padding: 20px;
       border: 10px solid #0080FF;
       background: #66CCFF;
-      margin-bottom: 20px;
-      font-size: 14px;
-      line-height: 2;
+      margin: 2em;
+      line-height: 1.5;
     }
+    .output { line-height: 2; }
   </style>
   
+  <script type="text/javascript" src="../src/components/Length.js"></script>
   <script type="text/javascript" src="../dist/go-native.ie8.js"></script>
-  <script type="text/javascript" src="../dist/go-native.js"></script>
+  <script type="text/javascript" src="../dist/go-native.all.js"></script>
 </head>
 <body>
   <div class="container">
-    <!-- getOuterWidth / 
-         getOuterHeight / 
-         getOffsetWidth / 
-         getOffsetHeight / 
-         getOffsetLeft / 
-         getOffsetTop -->
-    <h2>getOuterWidth / getOuterHeight / getOffsetWidth / getOffsetHeight / getOffsetLeft / getOffsetTop</h2>
-    <div class="box"></div>
+    <h2>outerWidth / outerHeight / offsetLeft / offsetTop</h2>
+    <p class="box">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis quaerat consequuntur necessitatibus maxime ipsam officiis quae enim beatae, esse consequatur minus reiciendis possimus quibusdam voluptates similique, facere voluptate porro eos.</p>
+    <div class="output"></div>
   </div>
 
 <script type="text/javascript"> 
-  // getOuterWidth
-  // getOuterHeight
-  // getOffsetWidth
-  // getOffsetHeight
-  // getOffsetLeft
-  // getOffsetTop
+  var box = document.querySelector('.box');
   function getBoxSize() {
-    var box = document.querySelector('.box');
-    box.innerHTML = 
-      'OuterWidth: ' + getOuterWidth(box) + '<br>' + 
-      'OuterHeight: ' + getOuterHeight(box) + '<br>' + 
-      'OffsetWidth: ' + getOffsetWidth(box) + '<br>' + 
-      'OffsetHeight: ' + getOffsetHeight(box) + '<br>' + 
-      'OffsetLeft: ' + getOffsetLeft(box) + '<br>' + 
-      'OffsetTop: ' + getOffsetTop(box);
+    var box = document.querySelector('.box'),
+        output = document.querySelector('.output');
+    output.innerHTML = 
+      'outerWidth: ' + outerWidth(box) + '<br>' + 
+      'outerHeight: ' + outerHeight(box) + '<br>' + 
+      'offsetLeft: ' + offsetLeft(box) + '<br>' + 
+      'offsetTop: ' + offsetTop(box);
   }
   getBoxSize();
 </script>

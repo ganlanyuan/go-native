@@ -38,13 +38,12 @@ From [Alhadis](https://github.com/Alhadis/Fix-IE)
 - `String.prototype.repeat`
 
 Others
+- Length (from [heygrady](https://github.com/heygrady/Units))
 - DOM ready
 - isInViewport
-- getOuterWidth
-- getOuterHeight
-- getOffsetWidth
-- getOffsetHeight
-- getScrollLeft
-- getScrollTop
+- outerWidth
+- outerHeight
+- offsetLeft
+- offsetTop
 - extend
 - getSupportedProp
