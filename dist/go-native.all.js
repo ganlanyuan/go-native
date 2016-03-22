@@ -382,10 +382,6 @@ if (!Object.keys) {
 }());
 
 
-/**
-  * https://github.com/heygrady/Units
-  */
-  
 (function(window, document, undefined){
 "use strict";
 
@@ -618,7 +614,7 @@ function outerWidth(el) {
   var width = el.offsetWidth;
   var style = el.currentStyle || getComputedStyle(el);
 
-  width += parseInt(style.marginLeft) + parseInt(style.marginRight);
+  width += parseInt(Length.toPx(el, style.marginLeft)) + parseInt(Length.toPx(el, style.marginRight));
   return width;
 }
 
@@ -650,7 +646,7 @@ function outerHeight(el) {
 // @codekit-prepend "../bower_components/fix-ie/src/version-flags.js";
 
 
-// @codekit-prepend "components/Length.js";
+// @codekit-prepend "../bower_components/Units/Length.js";
 // @codekit-prepend "components/DOM.ready.js";
 // @codekit-prepend "components/extend.js";
 // @codekit-prepend "components/isInViewport.js";

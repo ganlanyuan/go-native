@@ -4,7 +4,7 @@ function outerWidth(el) {
   var width = el.offsetWidth;
   var style = el.currentStyle || getComputedStyle(el);
 
-  width += parseInt(style.marginLeft) + parseInt(style.marginRight);
+  width += parseInt(Length.toPx(el, style.marginLeft)) + parseInt(Length.toPx(el, style.marginRight));
   return width;
 }
 

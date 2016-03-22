@@ -10,7 +10,7 @@
 // @codekit-prepend "../bower_components/fix-ie/src/version-flags.js";
 
 
-// @codekit-prepend "components/Length.js";
+// @codekit-prepend "../bower_components/Units/Length.js";
 // @codekit-prepend "components/DOM.ready.js";
 // @codekit-prepend "components/extend.js";
 // @codekit-prepend "components/isInViewport.js";
