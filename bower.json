@@ -19,7 +19,6 @@
     "respond": "^1.4.2",
     "matchMedia": "^0.3.0",
     "Selectivizr-bower": "selectivizr-bower#^1.0.3",
-    "html5shiv": "^3.7.3",
     "Units": "https://github.com/heygrady/Units.git"
   },
   "dependencies": {}

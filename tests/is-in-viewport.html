@@ -36,7 +36,7 @@
     var el = d.querySelector('.inViewport'),
         output1 = d.querySelector('.inViewport-output .offset'),
         output2 = d.querySelector('.inViewport-output .viewport'),
-        st = offsetTop(el),
+        st = getOffsetTop(el),
         vp = isInViewport(el);
     output1.innerHTML = st;
     output2.innerHTML = vp;

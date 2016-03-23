@@ -61,6 +61,9 @@ A Javascript polyfills' collection which let you use native javascript.
 - getParents
 - getParentsUntil
 - getSiblings
+- isNodeList
+- append
+- prepend
 
 # Credit:
 `HTML5 Shiv 3.7.3` is from [aFarkas](https://github.com/aFarkas/html5shiv), `NWMatcher` is from [dperini](https://github.com/dperini/nwmatcher), `selectivizr` is from [keithclark](https://github.com/keithclark/selectivizr), matchmedia is from [paulirish](https://github.com/paulirish/matchMedia.js), `respond` is from [scottjehl](https://github.com/scottjehl/Respond), `Length` is from [heygrady](https://github.com/heygrady/Units).
