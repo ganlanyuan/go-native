@@ -20,6 +20,9 @@
 // @codekit-prepend "components/isNodeList.js";
 // @codekit-prepend "components/append.js";
 // @codekit-prepend "components/prepend.js";
+// @codekit-prepend "components/wrap.js";
+// @codekit-prepend "components/wrapAll.js";
+// @codekit-prepend "components/unwrap.js";
 
 /**
   * not includeed
