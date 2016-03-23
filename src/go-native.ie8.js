@@ -6,6 +6,9 @@
 // @codekit-prepend "../bower_components/fix-ie/src/IE8-offsets.js";
 // @codekit-prepend "../bower_components/fix-ie/src/text-content.js";
 // @codekit-prepend "../bower_components/fix-ie/src/IE8-getComputedStyle.js";
+// @codekit-prepend "../bower_components/fix-ie/src/es5-arrays.js";
+// @codekit-prepend "components/es5-function.bind.js";
+// @codekit-prepend "components/es5-object.keys.js";
 // @codekit-prepend "components/IE8-preventDefault.js";
 // @codekit-prepend "components/IE8-stopPropagation.js";
 // @codekit-prepend "components/IE8-addEventListener.js";

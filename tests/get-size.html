@@ -30,7 +30,7 @@
 </head>
 <body>
   <div class="container">
-    <h2>outerWidth / outerHeight / offsetLeft / offsetTop</h2>
+    <h2>getOuterWidth / getOuterHeight / getOffsetLeft / getOffsetTop</h2>
     <p class="box">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis quaerat consequuntur necessitatibus maxime ipsam officiis quae enim beatae, esse consequatur minus reiciendis possimus quibusdam voluptates similique, facere voluptate porro eos.</p>
     <div class="output"></div>
   </div>
@@ -41,10 +41,10 @@
     var box = document.querySelector('.box'),
         output = document.querySelector('.output');
     output.innerHTML = 
-      'outerWidth: ' + outerWidth(box) + '<br>' + 
-      'outerHeight: ' + outerHeight(box) + '<br>' + 
-      'offsetLeft: ' + offsetLeft(box) + '<br>' + 
-      'offsetTop: ' + offsetTop(box);
+      'outerWidth: ' + getOuterWidth(box) + '<br>' + 
+      'outerHeight: ' + getOuterHeight(box) + '<br>' + 
+      'offsetLeft: ' + getOffsetLeft(box) + '<br>' + 
+      'offsetTop: ' + getOffsetTop(box);
   }
   getBoxSize();
 </script>

@@ -1,6 +1,6 @@
 /* get elements size */
 // 1. outer size: content + padding + border + margin //
-function outerWidth(el) {
+function getOuterWidth(el) {
   var width = el.offsetWidth;
   var style = el.currentStyle || getComputedStyle(el);
 
@@ -8,7 +8,7 @@ function outerWidth(el) {
   return width;
 }
 
-function outerHeight(el) {
+function getOuterHeight(el) {
   var height = el.offsetHeight;
   var style = el.currentStyle || getComputedStyle(el);
 
