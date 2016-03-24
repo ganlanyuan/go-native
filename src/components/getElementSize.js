@@ -1,18 +1,22 @@
 /* get elements size */
 // 1. outer size: content + padding + border + margin //
 function getOuterWidth(el) {
-  var width = el.offsetWidth;
-  var style = el.currentStyle || getComputedStyle(el);
+  var width = el.offsetWidth,
+      style = el.currentStyle || getComputedStyle(el),
+      marginLeft = (style.marginLeft === 'auto') ? '0px' : style.marginLeft,
+      marginRight = (style.marginRight === 'auto') ? '0px' : style.marginRight;
 
-  width += parseInt(Length.toPx(el, style.marginLeft)) + parseInt(Length.toPx(el, style.marginRight));
+  width += parseInt(Length.toPx(el, marginLeft)) + parseInt(Length.toPx(el, marginRight));
   return width;
 }
 
 function getOuterHeight(el) {
-  var height = el.offsetHeight;
-  var style = el.currentStyle || getComputedStyle(el);
+  var height = el.offsetHeight,
+      style = el.currentStyle || getComputedStyle(el),
+      marginTop = (style.marginTop === 'auto') ? '0px' : style.marginTop,
+      marginBottom = (style.marginBottom === 'auto') ? '0px' : style.marginBottom;
 
-  height += parseInt(Length.toPx(el, style.marginTop)) + parseInt(Length.toPx(el, style.marginBottom));
+  height += parseInt(Length.toPx(el, marginTop)) + parseInt(Length.toPx(el, marginBottom));
   return height;
 }
 

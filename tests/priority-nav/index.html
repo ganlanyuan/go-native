@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-  <title>Go-native tests</title>
+  <title>Priority Nav</title>
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="HandheldFriendly" content="True">
@@ -15,26 +15,37 @@
   <link rel="stylesheet" href="css/basis.css">
   <script type="text/javascript" src="/dist/go-native.ie8.js"></script>
   <script type="text/javascript" src="/dist/go-native.all.js"></script>
+  <script type="text/javascript" src="js/priorityNav.js"></script>
 </head>
 <body>
   <div class="container">
-    <!-- ChildNode.remove -->
-    <h2>ChildNode.remove</h2>
-    <p class="parent-remove">The <strong>G.O.P. appears headed</strong> for disaster and the Democrats have their own conflicts.</p>
-    <div class="btn btn-remove">Remove</div>
 
-  </div>
+      <div class="topic">
+        <h2 class="main-heading"><span>components: </span>Priority-nav</h2>
+        <div class="example">
+          <nav class="nav">
+           <ul class="links">
+             <li>Entertainment</li>
+             <li>Sports</li>
+             <li>Business</li>
+             <li>Technology</li>
+             <li>Nation</li>
+             <li>Politics</li>
+             <li>World</li>
+             <li>Opinion</li>
+             <li>Obituaries</li>
+             <li>Travel</li>
+             <li>Life & Style</li>
+             <li>Science</li>
+           </ul>
+          </nav>
+        </div>
+      </div>
 
-<script type="text/javascript"> 
-  var d = document,
-      w = window;
+    </div>
 
-  // ChildNode.remove
-  var childRm = d.querySelector('.parent-remove strong'),
-      btnRm = d.querySelector('.btn-remove');
-  btnRm.addEventListener('click', function () {
-    childRm.remove();
-  });
+<script>
+  priorityNav('.nav', 'more', false, 600);
 </script>
 </body>
 </html>
