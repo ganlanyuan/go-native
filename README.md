@@ -47,23 +47,28 @@ A Javascript polyfills' collection which let you use native javascript.
   - `el.classList`
 - Node-related properties:
   - `ChildNode.remove`
-- DOM.ready
 - [Length](https://github.com/heygrady/Units)
-- isInViewport
-- getOuterWidth
-- getOuterHeight
-- getOffsetLeft
-- getOffsetTop
 - extend
-- getSupportedProp
-- indexOf
-- getClosest
-- getParents
-- getParentsUntil
-- getSiblings
 - isNodeList
-- append
-- prepend
+- DOM related utilities
+  - DOM.ready
+  - isInViewport
+  - indexOf
+  - getOuterWidth
+  - getOuterHeight
+  - getOffsetLeft
+  - getOffsetTop
+  - getSupportedProp
+  - getClosest
+  - getParents
+  - getParentsUntil
+  - getSiblings
+  - createElement
+  - append
+  - prepend
+  - wrap
+  - wrapAll
+  - unwrap
 
 # Credit:
 `HTML5 Shiv 3.7.3` is from [aFarkas](https://github.com/aFarkas/html5shiv), `NWMatcher` is from [dperini](https://github.com/dperini/nwmatcher), `selectivizr` is from [keithclark](https://github.com/keithclark/selectivizr), matchmedia is from [paulirish](https://github.com/paulirish/matchMedia.js), `respond` is from [scottjehl](https://github.com/scottjehl/Respond), `Length` is from [heygrady](https://github.com/heygrady/Units).

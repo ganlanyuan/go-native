@@ -18,6 +18,7 @@
 // @codekit-prepend "components/getParentsUntil.js";
 // @codekit-prepend "components/getSiblings.js";
 // @codekit-prepend "components/isNodeList.js";
+// @codekit-prepend "components/createElement.js";
 // @codekit-prepend "components/append.js";
 // @codekit-prepend "components/prepend.js";
 // @codekit-prepend "components/wrap.js";
