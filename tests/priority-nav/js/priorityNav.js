@@ -60,6 +60,11 @@ function priorityNav (navClass, buttonText, restore, distory) {
         availableSpace = outerWidth;
         btn.classList.add('is-hidden');
 
+        // if (bpV.length === bp.length) { return; }
+        while(bpH.length > 0) {
+          // bpV.push(bpH[0]);
+          // bpH.shift();
+        }
         target = bp.length;
       } else if (windowWidth < distory) {
 
