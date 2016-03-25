@@ -21,6 +21,10 @@
       margin: 2em;
       line-height: 1.5;
     }
+    span { 
+      background: #fff; 
+      margin: auto;
+    }
     .output { line-height: 2; }
   </style>
   
@@ -30,15 +34,15 @@
 </head>
 <body>
   <div class="container">
+    <a href="/tests/" class="link">Back to home</a>
     <h2>getOuterWidth / getOuterHeight / getOffsetLeft / getOffsetTop</h2>
-    <p class="box">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis quaerat consequuntur necessitatibus maxime ipsam officiis quae enim beatae, esse consequatur minus reiciendis possimus quibusdam voluptates similique, facere voluptate porro eos.</p>
+    <p class="box">Lorem <span>ipsum</span> dolor sit amet, consectetur adipisicing elit. Veritatis quaerat consequuntur necessitatibus maxime ipsam officiis quae enim beatae, esse consequatur minus reiciendis possimus quibusdam voluptates similique, facere voluptate porro eos.</p>
     <div class="output"></div>
   </div>
 
 <script type="text/javascript"> 
-  var box = document.querySelector('.box');
   function getBoxSize() {
-    var box = document.querySelector('.box'),
+    var box = document.querySelector('.box span'),
         output = document.querySelector('.output');
     output.innerHTML = 
       'outerWidth: ' + getOuterWidth(box) + '<br>' + 

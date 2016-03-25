@@ -1,0 +1,29 @@
+.priority-nav {
+  position: relative;
+}
+
+.priority-nav > .js-nav-toggle {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.priority-nav .visible-links {
+  display: inline-table;
+}
+
+.priority-nav .visible-links > li {
+  display: table-cell;
+  white-space: nowrap;
+}
+
+.priority-nav .hidden-links {
+  position: absolute;
+  right: 0;
+  top: 100%;
+}
+
+.priority-nav .is-hidden {
+  visibility: hidden;
+}

@@ -21,3 +21,5 @@
   }
   .is-hidden { visibility: hidden; }
 }
+
+.priority-nav { @include priority-nav(); }
