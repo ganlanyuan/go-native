@@ -8,7 +8,7 @@ var prepend = function(els, data) {
     }
   } else if (typeof data === "string") {
     for (var i = els_new.length; i--;) {
-      els_new[i].insertAdjacentHTML('beforeend', data);
+      els_new[i].insertAdjacentHTML('afterbegin', data);
     }
   }
 };
