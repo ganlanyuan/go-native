@@ -22,7 +22,7 @@
       line-height: 1.5;
     }
     span { 
-      background: #fff; 
+      /*background: #fff; */
       margin: auto;
     }
     .output { line-height: 2; }
@@ -42,7 +42,7 @@
 
 <script type="text/javascript"> 
   function getBoxSize() {
-    var box = document.querySelector('.box span'),
+    var box = document.querySelector('.box'),
         output = document.querySelector('.output');
     output.innerHTML = 
       'outerWidth: ' + getOuterWidth(box) + '<br>' + 

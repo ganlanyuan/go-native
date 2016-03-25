@@ -2,26 +2,39 @@
   position: relative;
 }
 
-.priority-nav > .js-nav-toggle {
-  position: absolute;
-  right: 0;
-  height: 100%;
-  cursor: pointer;
+.priority-nav ul {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.js-priority-nav .priority-nav ul {
+  overflow: hidden;
+}
+
+.priority-nav li {
+  display: table-cell;
+  white-space: nowrap;
 }
 
 .priority-nav .visible-links {
   display: inline-table;
 }
 
-.priority-nav .visible-links > li {
-  display: table-cell;
-  white-space: nowrap;
-}
-
 .priority-nav .hidden-links {
   position: absolute;
   right: 0;
   top: 100%;
+}
+
+.priority-nav .hidden-links > li {
+  display: list-item;
+}
+
+.priority-nav .js-nav-toggle {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  cursor: pointer;
 }
 
 .priority-nav .is-hidden {

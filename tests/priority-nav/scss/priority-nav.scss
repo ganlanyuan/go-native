@@ -1,23 +1,27 @@
 // *** priority-nav *** //
 @mixin priority-nav() {
   position: relative;
-  > .js-nav-toggle {
-    position: absolute;
-    right: 0;
-    height: 100%;
-    cursor: pointer;
+  ul { 
+    max-width: 100%;
+    overflow-x: auto; 
+    .js-priority-nav & { overflow: hidden; }
   }
-  .visible-links {
-    display: inline-table;
-    > li { 
-      display: table-cell; 
-      white-space: nowrap;
-    }
+  li {
+    display: table-cell;
+    white-space: nowrap;
   }
+  .visible-links { display: inline-table; }
   .hidden-links {
     position: absolute;
     right: 0;
     top: 100%;
+    > li { display: list-item; }
+  }
+  .js-nav-toggle {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    cursor: pointer;
   }
   .is-hidden { visibility: hidden; }
 }
