@@ -37,34 +37,36 @@ function priorityNav (navClass, buttonText, restore, distory) {
     var bp = [],
         bpV = [],
         bpH = [];
-
     for (var i = 0, len = visibleItems.length; i < len; i++) {
       var last = bp[bp.length - 1],
           thisWidth = getOuterWidth(visibleItems[i]),
           newWidth = (last) ? last + thisWidth : thisWidth;
       bp.push(newWidth);
-    };
-    alert(bp);
+      bpV.push(newWidth);
+    }
 
     // update nav
     function updateNav () {
-      var outerWidth = getOuterWidth(nav),
-          availableSpace,
+      var 
+          windowWidth = window.innerWidth,
+          btnWidth = getOuterWidth(btn),
+          outerWidth = getOuterWidth(nav),
+          availableSpace = outerWidth - btnWidth,
           target,
-          current,
-          ww = window.innerWidth,
-          btnWidth = getOuterWidth(btn);
+          current;
 
       // get target, show/hide btn
-      if (outerWidth >= bp[bp.length - 1] || ww < restore) {
-        btn.classList.add('is-hidden');
+      if (outerWidth >= bp[bp.length - 1] || windowWidth < restore) {
         availableSpace = outerWidth;
+        btn.classList.add('is-hidden');
+
         target = bp.length;
+      } else if (windowWidth < distory) {
+
       } else {
         btn.classList.remove('is-hidden');
-        availableSpace = outerWidth - btnWidth;
 
-        if (ww < distory) {
+        if (windowWidth < distory) {
           target = 0;
         } else {
           for (var i = 0, len = bp.length; i < len; i++) {
