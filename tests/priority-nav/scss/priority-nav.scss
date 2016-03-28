@@ -4,13 +4,12 @@
   ul { 
     max-width: 100%;
     overflow-x: auto; 
-    .js-priority-nav & { overflow: hidden; }
   }
   li {
     display: table-cell;
     white-space: nowrap;
   }
-  .visible-links { display: inline-table; }
+  // .visible-links { display: inline-table; }
   .hidden-links {
     position: absolute;
     right: 0;

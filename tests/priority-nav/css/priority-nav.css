@@ -7,17 +7,9 @@
   overflow-x: auto;
 }
 
-.js-priority-nav .priority-nav ul {
-  overflow: hidden;
-}
-
 .priority-nav li {
   display: table-cell;
   white-space: nowrap;
-}
-
-.priority-nav .visible-links {
-  display: inline-table;
 }
 
 .priority-nav .hidden-links {
