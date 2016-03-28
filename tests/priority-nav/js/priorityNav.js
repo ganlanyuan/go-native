@@ -12,15 +12,15 @@
   * addEventListener
   */
 
-function priorityNav (navClass, buttonText, restore, distory) {
-  var restore = (
-        typeof restore !== 'undefined' && 
-        restore !== false && 
-        restore !== null) ? restore : 0,
-      distory = (
-        typeof distory !== 'undefined' && 
-        distory !== false && 
-        distory !== null) ? distory : 0,
+function priorityNav (navClass, buttonText, showAll, hideAll) {
+  var showAll = (
+        typeof showAll !== 'undefined' && 
+        showAll !== false && 
+        showAll !== null) ? showAll : 0,
+      hideAll = (
+        typeof hideAll !== 'undefined' && 
+        hideAll !== false && 
+        hideAll !== null) ? hideAll : 0,
       nav = document.querySelector(navClass);
 
   // if (nav.length > 0) {
@@ -56,70 +56,90 @@ function priorityNav (navClass, buttonText, restore, distory) {
           current;
 
       // get target, show/hide btn
-      if (outerWidth >= bp[bp.length - 1] || windowWidth < restore) {
+      if (outerWidth >= bp[bp.length - 1] || windowWidth < showAll) {
         availableSpace = outerWidth;
-        btn.classList.add('is-hidden');
-
-        // if (bpV.length === bp.length) { return; }
-        while(bpH.length > 0) {
-          // bpV.push(bpH[0]);
-          // bpH.shift();
+        if (!btn.classList.contains('is-hidden')) {
+          btn.classList.add('is-hidden');
         }
-        target = bp.length;
-      } else if (windowWidth < distory) {
 
+        if (bpV.length === bp.length) { return; }
+        while(bpH.length > 0) {
+          var hiddenItems = nav.querySelectorAll('.hidden-links > li');
+          append(visibleContainer, hiddenItems[0]);
+
+          bpV.push(bpH[0]);
+          bpH.shift();
+        }
+      } else if (windowWidth < hideAll) {
+        if (btn.classList.contains('is-hidden')) {
+          btn.classList.remove('is-hidden');
+        }
+
+        if (bpH.length === bp.length) { return; }
+        while(bpV.length > 0) {
+          prepend(hiddenContainer, visibleItems[bpV.length - 1]);
+
+          bpH.unshift(bpV[bpV.length - 1]);
+          bpV.splice(-1, 1);
+        }
       } else {
-        btn.classList.remove('is-hidden');
+        if (btn.classList.contains('is-hidden')) {
+          btn.classList.remove('is-hidden');
+        }
 
-        if (windowWidth < distory) {
-          target = 0;
+        if (availableSpace <= bpV[bpV.length - 1]) {
+          while(availableSpace <= bpV[bpV.length - 1]) {
+            prepend(hiddenContainer, visibleItems[bpV.length - 1]);
+
+            bpH.unshift(bpV[bpV.length - 1]);
+            bpV.splice(-1, 1);
+          }
         } else {
-          for (var i = 0, len = bp.length; i < len; i++) {
-            if (availableSpace >= bp[i] && availableSpace < bp[i + 1]) {
-              target = i + 1;
-            } else if (availableSpace < bp[0]) {
-              target = 0;
-            }
+          while(availableSpace > bpH[0]) {
+            var hiddenItems = nav.querySelectorAll('.hidden-links > li');
+            append(visibleContainer, hiddenItems[0]);
+
+            bpV.push(bpH[0]);
+            bpH.shift();
           }
         }
       }
-      // console.log(target);
 
-      // set current
-      var visibleItems = nav.querySelectorAll('.visible-links > li');
-      current = (visibleItems.length) ? visibleItems.length : 0;
-      // if (visibleItems.length) {
-      // } else {
-      //   current = 0;
+      // // set current
+      // var visibleItems = nav.querySelectorAll('.visible-links > li');
+      // current = (visibleItems.length) ? visibleItems.length : 0;
+      // // if (visibleItems.length) {
+      // // } else {
+      // //   current = 0;
+      // // }
+
+      // // update
+      // if (target > current) {
+      //   var a = current;
+      //   while (a < target) {
+      //     var vlink = nav.querySelectorAll('.visible-links');
+      //     var hlinks = nav.querySelectorAll('.hidden-links > li');
+
+      //     append(vlink, hlinks[0]);
+      //     a++;
+      //   }
+      // } else if (target < current) {
+      //   var a = current;
+      //   while (a > target ) {
+      //     var visibleItems = nav.querySelectorAll('.visible-links > li');
+      //     var hlinks = nav.querySelectorAll('.hidden-links > li');
+
+      //     prepend(hiddenContainer, visibleItems[visibleItems.length - 1]);
+      //     a--;
+      //   }
       // }
 
-      // update
-      if (target > current) {
-        var a = current;
-        while (a < target) {
-          var vlink = nav.querySelectorAll('.visible-links');
-          var hlinks = nav.querySelectorAll('.hidden-links > li');
-
-          append(vlink, hlinks[0]);
-          a++;
-        }
-      } else if (target < current) {
-        var a = current;
-        while (a > target ) {
-          var visibleItems = nav.querySelectorAll('.visible-links > li');
-          var hlinks = nav.querySelectorAll('.hidden-links > li');
-
-          prepend(hiddenContainer, visibleItems[visibleItems.length - 1]);
-          a--;
-        }
-      }
-
       // update data-count
-      var hlinks = nav.querySelectorAll('.hidden-links > li'),
+      var hiddenItems = nav.querySelectorAll('.hidden-links > li'),
           count;
 
-      if (hlinks.length) {
-        count = hlinks.length;
+      if (hiddenItems.length) {
+        count = hiddenItems.length;
       } else {
         count = 0;
       }
