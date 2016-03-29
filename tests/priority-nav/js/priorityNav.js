@@ -11,35 +11,79 @@
   * pageXOffset
   * addEventListener
   */
-  
-;(function (priorityNavJS) {
-  window.priorityNav = priorityNavJS();
-})(function () {
-  'use strict';
+var optimizedResize = (function() {
 
-  function priorityNav (navSelector, buttonText, showAll, hideAll) {
-    var showAll = (
-          typeof showAll !== 'undefined' && 
-          showAll !== false && 
-          showAll !== null) ? showAll : 0,
-        hideAll = (
-          typeof hideAll !== 'undefined' && 
-          hideAll !== false && 
-          hideAll !== null) ? hideAll : 0,
-        navEls = document.querySelectorAll(navSelector),
-        navs = (isNodeList(navEls)) ? navEls : [navEls];
+  var callbacks = [],
+  running = false;
 
-    if (navEls.length === 0) { console.log('"' + navSelector + '" can\'t be found.'); }
+  // fired on resize event
+  function resize() {
 
-    for (var i = navs.length; i--;) {
-      var nav = navs[i];
-      var newNav = new PriorityNavCore(nav, buttonText, showAll, hideAll);
+    if (!running) {
+      running = true;
+
+      if (window.requestAnimationFrame) {
+        window.requestAnimationFrame(runCallbacks);
+      } else {
+        setTimeout(runCallbacks, 66);
+      }
     }
 
-  };
+  }
 
-  function PriorityNavCore(nav, buttonText, showAll, hideAll) {
-    this.nav = nav;
+  // run the actual callbacks
+  function runCallbacks() {
+
+    callbacks.forEach(function(callback) {
+      callback();
+    });
+
+    running = false;
+  }
+
+  // adds callback to loop
+  function addCallback(callback) {
+
+    if (callback) {
+      callbacks.push(callback);
+    }
+
+  }
+
+  return {
+    // public method to add additional callback
+    add: function(callback) {
+      if (!callbacks.length) {
+        window.addEventListener('resize', resize);
+      }
+      addCallback(callback);
+    }
+  }
+}());
+
+  ;(function (priorityNavJS) {
+    window.priorityNav = priorityNavJS();
+  })(function () {
+    'use strict';
+
+    function priorityNav (navSelector, buttonText, showAll, hideAll) {
+      var 
+      showAll = (typeof showAll === 'undefined' || false || null) ? 0 : showAll,
+      hideAll = (typeof hideAll === 'undefined' || false || null) ? 0 : hideAll,
+      navEls = document.querySelectorAll(navSelector),
+      navs = (isNodeList(navEls)) ? navEls : [navEls];
+
+      if (navEls.length === 0) { console.log('"' + navSelector + '" can\'t be found.'); }
+
+      for (var i = navs.length; i--;) {
+        var nav = navs[i];
+        var newNav = new PriorityNavCore(nav, buttonText, showAll, hideAll);
+      }
+
+    };
+
+    function PriorityNavCore(nav, buttonText, showAll, hideAll) {
+      this.nav = nav;
 
     // init
     this.init = function () {
@@ -64,8 +108,8 @@
 
       for (var j = 0, len = this.visibleItems.length; j < len; j++) {
         var last = this.bp[this.bp.length - 1],
-            thisWidth = getOuterWidth(this.visibleItems[j]),
-            newWidth = (last) ? last + thisWidth : thisWidth;
+        thisWidth = getOuterWidth(this.visibleItems[j]),
+        newWidth = (last) ? last + thisWidth : thisWidth;
         this.bp.push(newWidth);
         this.bpV.push(newWidth);
       }
@@ -155,9 +199,12 @@
 
     // run updateNav
     this.updateNav();
-    window.addEventListener('resize', function () {
+    optimizedResize.add(function () {
       that.updateNav();
     });
+    // window.addEventListener('resize', function () {
+    //   that.updateNav();
+    // });
   }
 
   return priorityNav;
