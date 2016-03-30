@@ -1,10 +1,9 @@
 /**
   * priorityNav 
   * 
-  * dependencies:
+  * DEPENDENCIES:
   * classlist
   * prepend
-  * append
   * append
   * firstElementChild
   * getOuterWidth
