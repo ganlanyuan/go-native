@@ -1,8 +1,18 @@
-# go-native
-A Javascript polyfills' collection which let you use native javascript.
+# Go-native
+Javascript polyfills that let you use native javascript.   
+[CSS3 selectors](https://www.w3.org/TR/css3-selectors/), [CSS3 media queries](https://www.w3.org/TR/css3-mediaqueries/), basic ES5 extensions and a bunch of DOM utilities.
+
+# Useage
+Include [go-native.ie8.js (39k)](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.ie8.js) and [go-native.js (10k)](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.js) in your `<head>`. That's it!
+````html
+<!--[if (lt IE 9)]>
+  <script src="path/to/go-native.ie8.js"></script>
+<![endif]-->
+<script src="path/to/go-native.js"></script>
+````
 
 # Contents
-####[go-native.ie8.js](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.ie8.js)
+####go-native.ie8  
 - ES5 Array extensions (`every, filter, forEach, indexOf, lastIndexOf, map, reduce, reduceRight, some`)
 - ES5 Function extensions (`bind`)
 - [HTML5 Shiv 3.7.3](https://github.com/aFarkas/html5shiv)
@@ -34,7 +44,7 @@ A Javascript polyfills' collection which let you use native javascript.
   - `window.pageYOffset`
 
 
-####[go-native.all.js](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.all.js)
+####go-native
 - ES5 methods:
   - `Date.now`
   - `Number.isNaN`
@@ -80,8 +90,8 @@ ES5 Array extensions, ES5 Function extensions (`bind`),
 
 `el.classList`, `el.childElementCount`, `el.firstElementChild`, `el.lastElementChild`, `el.nextElementSibling`, `el.previousElementSibling`, `ChildNode.remove`, `window.getComputedStyle`, `window.innerWidth`, `window.innerHeight`, `window.pageXOffset`, `window.pageYOffset`, `Array.isArray`, `Number.isNaN`, `Date.now`, `String.prototype.trim` and `String.prototype.repeat` are from [Alhadis](https://github.com/Alhadis/Fix-IE).  
 
-`indexOf` by [HubSpot/youmightnotneedjquery](https://github.com/HubSpot/YouMightNotNeedjQuery)
+`indexOf` by [HubSpot/youmightnotneedjquery](https://github.com/HubSpot/YouMightNotNeedjQuery).
 
-`Object.keys` by [Craig Constable](http://tokenposts.blogspot.com.au/2012/04/javascript-objectkeys-browser.html)
+`Object.keys` by [Craig Constable](http://tokenposts.blogspot.com.au/2012/04/javascript-objectkeys-browser.html).
 
-DOM.ready, isInViewport, getClosest, getParents, getParentsUntil and getSiblings are from [Chris Ferdinandi](http://gomakethings.com/ditching-jquery/)
+`DOM.ready`, `isInViewport`, `getClosest`, `getParents`, `getParentsUntil` and `getSiblings` are from [Chris Ferdinandi](http://gomakethings.com/ditching-jquery/).
