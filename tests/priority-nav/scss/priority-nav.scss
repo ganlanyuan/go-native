@@ -5,6 +5,7 @@
     max-width: 100%;
     overflow-x: auto; 
   }
+  &.js-priority-nav ul { overflow-x: hidden; }
   li {
     display: table-cell;
     white-space: nowrap;

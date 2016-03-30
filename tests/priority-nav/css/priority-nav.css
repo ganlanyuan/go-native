@@ -7,6 +7,10 @@
   overflow-x: auto;
 }
 
+.priority-nav.js-priority-nav ul {
+  overflow-x: hidden;
+}
+
 .priority-nav li {
   display: table-cell;
   white-space: nowrap;

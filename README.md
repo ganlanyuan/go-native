@@ -50,6 +50,8 @@ A Javascript polyfills' collection which let you use native javascript.
 - [Length](https://github.com/heygrady/Units)
 - extend
 - isNodeList
+- requestAnimationFrame
+- optimizedResize
 - DOM related utilities
   - DOM.ready
   - isInViewport
