@@ -1,5 +1,5 @@
 // *** indexOf *** //
-function indexOf(array, item) {
+gn.indexOf = function (array, item) {
   for (var i = 0; i < array.length; i++) {
     if (array[i] === item)
       return i;

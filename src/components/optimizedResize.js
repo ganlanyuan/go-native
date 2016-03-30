@@ -3,7 +3,7 @@
   * https://developer.mozilla.org/en-US/docs/Web/Events/resize#requestAnimationFrame
   */
 
-var optimizedResize = (function() {
+gn.optimizedResize = (function() {
 
   var callbacks = [],
   running = false;

@@ -1,5 +1,5 @@
 /** wrapAll **/
-var wrapAll = function (els, wrapper) {
+gn.wrapAll = function (els, wrapper) {
   // Cache the current parent and sibling of the first element.
   var el = els.length ? els[0] : els,
       parent  = el.parentNode,

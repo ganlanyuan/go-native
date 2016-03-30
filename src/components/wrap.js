@@ -1,6 +1,6 @@
 /** wrap **/
-var wrap = function (els, obj) {
-    var els_new = (isNodeList(els)) ? els : [els];
+gn.wrap = function (els, obj) {
+    var els_new = (gn.isNodeList(els)) ? els : [els];
   // Loops backwards to prevent having to clone the wrapper on the
   // first element (see `child` below).
   for (var i = els_new.length; i--;) {

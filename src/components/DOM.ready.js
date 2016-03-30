@@ -1,4 +1,5 @@
-var ready = function ( fn ) {
+/* DOM ready */
+gn.ready = function ( fn ) {
 
   // Sanity check
   if ( typeof fn !== 'function' ) return;

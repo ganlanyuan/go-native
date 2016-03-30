@@ -1,5 +1,5 @@
 // *** getParents *** //
-var getParents = function (elem, selector) {
+gn.getParents = function (elem, selector) {
 
   var parents = [];
   if ( selector ) {

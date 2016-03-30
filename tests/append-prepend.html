@@ -49,16 +49,16 @@
       listPreChildren = listPre.children;
 
   btnApSt.onclick = function () {
-    append(listAp, '<li>Peach</li>');
+    gn.append(listAp, '<li>Peach</li>');
   };
   btnApNode.onclick = function () {
-    append(listAp, listApChildren[0]);
+    gn.append(listAp, listApChildren[0]);
   };
   btnPreSt.onclick = function () {
-    prepend(listPre, '<li>Pear</li>');
+    gn.prepend(listPre, '<li>Pear</li>');
   };
   btnPreNode.onclick = function () {
-    prepend(listPre, listPreChildren[listPreChildren.length - 1]);
+    gn.prepend(listPre, listPreChildren[listPreChildren.length - 1]);
   };
   
 </script>

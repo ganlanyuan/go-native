@@ -28,7 +28,7 @@
 
   function priorityNav (options) {
     var navEls = document.querySelectorAll(options.nav),
-        navs = (isNodeList(navEls)) ? navEls : [navEls];
+        navs = (gn.isNodeList(navEls)) ? navEls : [navEls];
 
     if (navEls.length === 0) { 
       console.log('"' + options.nav + '" can\'t be found.'); 
@@ -45,7 +45,7 @@
   };
 
   function PriorityNavCore(options) {
-    options = extend({
+    options = gn.extend({
       nav: document.querySelector('.priority-nav'),
       button: 'more',
       showAll: 0,
@@ -58,8 +58,8 @@
     this.init = function () {
       this.nav.classList.add('js-priority-nav');
       this.nav.querySelector('ul').classList.add('visible-links');
-      prepend(this.nav, '<button class="js-nav-toggle is-hidden" data-count="">' + options.button + '</button>');
-      append(this.nav, '<ul class="hidden-links is-hidden"></ul>');
+      gn.prepend(this.nav, '<button class="js-nav-toggle is-hidden" data-count="">' + options.button + '</button>');
+      gn.append(this.nav, '<ul class="hidden-links is-hidden"></ul>');
     };
     this.init();
     
@@ -68,7 +68,7 @@
     this.hiddenContainer = this.nav.querySelector('.hidden-links');
     this.hiddenItems = this.hiddenContainer.children;
     this.btn = this.nav.querySelector('.js-nav-toggle');
-    this.btnWidth = getOuterWidth(this.btn);
+    this.btnWidth = gn.getOuterWidth(this.btn);
 
     // get breakpoints
     this.getBreakpoints = function () {
@@ -78,7 +78,7 @@
 
       for (var j = 0, len = this.visibleItems.length; j < len; j++) {
         var last = this.bp[this.bp.length - 1],
-        thisWidth = getOuterWidth(this.visibleItems[j]),
+        thisWidth = gn.getOuterWidth(this.visibleItems[j]),
         newWidth = (last) ? last + thisWidth : thisWidth;
         this.bp.push(newWidth);
         this.bpV.push(newWidth);
@@ -89,7 +89,7 @@
     // helper functions
     var fragment = document.createDocumentFragment();
     this.prependItemsToFragment = function () {
-      prepend(fragment, this.visibleItems[this.bpV.length - 1]);
+      gn.prepend(fragment, this.visibleItems[this.bpV.length - 1]);
 
       this.bpH.unshift(this.bpV[this.bpV.length - 1]);
       this.bpV.splice(-1, 1);
@@ -98,7 +98,7 @@
     };
 
     this.appendItemsToFragment = function () {
-      append(fragment, this.hiddenItems[0]);
+      gn.append(fragment, this.hiddenItems[0]);
 
       this.bpV.push(this.bpH[0]);
       this.bpH.shift();
@@ -109,7 +109,7 @@
     // update nav
     this.updateNav = function () {
       this.windowWidth = window.innerWidth;
-      this.outerWidth = getOuterWidth(this.nav);
+      this.outerWidth = gn.getOuterWidth(this.nav);
       this.availableSpace = this.outerWidth - this.btnWidth;
       this.count;
       this.currentCount;
@@ -169,7 +169,7 @@
 
     // run updateNav
     this.updateNav();
-    optimizedResize.add(function () {
+    gn.optimizedResize.add(function () {
       that.updateNav();
     });
   }

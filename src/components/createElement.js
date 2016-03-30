@@ -1,5 +1,5 @@
 /** createElement **/
-var createElement = function(obj) {
+gn.createElement = function(obj) {
   if (!obj || !obj.tagName) {
     throw { message : "Invalid argument" };
   }
@@ -31,7 +31,7 @@ var createElement = function(obj) {
   return el;
 };
 
-// var el = kit.createElement({
+// var el = gn.createElement({
 //  tagName: 'div',
 //  id: 'foo',
 //  className: 'foo',

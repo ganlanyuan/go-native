@@ -1,5 +1,5 @@
 /** unwrap **/
-var unwrap = function (els) {
+gn.unwrap = function (els) {
   for (var i = els.length; i--;) {
     var el = els[i];
 

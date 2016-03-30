@@ -1,5 +1,5 @@
 // *** getSiblings *** //
-var getSiblings = function (elem) {
+gn.getSiblings = function (elem) {
   var siblings = [];
   var sibling = elem.parentNode.firstChild;
   for ( ; sibling; sibling = sibling.nextSibling ) {

@@ -1,6 +1,6 @@
 /* get elements size */
 // 1. outer size: content + padding + border + margin //
-function getOuterWidth(el) {
+gn.getOuterWidth = function (el) {
   var pattern = /\d/, // check if value contains digital number
       width = el.offsetWidth,
       style = el.currentStyle || getComputedStyle(el),
@@ -11,7 +11,7 @@ function getOuterWidth(el) {
   return width;
 }
 
-function getOuterHeight(el) {
+gn.getOuterHeight = function (el) {
   var pattern = /\d/, // check if value contains digital number
       height = el.offsetHeight,
       style = el.currentStyle || getComputedStyle(el),

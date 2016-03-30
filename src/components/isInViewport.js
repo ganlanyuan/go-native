@@ -1,5 +1,5 @@
 // *** isInViewport *** //
-var isInViewport = function ( elem ) {
+gn.isInViewport = function ( elem ) {
   var rect = elem.getBoundingClientRect();
   return (
     rect.bottom >= 0 &&

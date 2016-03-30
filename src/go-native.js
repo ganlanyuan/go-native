@@ -12,6 +12,7 @@
 // @codekit-prepend "../bower_components/fix-ie/src/es5-methods.js";
 // @codekit-prepend "../bower_components/requestAnimationFrame/requestAnimationFrame.js";
 // @codekit-prepend "../bower_components/Units/Length.js";
+// @codekit-prepend "components/gn.js";
 // @codekit-prepend "components/optimizedResize.js";
 // @codekit-prepend "components/DOM.ready.js";
 // @codekit-prepend "components/extend.js";

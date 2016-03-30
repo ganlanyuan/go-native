@@ -1,5 +1,5 @@
 // *** getParentsUntil *** //
-var getParentsUntil = function (elem, parent, selector) {
+gn.getParentsUntil = function (elem, parent, selector) {
 
   var parents = [];
   if ( parent ) {

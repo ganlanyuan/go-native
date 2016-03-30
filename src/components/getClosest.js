@@ -1,5 +1,5 @@
 // *** getClosest *** //
-var getClosest = function (elem, selector) {
+gn.getClosest = function (elem, selector) {
 
   var firstChar = selector.charAt(0);
 

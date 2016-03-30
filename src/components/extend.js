@@ -1,5 +1,5 @@
 // ** extend ** //
-function extend() {
+gn.extend = function () {
   var obj, name, copy,
   target = arguments[0] || {},
   i = 1,

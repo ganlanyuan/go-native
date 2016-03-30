@@ -44,10 +44,10 @@
     var box = document.querySelector('.box'),
         output = document.querySelector('.output');
     output.innerHTML = 
-      'outerWidth: ' + getOuterWidth(box) + '<br>' + 
-      'outerHeight: ' + getOuterHeight(box) + '<br>' + 
-      'offsetLeft: ' + getOffsetLeft(box) + '<br>' + 
-      'offsetTop: ' + getOffsetTop(box);
+      'outerWidth: ' + gn.getOuterWidth(box) + '<br>' + 
+      'outerHeight: ' + gn.getOuterHeight(box) + '<br>' + 
+      'offsetLeft: ' + gn.getOffsetLeft(box) + '<br>' + 
+      'offsetTop: ' + gn.getOffsetTop(box);
   }
   getBoxSize();
 </script>
