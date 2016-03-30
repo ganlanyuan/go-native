@@ -1,6 +1,11 @@
 /**
-  * All
+  * go-native
+  *
+  * @author William Lin
+  * @license The MIT License (MIT)
+  * https://github.com/ganlanyuan/go-native
   */
+  
 // @codekit-prepend "../bower_components/fix-ie/src/remove.js";
 // @codekit-prepend "../bower_components/fix-ie/src/token-list.js";
 // @codekit-prepend "../bower_components/fix-ie/src/version-flags.js";
@@ -27,8 +32,6 @@
 // @codekit-prepend "components/wrapAll.js";
 // @codekit-prepend "components/unwrap.js";
 
-/**
-  * not includeed
-  */
+/* not includeed */
 // codekit-prepend "../bower_components/fix-ie/src/IE8-addEventListener.js";
 // codekit-prepend "../bower_components/es5-shim/es5-shim.js";

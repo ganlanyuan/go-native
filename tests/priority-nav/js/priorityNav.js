@@ -2,15 +2,23 @@
   * priorityNav 
   * 
   * DEPENDENCIES:
-  * classlist
-  * prepend
-  * append
-  * firstElementChild
-  * getOuterWidth
+  *
+  * == IE8 ==
+  * html5shiv
+  * forEach
   * pageXOffset
   * addEventListener
+  *
+  * == all ==
+  * classlist
+  * Length.js
+  * getOuterWidth
+  * isNodeList
+  * prepend
+  * append
   * requestAnimationFrame
   * optimizedResize
+  * extend
   */
 
 ;(function (priorityNavJS) {
@@ -18,30 +26,39 @@
 })(function () {
   'use strict';
 
-  function priorityNav (navSelector, buttonText, showAll, hideAll) {
-    var 
-    showAll = (typeof showAll === 'undefined' || false || null) ? 0 : showAll,
-    hideAll = (typeof hideAll === 'undefined' || false || null) ? 0 : hideAll,
-    navEls = document.querySelectorAll(navSelector),
-    navs = (isNodeList(navEls)) ? navEls : [navEls];
+  function priorityNav (options) {
+    var navEls = document.querySelectorAll(options.nav),
+        navs = (isNodeList(navEls)) ? navEls : [navEls];
 
-    if (navEls.length === 0) { console.log('"' + navSelector + '" can\'t be found.'); }
+    if (navEls.length === 0) { 
+      console.log('"' + options.nav + '" can\'t be found.'); 
+      return;
+    }
 
     for (var i = navs.length; i--;) {
-      var nav = navs[i];
-      var newNav = new PriorityNavCore(nav, buttonText, showAll, hideAll);
+      var newOptions = options;
+      newOptions.nav = navs[i];
+
+      var a = new PriorityNavCore(newOptions);
     }
 
   };
 
-  function PriorityNavCore(nav, buttonText, showAll, hideAll) {
-    this.nav = nav;
+  function PriorityNavCore(options) {
+    options = extend({
+      nav: document.querySelector('.priority-nav'),
+      button: 'more',
+      showAll: 0,
+      hideAll: 0,
+    }, options || {});
+
+    this.nav = options.nav;
 
     // init
     this.init = function () {
       this.nav.classList.add('js-priority-nav');
       this.nav.querySelector('ul').classList.add('visible-links');
-      prepend(this.nav, '<button class="js-nav-toggle is-hidden" data-count="">' + buttonText + '</button>');
+      prepend(this.nav, '<button class="js-nav-toggle is-hidden" data-count="">' + options.button + '</button>');
       append(this.nav, '<ul class="hidden-links is-hidden"></ul>');
     };
     this.init();
@@ -97,7 +114,7 @@
       this.count;
       this.currentCount;
 
-      if (this.outerWidth >= this.bp[this.bp.length - 1] || this.windowWidth < showAll) {
+      if (this.outerWidth >= this.bp[this.bp.length - 1] || this.windowWidth < options.showAll) {
         this.availableSpace = this.outerWidth;
         if (!this.btn.classList.contains('is-hidden')) {
           this.btn.classList.add('is-hidden');
@@ -108,7 +125,7 @@
         while(this.bpH.length > 0) { this.appendItemsToFragment(); }
         this.visibleContainer.appendChild(fragment);
 
-      } else if (this.windowWidth < hideAll) {
+      } else if (this.windowWidth < options.hideAll) {
         if (this.btn.classList.contains('is-hidden')) {
           this.btn.classList.remove('is-hidden');
         }

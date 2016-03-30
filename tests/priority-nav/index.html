@@ -13,9 +13,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   
   <link rel="stylesheet" href="css/priority-nav.css">
-  <script type="text/javascript" src="/dist/go-native.ie8.js"></script>
-  <script type="text/javascript" src="/dist/go-native.all.js"></script>
-  <!-- <script type="text/javascript" src="/dist/priorityNavDep.js"></script> -->
+  <script type="text/javascript" src="/dist/priorityNavDep.js"></script>
   <script type="text/javascript" src="js/priorityNav.js"></script>
 
   <style>
@@ -30,15 +28,15 @@
     }
     ul { padding: 0; margin: 0; }
     li { list-style: none; }
-    .nav {
+    .priority-nav {
       min-height: 37px;
       background-color: #0E8FE0;
       color: #fff;
       font-size: 14px;
       font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     }
-    .nav li { padding: 10px 13px; }
-    .nav button {
+    .priority-nav li { padding: 10px 13px; }
+    .priority-nav button {
       padding: 10px;
       border-width: 0;
       color: #fff;
@@ -48,7 +46,7 @@
       position: relative;
       overflow: visible;
     }
-    .nav button:before {
+    .priority-nav button:before {
       content: attr(data-count);
       width: 23px;
       height: 23px;
@@ -64,7 +62,7 @@
       color: #412F08;
       background-color: #FFB822;
     }
-    .nav .hidden-links {
+    .priority-nav .hidden-links {
       background-color: #333;
       z-index: 3;
     }
@@ -90,24 +88,12 @@
        <li><a href="">Science</a></li>
       </ul>
     </nav>
-    <nav class="nav priority-nav">
-      <ul class="links">
-      <li><a href="">Lorem</a></li>
-      <li><a href="">Fugiat</a></li>
-      <li><a href="">Porro</a></li>
-      <li><a href="">Impedit</a></li>
-      <li><a href="">Et</a></li>
-      <li><a href="">Impedit</a></li>
-      <li><a href="">Corporis</a></li>
-      <li><a href="">Ducimus</a></li>
-      <li><a href="">Veniam</a></li>
-      <li><a href="">Saepe</a></li>
-      </ul>
-    </nav>
-
   </div>
   <script>
-    priorityNav('.nav', 'more', false, 300);
+    priorityNav({
+      nav: '.nav',
+      showAll: 300,
+    });
   </script>
 </body>
 </html>
