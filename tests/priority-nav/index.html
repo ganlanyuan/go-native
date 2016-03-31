@@ -13,6 +13,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   
   <link rel="stylesheet" href="css/priority-nav.css">
+  <script type="text/javascript" src="/dist/priorityNavDep.ie8.js"></script>
   <script type="text/javascript" src="/dist/priorityNavDep.js"></script>
   <script type="text/javascript" src="js/priorityNav.js"></script>
 
@@ -23,7 +24,7 @@
     .link { text-decoration: none; color: #0fa5f0; }
     .link:hover { text-decoration: underline; }
     .container {
-      max-width: 1000px;
+      max-width: 1020px;
       margin: 20px auto;
     }
     ul { padding: 0; margin: 0; }
@@ -62,7 +63,7 @@
       color: #412F08;
       background-color: #FFB822;
     }
-    .priority-nav .hidden-links {
+    .priority-nav .js-nav-hidden {
       background-color: #333;
       z-index: 3;
     }
@@ -71,7 +72,7 @@
 <body>
   <div class="container">
     <a href="/tests/" class="link">Back to home</a>
-    <h2 class="main-heading">components: Priority-nav</h2>
+    <h2 class="main-heading">Priority-nav</h2>
     <nav class="nav priority-nav">
       <ul class="links">
        <li><a href="">Entertainment</a></li>
@@ -92,7 +93,7 @@
   <script>
     priorityNav({
       nav: '.nav',
-      showAll: 300,
+      hideAll: 300,
     });
   </script>
 </body>

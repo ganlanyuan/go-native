@@ -5,24 +5,26 @@
 .priority-nav ul {
   max-width: 100%;
   overflow-x: auto;
+  white-space: nowrap;
 }
 
 .priority-nav.js-priority-nav ul {
+  display: inline-block;
+  max-width: none;
   overflow-x: hidden;
 }
 
 .priority-nav li {
-  display: table-cell;
-  white-space: nowrap;
+  display: inline-block;
 }
 
-.priority-nav .hidden-links {
+.priority-nav .js-nav-hidden {
   position: absolute;
   right: 0;
   top: 100%;
 }
 
-.priority-nav .hidden-links > li {
+.priority-nav .js-nav-hidden > li {
   display: list-item;
 }
 
