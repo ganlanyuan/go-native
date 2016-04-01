@@ -1,1 +1,19 @@
 // *** sticky *** //
+
+.js {
+  &-fixed-top,
+  &-fixed-bottom { position: fixed; }
+  &-relative { position: relative; }
+  &-absolute-top,
+  &-absolute-bottom { position: absolute; }
+  &-fixed-top,
+  &-absolute-top { top: 0; }
+  &-fixed-bottom,
+  &-absolute-bottom { bottom: 0; }
+
+  &-sticky {
+    box-sizing: border-box;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+}

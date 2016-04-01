@@ -1,2 +1,26 @@
+.js-fixed-top, .js-fixed-bottom {
+  position: fixed;
+}
 
+.js-relative {
+  position: relative;
+}
+
+.js-absolute-top, .js-absolute-bottom {
+  position: absolute;
+}
+
+.js-fixed-top, .js-absolute-top {
+  top: 0;
+}
+
+.js-fixed-bottom, .js-absolute-bottom {
+  bottom: 0;
+}
+
+.js-sticky {
+  box-sizing: border-box;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
 /*# sourceMappingURL=sticky.css.map */

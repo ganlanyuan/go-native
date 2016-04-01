@@ -28,17 +28,16 @@
   'use strict';
 
   function priorityNav (options) {
-    var navEls = document.querySelectorAll(options.nav),
-        navs = (gn.isNodeList(navEls)) ? navEls : [navEls];
+    var navEls = document.querySelectorAll(options.nav);
 
     if (navEls.length === 0) { 
       console.log('"' + options.nav + '" can\'t be found.'); 
       return;
     }
 
-    for (var i = navs.length; i--;) {
+    for (var i = navEls.length; i--;) {
       var newOptions = options;
-      newOptions.nav = navs[i];
+      newOptions.nav = navEls[i];
 
       var a = new PriorityNavCore(newOptions);
     }
@@ -80,8 +79,8 @@
       this.initialized = true;
     };
 
-    // distory
-    this.distory = function () {
+    // destory
+    this.destory = function () {
       this.nav.classList.remove('js-priority-nav');
       this.visibleContainer.classList.remove('js-nav-visible');
       this.hiddenContainer.remove();
@@ -143,7 +142,7 @@
             this.visibleContainer.appendChild(fragment);
           }
 
-          this.distory();
+          this.destory();
         }
 
       } else {
