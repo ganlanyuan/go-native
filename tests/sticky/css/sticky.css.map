@@ -1,1 +1,1 @@
-{"version":3,"sources":["../scss/sticky.scss"],"names":[],"mappings":"AAEA;EACe,mBAAmB;CAAI;;AADtC;EAGmB,gBAAgB;CAAI;;AAHvC;EAKsB,mBAAmB;CAAI;;AAL7C;EAOmB,OAAO;CAAI;;AAP9B;EASsB,UAAU;CAAI;;AATpC;EAYI,uBAAuB;EACvB,yBAAyB;EACzB,4BAA4B;CAC7B","file":"sticky.css"}
+{"version":3,"sources":["../scss/sticky.scss"],"names":[],"mappings":"AAEA;EACe,mBAAmB;CAAI;;AADtC;EAGmB,gBAAgB;CAAI;;AAHvC;EAKsB,mBAAmB;CAAI;;AAL7C;EAOmB,OAAO;CAAI;;AAP9B;EASsB,UAAU;CAAI;;AATpC;EAYI,uBAAuB;CAGxB","file":"sticky.css"}
