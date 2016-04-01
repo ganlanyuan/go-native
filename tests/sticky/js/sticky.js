@@ -53,12 +53,15 @@
     var container = (options.container) ? doc.querySelector(options.container) : false;
     var padding = (typeof options.padding === 'number') ? options.padding : gn.getOuterHeight(doc.querySelector(options.padding));
     var position = options.position;
+    this.stickyHeight = gn.getOuterHeight(sticky);
 
     // var run = false, bp1, bp2, winST, winW, winH, stkOT, stkW, stkH, newStkW, newStkH, containerOT, containerH;
 
     var initialized = false;
     var inRange = false;
     var scrolling = false;
+    var fixedBreakpoint = false;
+    var absoluteBreakpoint = false;
 
     this.init = function () {
       this.jsWrapper = document.createElement('div');
@@ -75,32 +78,116 @@
       initialized = false;
     };
 
-    var checkRange = (function () {
+    this.checkRange = (function () {
       if (!bp) {
         return function () { return true; };
       } else if (typeof bp === 'number') {
-        return function () { return windowWidth >= bp; };
+        return function () { return this.windowWidth >= bp; };
       } else if (Array.isArray(bp)) {
         switch (bp.length) {
           case 2:
-            return function () { return windowWidth >= bp[0] && windowWidth < bp[1]; };
+            return function () { return this.windowWidth >= bp[0] && this.windowWidth < bp[1]; };
             break;
           case 3:
-            return function () { return windowWidth >= bp[0] && windowWidth < bp[1] || windowWidth >= bp[2]; };
+            return function () { return this.windowWidth >= bp[0] && this.windowWidth < bp[1] || this.windowWidth >= bp[2]; };
             break;
           default:
-            return function () { return windowWidth >= bp[0] && windowWidth < bp[1] || windowWidth >= bp[2] && windowWidth < bp[3]; };
+            return function () { return this.windowWidth >= bp[0] && this.windowWidth < bp[1] || this.windowWidth >= bp[2] && this.windowWidth < bp[3]; };
         }
       }
     })();
 
     this.onLoad = function () {
-      var windowWidth = window.innerWidth;
-      inRange = checkRange();
+      this.stickyOffsetTop = gn.getOffsetTop(this.sticky);
+      this.windowWidth = window.innerWidth;
+      inRange = this.checkRange();
+
+      if (inRange && !initialized) {
+        this.init();
+      } else if (!inRange && initialized) {
+        this.destory();
+      }
+    };
+
+    this.checkPosition = function () {
+      this.windowHeight = window.innerHeight;
+      return (this.stickyHeight > this.windowHeight)? 'bottom' : position;
+    };
+
+    this.getFixedBreakpoint = function () {
+      if (position === 'top') {
+        return padding;
+      } else {
+        return this.windowHeight - this.stickyHeight - padding;
+      }
+    };
+
+    this.getAbsoluteBreakpoint = function () {
+      if (!container) {
+        return false;
+      } else {
+        this.containerHeight = gn.getOuterHeight(container);
+
+        if (position === 'top') {
+          return this.containerHeight - this.stickyHeight - padding;
+        } else {
+          return this.windowHeight + padding - this.containerHeight;
+        }
+      }
+    };
+
+    this.onNormal = function () {
+      sticky.classList.remove('js-fixed-' + position);
+      sticky.style.width = '';
+      container.style.height = '';
+    };
+
+    this.onFixed = function () {
+      if (!sticky.classList.contains('js-fixed-' + position)) {
+        container.classList.remove('js-relative');
+        sticky.classList.add('js-fixed-' + position);
+        sticky.classList.remove('js-absolute-' + position);
+      }
+    };
+
+    this.onAbsolute = function () {
+      if (!sticky.classList.contains('js-absolute-' + position)) {
+        container.classList.add('js-relative');
+        sticky.classList.add('js-absolute-' + position);
+        sticky.classList.remove('js-fixed-' + position);
+      }
     };
 
     this.onScroll = function () {
-      
+      if (!scrolling) {
+        this.stickyHeight = gn.getOuterHeight(sticky);
+        position = this.checkPosition();
+
+        fixedBreakpoint = this.getFixedBreakpoint();
+        absoluteBreakpoint = this.getAbsoluteBreakpoint();
+
+        scrolling = true;
+      } 
+      // console.log(fixedBreakpoint, absoluteBreakpoint);
+      var stickyRectTop = this.jsWrapper.getBoundingClientRect().top;
+      if (stickyRectTop > fixedBreakpoint) {
+        this.onNormal();
+      } else {
+        if (!absoluteBreakpoint) {
+          if (stickyRectTop <= fixedBreakpoint) {
+            this.onFixed();
+          }
+        } else {
+          var containerRectTop = container.getBoundingClientRect().top;
+          
+          if (stickyRectTop <= fixedBreakpoint && containerRectTop > absoluteBreakpoint) {
+            this.onFixed();
+          } else {
+            this.onAbsolute();
+          }
+          
+        }
+      }
     };
 
     // on init and resize: get and set sticky, parent sizes
@@ -286,7 +373,7 @@
       that.init(); 
     });
     window.addEventListener('scroll', function () { 
-      // that.onScroll(); 
+      that.onScroll(); 
     });
   }
 

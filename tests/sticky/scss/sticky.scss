@@ -1,9 +1,9 @@
 // *** sticky *** //
 
 .js {
+  &-relative { position: relative; }
   &-fixed-top,
   &-fixed-bottom { position: fixed; }
-  &-relative { position: relative; }
   &-absolute-top,
   &-absolute-bottom { position: absolute; }
   &-fixed-top,
