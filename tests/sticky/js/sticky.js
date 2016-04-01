@@ -76,10 +76,17 @@
     };
 
     this.updateSizes = function () {
+      var style = window.getComputedStyle(sticky),
+          pattern = /\d/, // check if value contains digital number
+          left = (pattern.exec(style.marginLeft) === null) ? 0 : parseInt(Length.toPx(sticky, style.marginLeft)),
+          right = (pattern.exec(style.marginRight) === null) ? 0 : parseInt(Length.toPx(sticky, style.marginRight)),
+          top = (pattern.exec(style.marginTop) === null) ? 0 : parseInt(Length.toPx(sticky, style.marginTop)),
+          bottom = (pattern.exec(style.marginBottom) === null) ? 0 : parseInt(Length.toPx(sticky, style.marginBottom));
+
       // update sizes, position and breakpoints
-      stickyWidth = this.getStickyWidth();
-      stickyHeight = gn.getOuterHeight(sticky);
-      containerHeight = gn.getOuterHeight(container);
+      stickyWidth = jsWrapper.clientWidth - left - right;;
+      stickyHeight = sticky.offsetHeight + top + bottom;
+      if (container) { containerHeight = container.clientHeight; }
       windowHeight = window.innerHeight;
 
       position = this.getPosition();
@@ -100,41 +107,10 @@
       absolute = false;
     };
 
-    this.getStickyWidth = function () {
-      var style = window.getComputedStyle(sticky),
-          pattern = /\d/, // check if value contains digital number
-          left = (pattern.exec(style.marginLeft) === null) ? 0 : parseInt(Length.toPx(sticky, style.marginLeft)),
-          right = (pattern.exec(style.marginRight) === null) ? 0 : parseInt(Length.toPx(sticky, style.marginRight));
-
-      return jsWrapper.clientWidth - left - right;
-    };
-
     this.getPosition = function () {
       return (stickyHeight > windowHeight)? 'bottom' : position;
     };
     
-    this.getFixedBreakpoint = function () {
-      if (position === 'top') {
-        return padding;
-      } else {
-        return windowHeight - stickyHeight - padding;
-      }
-    };
-
-    this.getAbsoluteBreakpoint = (function () {
-      if (!container) {
-        return function () { return false; };
-      } else {
-        return function () {
-          if (position === 'top') {
-            return  stickyHeight + padding - containerHeight;
-          } else {
-            return windowHeight + padding - containerHeight;
-          }
-        };
-      }
-    })();
-
     this.checkRange = (function () {
       if (!bp) {
         return function () { return true; };
@@ -151,6 +127,28 @@
           default:
             return function () { return windowWidth >= bp[0] && windowWidth < bp[1] || windowWidth >= bp[2] && windowWidth < bp[3]; };
         }
+      }
+    })();
+
+    this.getFixedBreakpoint = function () {
+      if (position === 'top') {
+        return padding;
+      } else {
+        return windowHeight - stickyHeight - padding;
+      }
+    };
+
+    this.getAbsoluteBreakpoint = (function () {
+      if (!container) {
+        return function () { return false; };
+      } else {
+        return function () {
+          if (position === 'top') {
+            return  stickyHeight + padding - containerHeight;
+          } else {
+            return windowHeight - containerHeight;
+          }
+        };
       }
     })();
 
@@ -182,9 +180,11 @@
 
     this.isFixed = function () {
       if (!sticky.classList.contains('js-fixed-' + position)) {
-        container.classList.remove('js-relative');
         sticky.classList.add('js-fixed-' + position, 'js-sticky');
         sticky.classList.remove('js-absolute');
+        if (container) {
+          container.classList.remove('js-relative');
+        }
       }
     };
 
@@ -204,6 +204,7 @@
           sticky.style.width = '';
           sticky.style.top = '';
           sticky.style.bottom = '';
+          jsWrapper.style.height = '';
           isSticky = false;
           fixed = false;
           absolute = false;
@@ -211,11 +212,12 @@
       } else {
         if (!isSticky) {
           sticky.style.width = stickyWidth + 'px';
+          jsWrapper.style.height = stickyHeight + 'px';
           isSticky = true;
         }
+
         if (container) {
           var containerRectTop = container.getBoundingClientRect().top;
-          console.log(fixedBreakpoint, absoluteBreakpoint);
           if (!fixed && stickyRectTop <= fixedBreakpoint && containerRectTop > absoluteBreakpoint) {
             this.isFixed();
             sticky.style[position] = padding + 'px';
@@ -227,13 +229,17 @@
           } else if (!absolute && containerRectTop <= absoluteBreakpoint) {
             this.isAbsolute();
             sticky.style.top = '';
-            sticky.style.bottom = padding + 'px';
+            if (position === 'top') {
+              sticky.style.bottom = '0px';
+            }
             fixed = false;
             absolute = true;
           }
         } else {
+          console.log(stickyRectTop, fixedBreakpoint);
           if (!fixed && stickyRectTop <= fixedBreakpoint) {
             this.isFixed();
+            sticky.style[position] = padding + 'px';
             fixed = true;
           }
         }

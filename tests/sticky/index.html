@@ -60,11 +60,10 @@
         </div>
         <div class="inner-2 sticky-container-middle-2">
           <div>
-            <div class="box"></div>
+            <div class="box two"></div>
             <div class="sticky sticky-middle-2">
               <strong>sticky bottom</strong>
             </div>
-            <div class="box two"></div>
           </div>
           <div>
             <div class="box"></div>
@@ -78,7 +77,6 @@
                 <div class="sticky sticky-right-2">
                   <strong>sticky bottom</strong>
                 </div>
-                <div class="box"></div>
               </div>
             </div>
             <div class="box two"></div>
@@ -107,33 +105,35 @@
       }
     }
   })
-  // sticky({
-  //   sticky: '.sticky-left-1', 
-  //   padding: 10,
-  //   container: '.sticky-container-left-1',
-  //   position: 'top',
-  //   breakpoints: [600, 1300],
-  // });
+  sticky({
+    sticky: '.sticky-left-1', 
+    container: '.sticky-container-left-1',
+    padding: 10,
+    position: 'top',
+    breakpoints: [600, 1300],
+  });
   sticky({
     sticky: '.sticky-middle-1', 
     container: '.sticky-container-middle-1', 
+    padding: 10,
   });
-  // sticky({
-  //   sticky: '.sticky-right-1', 
-  //   container: '.sticky-container-right-1',
-  //   padding: 10,
-  // });
-  // sticky({
-  //   sticky: '.sticky-middle-2', 
-  //   container: '.sticky-container-middle-2', 
-  //   position: 'bottom',
-  //   padding: 10,
-  // });
-  // sticky({
-  //   sticky: '.sticky-right-2',  
-  //   position: 'bottom',
-  //   padding: 10,
-  // });
+  sticky({
+    sticky: '.sticky-right-1', 
+    container: '.sticky-container-right-1',
+    padding: 10,
+  });
+  sticky({
+    sticky: '.sticky-middle-2', 
+    container: '.sticky-container-middle-2', 
+    position: 'bottom',
+    padding: 10,
+  });
+  sticky({
+    sticky: '.sticky-right-2',  
+    container: '.sticky-container-right-2',
+    position: 'bottom',
+    padding: 10,
+  });
 </script>
 </body>
 </html>

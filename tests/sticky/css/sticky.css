@@ -22,4 +22,10 @@
 .js-sticky {
   box-sizing: border-box;
 }
+
+.js-sticky-wrapper:before, .js-sticky-wrapper:after {
+  content: '';
+  display: table;
+  clear: both;
+}
 /*# sourceMappingURL=sticky.css.map */
