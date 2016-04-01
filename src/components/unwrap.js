@@ -1,7 +1,8 @@
 /** unwrap **/
 gn.unwrap = function (els) {
-  for (var i = els.length; i--;) {
-    var el = els[i];
+  var elsNew = (gn.isNodeList(els)) ? els : [els];
+  for (var i = elsNew.length; i--;) {
+    var el = elsNew[i];
 
     // get the element's parent node
     var parent = el.parentNode;

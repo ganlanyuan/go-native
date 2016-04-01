@@ -1,11 +1,11 @@
 /** wrap **/
 gn.wrap = function (els, obj) {
-    var els_new = (gn.isNodeList(els)) ? els : [els];
+    var elsNew = (gn.isNodeList(els)) ? els : [els];
   // Loops backwards to prevent having to clone the wrapper on the
   // first element (see `wrapper` below).
-  for (var i = els_new.length; i--;) {
+  for (var i = elsNew.length; i--;) {
       var wrapper = (i > 0) ? obj.cloneNode(true) : obj,
-          el = els_new[i];
+          el = elsNew[i];
 
       // Cache the current parent and sibling.
       var parent = el.parentNode,
