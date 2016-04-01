@@ -1,6 +1,3 @@
-// sticky({sticky: '.sticky', container: '.container', padding: '.header'});
-// sticky({sticky: '.sticky', container: '.container', padding: 20});
-
 /**
   * sticky 
   * 
@@ -45,13 +42,12 @@
     }, options || {});
 
     var
-        d = document,
         bp = options.breakpoints,
         sticky = options.sticky,
         stickyClassNames = sticky.className,
         parent = sticky.parentNode,
-        container = (options.container) ? d.querySelector(options.container) : false,
-        padding = (typeof options.padding === 'number') ? options.padding : gn.getOuterHeight(d.querySelector(options.padding)),
+        container = (options.container) ? document.querySelector(options.container) : false,
+        padding = options.padding,
         position = options.position;
 
     var 
@@ -118,7 +114,6 @@
     };
     
     this.getFixedBreakpoint = function () {
-
       if (position === 'top') {
         return padding;
       } else {
@@ -132,7 +127,7 @@
       } else {
         return function () {
           if (position === 'top') {
-            return containerHeight - stickyHeight - padding;
+            return  stickyHeight + padding - containerHeight;
           } else {
             return windowHeight + padding - containerHeight;
           }
@@ -189,14 +184,14 @@
       if (!sticky.classList.contains('js-fixed-' + position)) {
         container.classList.remove('js-relative');
         sticky.classList.add('js-fixed-' + position, 'js-sticky');
-        sticky.classList.remove('js-absolute-' + position);
+        sticky.classList.remove('js-absolute');
       }
     };
 
     this.isAbsolute = function () {
-      if (!sticky.classList.contains('js-absolute-' + position)) {
+      if (!sticky.classList.contains('js-absolute')) {
         container.classList.add('js-relative');
-        sticky.classList.add('js-absolute-' + position);
+        sticky.classList.add('js-absolute');
         sticky.classList.remove('js-fixed-' + position);
       }
     };
@@ -207,7 +202,8 @@
         if (isSticky) {
           this.isNormal();
           sticky.style.width = '';
-          sticky.style[position] = '';
+          sticky.style.top = '';
+          sticky.style.bottom = '';
           isSticky = false;
           fixed = false;
           absolute = false;
@@ -215,17 +211,23 @@
       } else {
         if (!isSticky) {
           sticky.style.width = stickyWidth + 'px';
-          sticky.style[position] = padding + 'px';
           isSticky = true;
         }
         if (container) {
           var containerRectTop = container.getBoundingClientRect().top;
+          console.log(fixedBreakpoint, absoluteBreakpoint);
           if (!fixed && stickyRectTop <= fixedBreakpoint && containerRectTop > absoluteBreakpoint) {
             this.isFixed();
+            sticky.style[position] = padding + 'px';
+            if (position === 'top') {
+              sticky.style.bottom = '';
+            }
             fixed = true;
             absolute = false;
           } else if (!absolute && containerRectTop <= absoluteBreakpoint) {
             this.isAbsolute();
+            sticky.style.top = '';
+            sticky.style.bottom = padding + 'px';
             fixed = false;
             absolute = true;
           }

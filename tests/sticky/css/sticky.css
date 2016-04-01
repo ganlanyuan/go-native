@@ -1,20 +1,21 @@
-.js-relative {
-  position: relative;
-}
-
 .js-fixed-top, .js-fixed-bottom {
   position: fixed;
 }
 
-.js-absolute-top, .js-absolute-bottom {
-  position: absolute;
-}
-
-.js-fixed-top, .js-absolute-top {
+.js-fixed-top {
   top: 0;
 }
 
-.js-fixed-bottom, .js-absolute-bottom {
+.js-fixed-bottom {
+  bottom: 0;
+}
+
+.js-relative {
+  position: relative;
+}
+
+.js-absolute {
+  position: absolute;
   bottom: 0;
 }
 

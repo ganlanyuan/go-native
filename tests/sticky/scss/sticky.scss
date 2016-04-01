@@ -1,15 +1,14 @@
 // *** sticky *** //
 
 .js {
-  &-relative { position: relative; }
   &-fixed-top,
   &-fixed-bottom { position: fixed; }
-  &-absolute-top,
-  &-absolute-bottom { position: absolute; }
-  &-fixed-top,
-  &-absolute-top { top: 0; }
-  &-fixed-bottom,
-  &-absolute-bottom { bottom: 0; }
+
+  &-fixed-top { top: 0; }
+  &-fixed-bottom { bottom: 0; }
+
+  &-relative { position: relative; }
+  &-absolute { position: absolute; bottom: 0; }
 
   &-sticky {
     box-sizing: border-box;

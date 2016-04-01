@@ -24,20 +24,19 @@
   <div class="container">
     <a href="/tests/" class="link">Back to home</a>
 
+    <header class="header">Header</header>
     <h2 class="main-heading">Sticky</h2>
-    <div class="sticky-grid wrapper-left-1">
+    <div class="sticky-grid sticky-container-left-1">
       <div>
         <div class="box"></div>
         <div class="sticky sticky-high sticky-left-1">
-          <strong>left-1</strong>
-          top <br>
-          very long sticky
+          <strong>very long sticky</strong>
         </div>
       </div>
       <div>
-        <div class="inner-1 wrapper-right-1">
+        <div class="inner-1 sticky-container-right-1">
           <div>
-            <div class="wrapper wrapper-middle-1">
+            <div class="wrapper sticky-container-middle-1">
               <div class="child">
                 <div class="box"></div>
                 <div class="box"></div>
@@ -45,9 +44,7 @@
               </div>
               <div class="child">
                 <div class="sticky sticky-middle-1">
-                  <strong>middle-1</strong>
-                  top <br>
-                  sticks between 600 ~ 1000
+                  <strong>sticky - top</strong>
                 </div>
               </div>
             </div>
@@ -57,24 +54,21 @@
           <div>
             <div class="box two"></div>
             <div class="sticky sticky-right-1">
-              <strong>right-1</strong>
-              top
+              <strong>sticky top</strong>
             </div>
-            <div class="box"></div>
           </div>
         </div>
-        <div class="inner-2 wrapper-middle-2">
+        <div class="inner-2 sticky-container-middle-2">
           <div>
             <div class="box"></div>
             <div class="sticky sticky-middle-2">
-              <strong>middle-2</strong>
-              bottom
+              <strong>sticky bottom</strong>
             </div>
             <div class="box two"></div>
           </div>
           <div>
             <div class="box"></div>
-            <div class="wrapper wrapper-right-2">
+            <div class="wrapper sticky-container-right-2">
               <div class="child">
                 <div class="box"></div>
                 <div class="box two"></div>
@@ -82,8 +76,7 @@
               <div class="child">
                 <div class="box"></div>
                 <div class="sticky sticky-right-2">
-                  <strong>right-2</strong>
-                  bottom
+                  <strong>sticky bottom</strong>
                 </div>
                 <div class="box"></div>
               </div>
@@ -102,27 +95,37 @@
   </div>
 </div>
 <script>
+  var header = document.querySelector('.header');
+  window.addEventListener('scroll', function () {
+    if (window.pageYOffset > 20) {
+      if (!header.classList.contains('fixed')) {
+        header.classList.add('fixed');
+      }
+    } else {
+      if (header.classList.contains('fixed')) {
+        header.classList.remove('fixed');
+      }
+    }
+  })
+  // sticky({
+  //   sticky: '.sticky-left-1', 
+  //   padding: 10,
+  //   container: '.sticky-container-left-1',
+  //   position: 'top',
+  //   breakpoints: [600, 1300],
+  // });
   sticky({
-    sticky: '.sticky-left-1', 
-    padding: 10,
-    container: '.wrapper-left-1',
-    position: 'top',
-    breakpoints: [600, 1300],
+    sticky: '.sticky-middle-1', 
+    container: '.sticky-container-middle-1', 
   });
   // sticky({
-  //   sticky: '.sticky-middle-1', 
-  //   container: '.wrapper-middle-1', 
-  //   padding: 30,
-  //   breakpoints: [600, 1000]
-  // });
-  // sticky({
   //   sticky: '.sticky-right-1', 
-  //   container: '.wrapper-right-1',
+  //   container: '.sticky-container-right-1',
   //   padding: 10,
   // });
   // sticky({
   //   sticky: '.sticky-middle-2', 
-  //   container: '.wrapper-middle-2', 
+  //   container: '.sticky-container-middle-2', 
   //   position: 'bottom',
   //   padding: 10,
   // });

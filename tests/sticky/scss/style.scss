@@ -1,17 +1,5 @@
 // *** style *** //
 
-html { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
-a { color: inherit; text-decoration: none; }
-a:hover { text-decoration: underline; }
-.link { text-decoration: none; color: #0fa5f0; }
-.link:hover { text-decoration: underline; }
-.container {
-  max-width: 1000px;
-  margin: 20px auto;
-}
-ul { padding: 0; margin: 0; }
-li { list-style: none; }
-
 %clearfix {
   &:after {
     content: '';
@@ -28,6 +16,29 @@ li { list-style: none; }
     &:last-child { padding-left: 15px; }
   }
 }
+
+html { font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; }
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.link { text-decoration: none; color: #0fa5f0; }
+.link:hover { text-decoration: underline; }
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+}
+ul { padding: 0; margin: 0; }
+li { list-style: none; }
+.header {
+  background: #444;
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 50px 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  &.fixed { padding: 10px 15px; }
+}
+
 .sticky-grid {
   max-width: 1100px;
   margin: 0 auto;
@@ -52,39 +63,49 @@ li { list-style: none; }
   }
 }
 .wrapper {
+  @extend %clearfix;
   width: 100%;
   margin-bottom: 20px;
+  box-sizing: border-box;
+}
+[class*='sticky-container'] {
+  padding: 5px;
+  outline-width: 1px;
+  outline-style: solid;
+}
+.sticky-container {
+  &-left-1 { outline-color: #66CCFF; }
+  &-middle-1 { outline-color: #FF6FCF; }
+  &-middle-2 { outline-color: #66FF66; }
+  &-right-1 { outline-color: #B3B3B3; }
+  &-right-2 { outline-color: #FF6666; }
+}
+.sticky {
+  &-left-1 { background: #66CCFF; }
+  &-middle-1 { background: #FF6FCF; }
+  &-middle-2 { background: #66FF66; }
+  &-right-1 { background: #B3B3B3; }
+  &-right-2 { background: #FF6666; }
 }
 .box,
 .sticky {
   width: 100%;
   padding: 15px;
-  padding-bottom: 100%;
-  margin-bottom: 20px;
+  min-height: 200px;
   font-size: 14px;
   line-height: 1.5;
   color: #fff;
-  border-radius: 10px;
   box-sizing: border-box;
 }
-.box { background-color: #f2f2f2; }
+.box { background-color: #f2f2f2; margin: 20px 0; }
 .sticky {
-  background-color: #FF7A6C;
-  width: 100%;
-  z-index: 100;
-  &-high {
-    height: 2000px;
-  }
+  margin-bottom: 0;
+  &:first-child { margin-top: 20px; }
+  &-high { height: 2000px; }
   > strong {
     display: block;
     color: #000;
   }
-}
-.wrapper {
-  @extend %clearfix;
-  border: 1px solid  #ccc;
-  padding: 20px;
-  box-sizing: border-box;
 }
 .child {
   width: 50%;
