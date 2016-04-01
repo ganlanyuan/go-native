@@ -44,29 +44,31 @@
       breakpoints: false,
     }, options || {});
 
-    // set container, padding, position
-    var doc = document;
-    var bp = options.breakpoints;
-    var sticky = options.sticky;
-    var stickyClassNames = sticky.className;
-    var parent = sticky.parentNode;
-    var container = (options.container) ? doc.querySelector(options.container) : false;
-    var padding = (typeof options.padding === 'number') ? options.padding : gn.getOuterHeight(doc.querySelector(options.padding));
-    var position = options.position;
-    this.stickyHeight = gn.getOuterHeight(sticky);
+    var
+        d = document,
+        bp = options.breakpoints,
+        sticky = options.sticky,
+        stickyClassNames = sticky.className,
+        parent = sticky.parentNode,
+        container = (options.container) ? d.querySelector(options.container) : false,
+        padding = (typeof options.padding === 'number') ? options.padding : gn.getOuterHeight(d.querySelector(options.padding)),
+        position = options.position;
 
-    // var run = false, bp1, bp2, winST, winW, winH, stkOT, stkW, stkH, newStkW, newStkH, containerOT, containerH;
-    var windowWidth;
-    var stickyWidth;
-    var jsWrapper;
-    var initialized = false;
-    var isSticky = false;
-    var fixed = false;
-    var absolute = false;
+    var 
+        jsWrapper,
+        windowWidth,
+        windowHeight,
+        stickyWidth,
+        stickyHeight,
+        containerHeight,
+        fixedBreakpoint,
+        absoluteBreakpoint,
 
-    var inRange = false;
-    var fixedBreakpoint = false;
-    var absoluteBreakpoint = false;
+        inRange = false,
+        initialized = false,
+        isSticky = false,
+        fixed = false,
+        absolute = false;
 
     this.init = function () {
       // wrap sticky
@@ -74,14 +76,19 @@
       jsWrapper.className = 'js-sticky-wrapper';
       gn.wrap(sticky, jsWrapper);
 
-      // set position, fixedBreakpoint & absoluteBreakpoint
+      initialized = true;
+    };
+
+    this.updateSizes = function () {
+      // update sizes, position and breakpoints
       stickyWidth = this.getStickyWidth();
-      this.stickyHeight = gn.getOuterHeight(sticky);
-      this.windowHeight = window.innerHeight;
+      stickyHeight = gn.getOuterHeight(sticky);
+      containerHeight = gn.getOuterHeight(container);
+      windowHeight = window.innerHeight;
+
+      position = this.getPosition();
       fixedBreakpoint = this.getFixedBreakpoint();
       absoluteBreakpoint = this.getAbsoluteBreakpoint();
-
-      initialized = true;
     };
 
     this.destory = function () {
@@ -89,11 +96,12 @@
       sticky.style.width = '';
       sticky.style[position] = '';
       gn.unwrap(jsWrapper);
+
+      inRange = false;
       initialized = false;
       isSticky = false;
       fixed = false;
       absolute = false;
-      inRange = false;
     };
 
     this.getStickyWidth = function () {
@@ -105,13 +113,16 @@
       return jsWrapper.clientWidth - left - right;
     };
 
+    this.getPosition = function () {
+      return (stickyHeight > windowHeight)? 'bottom' : position;
+    };
+    
     this.getFixedBreakpoint = function () {
-      position = (this.stickyHeight > this.windowHeight)? 'bottom' : position;
 
       if (position === 'top') {
         return padding;
       } else {
-        return this.windowHeight - this.stickyHeight - padding;
+        return windowHeight - stickyHeight - padding;
       }
     };
 
@@ -120,12 +131,10 @@
         return function () { return false; };
       } else {
         return function () {
-          this.containerHeight = gn.getOuterHeight(container);
-
           if (position === 'top') {
-            return this.containerHeight - this.stickyHeight - padding;
+            return containerHeight - stickyHeight - padding;
           } else {
-            return this.windowHeight + padding - this.containerHeight;
+            return windowHeight + padding - containerHeight;
           }
         };
       }
@@ -156,6 +165,7 @@
 
       if (inRange && !initialized) {
         this.init();
+        this.updateSizes();
       } else if (!inRange && initialized) {
         this.destory();
       }
@@ -163,12 +173,10 @@
 
     this.onResize = function () {
       this.onLoad();
-      stickyWidth = this.getStickyWidth();
+      this.updateSizes();
 
       if (initialized) {
-        if (isSticky) {
-          sticky.style.width = stickyWidth + 'px';
-        }
+        if (isSticky) { sticky.style.width = stickyWidth + 'px'; }
         this.onScroll();
       }
     }
@@ -207,7 +215,6 @@
       } else {
         if (!isSticky) {
           sticky.style.width = stickyWidth + 'px';
-
           sticky.style[position] = padding + 'px';
           isSticky = true;
         }
@@ -225,9 +232,6 @@
         } else {
           if (!fixed && stickyRectTop <= fixedBreakpoint) {
             this.isFixed();
-            sticky.style.width = stickyWidth + 'px';
-
-            sticky.style[position] = padding + 'px';
             fixed = true;
           }
         }
