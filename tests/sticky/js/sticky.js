@@ -4,11 +4,19 @@
   * DEPENDENCIES:
   *
   * == IE8 ==
+  * addEventListener
+  * window.getComputedStyle
+  * window.innerHeight
   *
   * == all ==
+  * Array.isArray
+  * classList
   * requestAnimationFrame
   * optimizedResize
   * extend
+  * Length
+  * wrap
+  * unwrap
   */
 
 ;(function (stickyJS) {
@@ -41,15 +49,18 @@
       breakpoints: false,
     }, options || {});
 
+    // basic variables
     var
         bp = options.breakpoints,
         sticky = options.sticky,
         stickyClassNames = sticky.className,
-        parent = sticky.parentNode,
         container = (options.container) ? document.querySelector(options.container) : false,
         padding = options.padding,
         position = options.position;
 
+    // global variables:
+    // sticky, container and window sizes
+    // ticking variables
     var 
         jsWrapper,
         windowWidth,
@@ -64,10 +75,16 @@
         initialized = false,
         isSticky = false,
         fixed = false,
-        absolute = false;
+        absolute = false,
 
+        stickyRectTop = 0,
+        containerRectTop = false,
+        ticking = false;
+
+    // init: 
+    // wrap sticky with a new <div>
+    // to track sticky width and scrollTop
     this.init = function () {
-      // wrap sticky
       jsWrapper = document.createElement('div');
       jsWrapper.className = 'js-sticky-wrapper';
       gn.wrap(sticky, jsWrapper);
@@ -75,6 +92,11 @@
       initialized = true;
     };
 
+    // update sizes:
+    // get sticky, container and window information to calculate
+    // two breakpoints: pinned to window / follow container
+    // 
+    // do this on document load & window resize
     this.updateSizes = function () {
       var style = window.getComputedStyle(sticky),
           pattern = /\d/, // check if value contains digital number
@@ -94,6 +116,9 @@
       absoluteBreakpoint = this.getAbsoluteBreakpoint();
     };
 
+    // destory:
+    // restore everything when window size is not in the range
+    // remove inserted <div>, classnames, styles and initialize ticking variables
     this.destory = function () {
       sticky.className = stickyClassNames;
       sticky.style.width = '';
@@ -107,10 +132,7 @@
       absolute = false;
     };
 
-    this.getPosition = function () {
-      return (stickyHeight > windowHeight)? 'bottom' : position;
-    };
-    
+    // check if the window size is in the range
     this.checkRange = (function () {
       if (!bp) {
         return function () { return true; };
@@ -130,6 +152,14 @@
       }
     })();
 
+    // check if sticky is longer than window height
+    // if so, set position to bottom
+    this.getPosition = function () {
+      return (stickyHeight > windowHeight)? 'bottom' : position;
+    };
+    
+    // get pinned / fixed breakpoint
+    // based on sticky scrollTop (getBoundingClientRect().top)
     this.getFixedBreakpoint = function () {
       if (position === 'top') {
         return padding;
@@ -138,6 +168,8 @@
       }
     };
 
+    // get followed / absolute breakpoint
+    // based on container scrollTop (getBoundingClientRect().top)
     this.getAbsoluteBreakpoint = (function () {
       if (!container) {
         return function () { return false; };
@@ -152,6 +184,10 @@
       }
     })();
 
+    // onload:
+    // check if the window is in the range
+    // if so, wrap sticky with new <div> and store size information
+    // otherwise，unwrap <div> and initialize variables
     this.onLoad = function () {
       windowWidth = window.innerWidth;
       inRange = this.checkRange();
@@ -164,6 +200,9 @@
       }
     };
 
+    // onresize:
+    // same things with onload, but always need to chase size information to update sticky status,
+    // and update sticky width while it's pinned or following
     this.onResize = function () {
       this.onLoad();
       this.updateSizes();
@@ -196,8 +235,11 @@
       }
     };
 
+    // onscroll:
+    // change sticky status based on sticky / container scrollTop
+    // the adventage of using getBoundingClientRect().top instead of offsetTop is that the sticky will not be affected by other element's height changing while scrolling
+    // e.g. when window scroll down, the header become fixed positioned, thus height property become 0
     this.onScroll = function () {
-      var stickyRectTop = jsWrapper.getBoundingClientRect().top;
       if (stickyRectTop > fixedBreakpoint) {
         if (isSticky) {
           this.isNormal();
@@ -217,7 +259,6 @@
         }
 
         if (container) {
-          var containerRectTop = container.getBoundingClientRect().top;
           if (!fixed && stickyRectTop <= fixedBreakpoint && containerRectTop > absoluteBreakpoint) {
             this.isFixed();
             sticky.style[position] = padding + 'px';
@@ -236,7 +277,6 @@
             absolute = true;
           }
         } else {
-          console.log(stickyRectTop, fixedBreakpoint);
           if (!fixed && stickyRectTop <= fixedBreakpoint) {
             this.isFixed();
             sticky.style[position] = padding + 'px';
@@ -250,13 +290,25 @@
     window.addEventListener('load', function () { 
       that.onLoad(); 
     });
+
     gn.optimizedResize.add(function () { 
       that.onResize(); 
     });
+
     window.addEventListener('scroll', function () { 
-      if (initialized) {
-        that.onScroll(); 
+      stickyRectTop = jsWrapper.getBoundingClientRect().top;
+      if (container) {
+        containerRectTop = container.getBoundingClientRect().top;
       }
+      if (!ticking) {
+        window.requestAnimationFrame(function () {
+          if (initialized) {
+            that.onScroll(); 
+          }
+          ticking = false;
+        });
+      }
+      ticking = true;
     });
   }
 

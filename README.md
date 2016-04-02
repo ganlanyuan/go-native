@@ -40,8 +40,8 @@ Include [go-native.ie8.js (39k)](https://raw.githubusercontent.com/ganlanyuan/go
   - `window.getComputedStyle`
   - `window.innerWidth`
   - `window.innerHeight`
-  - `window.pageXOffset`
-  - `window.pageYOffset`
+  - `window.pageXOffset / window.scrollY`
+  - `window.pageYOffset / window.scrollX`
 
 
 ####go-native
