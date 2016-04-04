@@ -2,20 +2,30 @@
   position: relative;
 }
 
+.priority-nav:after {
+  content: '';
+  clear: both;
+  display: table;
+}
+
 .priority-nav ul {
   max-width: 100%;
   overflow-x: auto;
-  white-space: nowrap;
-}
-
-.priority-nav.js-priority-nav ul {
-  display: inline-block;
-  max-width: none;
-  overflow-x: hidden;
 }
 
 .priority-nav li {
-  display: inline-block;
+  display: table-cell;
+  white-space: nowrap;
+}
+
+.priority-nav .is-hidden {
+  visibility: hidden;
+}
+
+.priority-nav.js-priority-nav ul {
+  float: left;
+  max-width: none;
+  overflow-x: hidden;
 }
 
 .priority-nav .js-nav-hidden {
@@ -33,8 +43,4 @@
   right: 0;
   height: 100%;
   cursor: pointer;
-}
-
-.priority-nav .is-hidden {
-  visibility: hidden;
 }

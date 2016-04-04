@@ -42,7 +42,7 @@
       var a = new PriorityNavCore(newOptions);
     }
 
-  };
+  }
 
   function PriorityNavCore(options) {
     options = gn.extend({
@@ -115,8 +115,6 @@
 
       this.bpH.unshift(this.bpV[this.bpV.length - 1]);
       this.bpV.splice(-1, 1);
-
-      return fragment;
     };
 
     // append
@@ -125,8 +123,6 @@
 
       this.bpV.push(this.bpH[0]);
       this.bpH.shift();
-
-      return fragment;
     };
 
     // update nav
@@ -138,7 +134,9 @@
 
         if (this.initialized) {
           if (this.bpH.length > 0) {
-            while(this.bpH.length > 0) { this.appendItemsToFragment(); }
+            while(this.bpH.length > 0) { 
+              this.appendItemsToFragment(); 
+            }
             this.visibleContainer.appendChild(fragment);
           }
 
@@ -149,24 +147,27 @@
         if (!this.initialized) { this.init(); }
 
         this.availableSpace = this.outerWidth - this.btnWidth;
-        this.count;
-        this.currentCount;
-
         if (options.hideAll === 0 || this.windowWidth >= options.hideAll) {
 
           if (this.availableSpace <= this.bpV[this.bpV.length - 1]) {
-            while(this.availableSpace <= this.bpV[this.bpV.length - 1]) { this.prependItemsToFragment(); }
+            while(this.availableSpace <= this.bpV[this.bpV.length - 1]) { 
+              this.prependItemsToFragment(); 
+            }
             this.hiddenContainer.insertBefore(fragment, this.hiddenContainer.firstChild);
 
           } else {
             this.hiddenItems = this.hiddenContainer.children;
-            while(this.availableSpace > this.bpH[0]) { this.appendItemsToFragment(); }
+            while(this.availableSpace > this.bpH[0]) { 
+              this.appendItemsToFragment(); 
+            }
             this.visibleContainer.appendChild(fragment);
           }
         } else {
           if (this.bpH.length === this.bp.length) { return; }
 
-          while(this.bpV.length > 0) { this.prependItemsToFragment(); }
+          while(this.bpV.length > 0) { 
+            this.prependItemsToFragment(); 
+          }
           this.hiddenContainer.insertBefore(fragment, this.hiddenContainer.firstChild);
         }
 

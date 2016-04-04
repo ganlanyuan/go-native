@@ -1,18 +1,25 @@
 // *** priority-nav *** //
 @mixin priority-nav() {
   position: relative;
+  &:after {
+    content: '';
+    clear: both;
+    display: table;
+  }
   ul { 
     max-width: 100%;
     overflow-x: auto; 
+  }
+  li { 
+    display: table-cell; 
     white-space: nowrap;
   }
+  .is-hidden { visibility: hidden; }
+  
   &.js-priority-nav ul { 
-    display: inline-block;
+    float: left;
     max-width: none;
     overflow-x: hidden; 
-  }
-  li {
-    display: inline-block;
   }
   .js-nav-hidden {
     position: absolute;
@@ -26,7 +33,6 @@
     height: 100%;
     cursor: pointer;
   }
-  .is-hidden { visibility: hidden; }
 }
 
 .priority-nav { @include priority-nav(); }
