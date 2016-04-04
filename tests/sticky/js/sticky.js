@@ -4,6 +4,8 @@
   * DEPENDENCIES:
   *
   * == IE8 ==
+  * html5shiv
+  * ES5-arrays
   * addEventListener
   * window.getComputedStyle
   * window.innerHeight
@@ -15,6 +17,7 @@
   * optimizedResize
   * extend
   * Length
+  * isNodeList
   * wrap
   * unwrap
   */

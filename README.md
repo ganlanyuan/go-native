@@ -59,15 +59,15 @@ Include [go-native.ie8.js (39k)](https://raw.githubusercontent.com/ganlanyuan/go
   - `ChildNode.remove`
 - [Length](https://github.com/heygrady/Units)
 - requestAnimationFrame
-- optimizedResize
+- optimizedResize (require forEach/ES5-arrays)
 - extend
 - isNodeList
 - DOM related utilities
   - DOM.ready
   - isInViewport
   - indexOf
-  - getOuterWidth
-  - getOuterHeight
+  - getOuterWidth (requires Length)
+  - getOuterHeight (requires Length)
   - getOffsetLeft
   - getOffsetTop
   - getSupportedProp
@@ -76,11 +76,11 @@ Include [go-native.ie8.js (39k)](https://raw.githubusercontent.com/ganlanyuan/go
   - getParentsUntil
   - getSiblings
   - createElement
-  - append
-  - prepend
-  - wrap
+  - append (requires isNodeList)
+  - prepend (requires isNodeList)
+  - wrap (requires isNodeList)
   - wrapAll
-  - unwrap
+  - unwrap (requires isNodeList)
 
 # Credit:
 `HTML5 Shiv 3.7.3` by [aFarkas](https://github.com/aFarkas/html5shiv), `NWMatcher` by [dperini](https://github.com/dperini/nwmatcher), `selectivizr` by [keithclark](https://github.com/keithclark/selectivizr), matchmedia by [paulirish](https://github.com/paulirish/matchMedia.js), `respond` by [scottjehl](https://github.com/scottjehl/Respond), `Length` by [heygrady](https://github.com/heygrady/Units), `requestAnimationFrame` by [darius](https://github.com/darius/requestAnimationFrame), `indexOf` by [HubSpot/youmightnotneedjquery](https://github.com/HubSpot/YouMightNotNeedjQuery), `Object.keys` by [Craig Constable](http://tokenposts.blogspot.com.au/2012/04/javascript-objectkeys-browser.html).
