@@ -1,10 +1,18 @@
 /**
- * tiny-slider
- * @version 0.3.0
- * @author William Lin
- * @license The MIT License (MIT)
- * @github https://github.com/ganlanyuan/tiny-slider/
- **/
+  * tiny-slider
+  * @version 0.3.0
+  * @author William Lin
+  * @license The MIT License (MIT)
+  * @github https://github.com/ganlanyuan/tiny-slider/
+  * 
+  * DEPENDENCIES:
+  * firstElementChild, lastElementChild
+  * addEventListener
+  * extend
+  * wrap
+  * append
+  * 
+  **/
  ;(function (tinySliderJS) {
   window.tinySlider = tinySliderJS();
 })(function () {
@@ -283,31 +291,27 @@
       }
     },
 
+    // initialize:
+    // 1. add .tiny-content to container
+    // 2. wrap container with .tiny-slider
+    // 3. add dots and nav if needed, set allDots, prev, next
+    // 4. clone items for loop if needed, update childrenCount
     init: function () {
       this.container.classList.add('tiny-content');
 
       // wrap slider with ".tiny-slider"
-      var parent = this.container.parentNode,
-      sibling = this.container.nextSibling;
-
-      var div = document.createElement('div'),
-      wrapper = div.cloneNode(true);
-      wrapper.className = 'tiny-slider';
-      wrapper.appendChild(this.container);
-
-      if (sibling) {
-        parent.insertBefore(wrapper, sibling);
-      } else {
-        parent.appendChild(wrapper);
-      }
+      var sliderWrapper = document.createElement('div');
+      sliderWrapper.className = 'tiny-slider';
+      gn.wrap(this.container, sliderWrapper);
 
       // for IE10
       if (navigator.msMaxTouchPoints) {
-        wrapper.classList.add('ms-touch');
+        sliderWrapper.classList.add('ms-touch');
 
-        wrapper.addEventListener('scroll', function () {
-          if (getTD) { el.container.style[getTD] = '0s'; }
-          el.container.style.transform = 'translate3d(-' + - el.container.scrollLeft() + 'px,0,0)';
+        var that = this;
+        sliderWrapper.addEventListener('scroll', function () {
+          if (getTD) { that.container.style[getTD] = '0s'; }
+          that.container.style.transform = 'translate3d(-' + - that.container.scrollLeft() + 'px,0,0)';
         });
       }
 
@@ -317,66 +321,46 @@
           this.allDots = this.dotContainer.children;
           this.allDots[0].classList.add('tiny-active');
         } else {
-          var dots = div.cloneNode(true), dot = div.cloneNode(true);
-          dots.className = 'tiny-dots';
-          dot.className = 'tiny-dot';
-
-          for (var i = this.cl - 1; i >= 0; i--) {
-            var dotClone = (i > 0) ? dot.cloneNode(true) : dot;
-            dots.appendChild(dotClone);
+          var dotHtml = '';
+          for (var i = this.cl; i--;) {
+            dotHtml += '<div class="tiny-dot"></div>';
           }
-          wrapper.appendChild(dots);
-          this.allDots = dots.querySelectorAll('.tiny-dot');
+          dotHtml = '<div class="tiny-dots">' + dotHtml + '</div>';
+          gn.append(sliderWrapper, dotHtml);
+
+          this.allDots = sliderWrapper.querySelectorAll('.tiny-dot');
         }
       }
 
       // add nav
       if (this.nav) {
-        var navItems;
         if (this.navContainer) {
-          navItems = this.navContainer.children;
-          this.prev = navItems[0];
-          this.next = navItems[1];
+          this.prev = this.navContainer.firstElementChild;
+          this.next = this.navContainer.lastElementChild;
         } else {
-          navItems = div.cloneNode(true);
-          var prev = div.cloneNode(true),
-          next = div.cloneNode(true);
+          gn.append(sliderWrapper, '<div class="tiny-nav"><div class="tiny-prev">' + this.navText[0] + '</div><div class="tiny-next">' + this.navText[1] + '</div></div>');
 
-          navItems.className = 'tiny-nav';
-          prev.className = 'tiny-prev';
-          next.className = 'tiny-next';
-          if (this.navText.length === 2) {
-            prev.innerHTML = this.navText[0];
-            next.innerHTML = this.navText[1];
-          }
-
-          navItems.appendChild(prev);
-          navItems.appendChild(next);
-          wrapper.appendChild(navItems);
-
-          this.prev = prev;
-          this.next = next;
+          this.prev = sliderWrapper.querySelector('.tiny-prev');
+          this.next = sliderWrapper.querySelector('.tiny-next');
         }
       }
 
       // clone items
       if (this.loop) {
-        var before = [], after = [], first = this.container.children[0];
+        var fragmentBefore = document.createDocumentFragment(), 
+            fragmentAfter = document.createDocumentFragment(); 
 
-        for (var j = 0; j < this.itemsMax; j++) {
-          var cloneFirst = this.children[j].cloneNode(true),
-          cloneLast = this.children[this.children.length - 1 - j].cloneNode(true);
+        for (var j = this.itemsMax; j--;) {
+          var 
+              cloneFirst = this.children[j].cloneNode(true),
+              cloneLast = this.children[this.children.length - 1 - j].cloneNode(true);
 
-          before.push(cloneFirst);
-          after.push(cloneLast);
+          fragmentBefore.insertBefore(cloneFirst, fragmentBefore.firstChild);
+          fragmentAfter.insertBefore(cloneLast, fragmentAfter.firstChild);
         }
 
-        for (var g = 0; g < before.length; g++) {
-          this.container.appendChild(before[g]);
-        }
-        for (var a = after.length - 1; a >= 0; a--) {
-          this.container.insertBefore(after[a], first);
-        }
+        this.container.appendChild(fragmentBefore);
+        this.container.insertBefore(fragmentAfter, this.container.firstChild);
 
         this.cul = this.container.children.length;
         this.children = this.container.children;
