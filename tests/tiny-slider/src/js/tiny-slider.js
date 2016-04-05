@@ -45,14 +45,9 @@
     }
   }
 
-  // get window width
-  function getWindowWidth () {
-    return document.documentElement.clientWidth;
-  }
-
   // get responsive value
   function getItem (keys, values, def) {
-    var ww = getWindowWidth();
+    var ww = document.documentElement.clientWidth;
 
     if (keys.length !== undefined && values !== undefined && keys.length === values.length) {
       if (ww < keys[0]) {
@@ -77,12 +72,9 @@
 
   // *** tinySlider *** //
   function tinySlider(options) {
-    var containers;
-
-    if (!options.container) { return; }
-    containers = (options.container.length === undefined) ? [options.container] : options.container;
-
-    for (var i = 0; i < containers.length; i++) {
+    var containers = document.querySelectorAll(options.container);
+    if (containers.length === 0) { return; }
+    for (var i = containers.length; i--;) {
       var newOptions = options;
       newOptions.container = containers[i];
 
@@ -92,7 +84,7 @@
 
   function TinySliderCore(options) {
     options = gn.extend({
-      container: document.querySelector('.slider'),
+      container: '.slider',
       items: 1,
       fixedWidth: false,
       maxContainerWidth: false,

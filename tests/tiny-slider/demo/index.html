@@ -455,17 +455,8 @@ tinySlider({
 <script src="../../../dist/go-native.js"></script>
 <script src="../src/js/tiny-slider.js"></script>
 <script type="text/javascript">
-  var d = document,
-      responsive = d.querySelector('.responsive'),
-      fixedWidth = d.querySelector('.fixed-width'),
-      nonLoop = d.querySelector('.non-loop'),
-      slideByPage = d.querySelector('.slide-by-page'),
-      autoplay = d.querySelector('.autoplay'),
-      customizedots = d.querySelector('.customize'),
-      arrowKeys = d.querySelector('.arrow-keys');
-
   tinySlider({
-    container: responsive,
+    container: '.responsive',
     responsive: {
       500: 2,
       800: 3,
@@ -473,14 +464,14 @@ tinySlider({
   });
 
   tinySlider({
-    container: fixedWidth,
+    container: '.fixed-width',
     fixedWidth: 200,
     maxContainerWidth: 900,
     loop: false
   });
 
   tinySlider({
-    container: customizedots,
+    container: '.non-loop',
     items: 3,
     navContainer: document.querySelector('.slider-nav'),
     dotContainer: document.querySelector('.thumbnails'),
@@ -488,19 +479,19 @@ tinySlider({
   });
 
   tinySlider({
-    container: nonLoop,
+    container: '.slide-by-page',
     items: 3,
     loop: false
   });
 
   tinySlider({
-    container: slideByPage,
+    container: '.autoplay',
     items: 3,
     slideByPage: true
   });
 
   tinySlider({
-    container: autoplay,
+    container: '.customize',
     items: 3,
     autoplay: true,
     speed: 300,
@@ -508,7 +499,7 @@ tinySlider({
   });
 
   tinySlider({
-    container: arrowKeys,
+    container: '.arrow-keys',
     items: 3,
     arrowKeys: true
   });
