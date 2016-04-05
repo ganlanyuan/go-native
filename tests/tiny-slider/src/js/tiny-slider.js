@@ -1,6 +1,6 @@
 /**
   * tiny-slider
-  * @version 0.3.0
+  * @version 0.3.1
   * @author William Lin
   * @license The MIT License (MIT)
   * @github https://github.com/ganlanyuan/tiny-slider/
@@ -12,8 +12,8 @@
   * wrap
   * append
   * 
-  **/
- ;(function (tinySliderJS) {
+  */
+;(function (tinySliderJS) {
   window.tinySlider = tinySliderJS();
 })(function () {
   'use strict';
@@ -386,7 +386,6 @@
     makeLayout: function (el) {
       el.itemWidth = (el.fw) ? el.fw : el.container.parentNode.offsetWidth / el.items;
       el.container.style.width = el.itemWidth * el.cul + 'px';
-      // if (!el.fw) { el.container.parentNode.style.width = el.itemWidth * el.items + 'px'; }
       for (var b = 0; b < el.cul; b++) {
         el.children[b].style.width = el.itemWidth + 'px';
       }
