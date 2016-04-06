@@ -227,42 +227,11 @@
         tiny.lazyLoad(tiny);
       }
     });
-
-    // on nav click
-    if (this.nav) {
-      this.next.addEventListener('click', function () { tiny.onNavClick(tiny, 1); });
-      this.prev.addEventListener('click', function () { tiny.onNavClick(tiny, -1); });
-    }
-
-    // on key down
-    if (this.arrowKeys) {
-      document.addEventListener('keydown', function (e) {
-        e = e || window.event;
-        if (e.keyCode === 37) {
-          tiny.onNavClick(tiny, -1);
-        } else if (e.keyCode === 39) {
-          tiny.onNavClick(tiny, 1);
-        }
-      });
-    }
-
-    // on dot click
-    if (this.dots) {
-      for (var i = 0; i < this.allDots.length; i++) {
-        this.allDots[i].addEventListener('click', this.fireDotClick(this));
-      }
-    }
-
-    // autoplay
-    if (this.autoplay) {
-      setInterval(function () {
-        tiny.onNavClick(tiny, tiny.autoplayDirection);
-      }, tiny.autoplayTimeout);
-    }
   }
 
   // *** prototype *** //
   TinySliderCore.prototype = {
+
     getAbsIndex: function (el) {
       if (el.index < 0) {
         return el.index + el.cl;
@@ -273,7 +242,7 @@
       }
     },
 
-    setTD: function (el, indexGap) {
+    setTransitionDuration: function (el, indexGap) {
       if (!getTD) { return; }
       el.container.style[getTD] = (el.speed * indexGap / 1000) + 's';
       el.animating = true;
@@ -366,20 +335,50 @@
         this.children = this.container.children;
       }
 
+      var tiny = this;
       this.setDotCurrent(this);
       this.makeLayout(this);
       this.setSnapInterval(this);
       this.translate(this);
       this.itemActive(this);
-      if (this.dots && !this.dotContainer) {
-        this.displayDots(this);
-        this.dotActive(this);
+      if (this.nav) {
+        this.disableNav(this);
+        this.next.addEventListener('click', function () { tiny.onNavClick(tiny, 1); });
+        this.prev.addEventListener('click', function () { tiny.onNavClick(tiny, -1); });
       }
+
+      if (this.dots) {
+        if (!this.dotContainer) {
+          this.displayDots(this);
+          this.dotActive(this);
+        }
+        for (var i = 0; i < this.allDots.length; i++) {
+          this.allDots[i].addEventListener('click', this.fireDotClick(this));
+        }
+      }
+
 
       if (this.lazyload) {
         this.saveViewport(this);
         this.sliderInView(this);
         this.lazyLoad(this);
+      }
+
+      if (this.arrowKeys) {
+        document.addEventListener('keydown', function (e) {
+          e = e || window.event;
+          if (e.keyCode === 37) {
+            tiny.onNavClick(tiny, -1);
+          } else if (e.keyCode === 39) {
+            tiny.onNavClick(tiny, 1);
+          }
+        });
+      }
+
+      if (this.autoplay) {
+        setInterval(function () {
+          tiny.onNavClick(tiny, tiny.autoplayDirection);
+        }, tiny.autoplayTimeout);
       }
     },
 
@@ -412,6 +411,20 @@
         } else {
           el.children[i].classList.remove('tiny-current', 'tiny-visible');
         }
+      }
+    },
+
+    disableNav: function (el) {
+      if (el.loop) { return; }
+      if (el.index === 0) {
+        el.prev.classList.add('disabled');
+      } else {
+        el.prev.classList.remove('disabled');
+      }
+      if (el.index === el.cl - el.items) {
+        el.next.classList.add('disabled');
+      } else {
+        el.next.classList.remove('disabled');
       }
     },
 
@@ -473,6 +486,7 @@
     update: function (el) {
       el.fallback(el);
       el.itemActive(el);
+      el.disableNav(el);
       el.dotActive(el);
       el.lazyLoad(el);
 
@@ -488,7 +502,7 @@
         index = el.index + dir;
         el.index = (el.loop) ? index : Math.max(0, Math.min(index, el.cl - el.items));
 
-        el.setTD(el, indexGap);
+        el.setTransitionDuration(el, indexGap);
         el.translate(el);
 
         el.setDotCurrent(el);
@@ -517,7 +531,7 @@
         indexGap = Math.abs(index - el.index);
         el.index = index;
 
-        el.setTD(el, indexGap);
+        el.setTransitionDuration(el, indexGap);
         el.translate(el);
 
         el.dotCurrent = ind;
@@ -618,7 +632,7 @@
           index = Math.max(min, Math.min(index, max));
           el.index = index;
 
-          el.setTD(el, 1);
+          el.setTransitionDuration(el, 1);
           el.translate(el);
 
           el.setDotCurrent(el);
