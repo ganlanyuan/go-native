@@ -9,7 +9,7 @@
   "main": [
     "/dist/go-native.js",
     "/dist/go-native.ie8.js"
-  ]
+  ],
   "moduleType": [],
   "keywords": [
     "native",
