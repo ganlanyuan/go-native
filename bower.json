@@ -7,8 +7,7 @@
   ],
   "description": "A Javascript polyfills' collection which let you use native javascript.",
   "main": [
-    "/dist/go-native.js",
-    "/dist/go-native.ie8.js"
+    "/dist/go-native.js"
   ],
   "moduleType": [],
   "keywords": [
