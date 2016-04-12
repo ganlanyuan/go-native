@@ -1,8 +1,9 @@
-# Go-native
+## Go-native
 Javascript polyfills that let you use native javascript.   
-[CSS3 selectors](https://www.w3.org/TR/css3-selectors/), [CSS3 media queries](https://www.w3.org/TR/css3-mediaqueries/), basic ES5 extensions and a bunch of DOM utilities.
+[CSS3 selectors](https://www.w3.org/TR/css3-selectors/), [CSS3 media queries](https://www.w3.org/TR/css3-mediaqueries/), basic ES5 extensions and a bunch of DOM utilities.  
+![version](https://img.shields.io/badge/Version-0.0.0-green.svg)  
 
-# Usage
+## Usage
 Include [go-native.ie8.js (39k)](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.ie8.js) and [go-native.js (10k)](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.js) in your `<head>`. That's it!
 ````html
 <!--[if (lt IE 9)]>
@@ -11,7 +12,7 @@ Include [go-native.ie8.js (39k)](https://raw.githubusercontent.com/ganlanyuan/go
 <script src="path/to/go-native.js"></script>
 ````
 
-# Contents
+## Contents
 ####go-native.ie8  
 - ES5 Array extensions (`every, filter, forEach, indexOf, lastIndexOf, map, reduce, reduceRight, some`)
 - ES5 Function extensions (`bind`)
@@ -82,7 +83,7 @@ Include [go-native.ie8.js (39k)](https://raw.githubusercontent.com/ganlanyuan/go
   - wrapAll
   - unwrap (requires isNodeList)
 
-# Credit:
+## Credit:
 `HTML5 Shiv 3.7.3` by [aFarkas](https://github.com/aFarkas/html5shiv), `NWMatcher` by [dperini](https://github.com/dperini/nwmatcher), `selectivizr` by [keithclark](https://github.com/keithclark/selectivizr), matchmedia by [paulirish](https://github.com/paulirish/matchMedia.js), `respond` by [scottjehl](https://github.com/scottjehl/Respond), `Length` by [heygrady](https://github.com/heygrady/Units), `requestAnimationFrame` by [darius](https://github.com/darius/requestAnimationFrame), `indexOf` by [HubSpot/youmightnotneedjquery](https://github.com/HubSpot/YouMightNotNeedjQuery), `Object.keys` by [Craig Constable](http://tokenposts.blogspot.com.au/2012/04/javascript-objectkeys-browser.html).
 
 ES5 Array extensions, ES5 Function extensions (`bind`), 

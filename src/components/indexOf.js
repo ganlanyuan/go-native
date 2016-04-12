@@ -5,4 +5,4 @@ gn.indexOf = function (array, item) {
       return i;
   }
   return -1;
-}
+};

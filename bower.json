@@ -1,11 +1,15 @@
 {
   "name": "go-native",
+  "version": "0.0.0",
   "homepage": "https://github.com/ganlanyuan/go-native",
   "authors": [
     "WilliamLin <ganlanyuan@gmail.com>"
   ],
   "description": "A Javascript polyfills' collection which let you use native javascript.",
-  "main": "",
+  "main": [
+    "/dist/go-native.js",
+    "/dist/go-native.ie8.js"
+  ]
   "moduleType": [],
   "keywords": [
     "native",

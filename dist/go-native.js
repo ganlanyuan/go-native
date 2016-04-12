@@ -408,7 +408,7 @@ gn.indexOf = function (array, item) {
       return i;
   }
   return -1;
-}
+};
 
 // *** getClosest *** //
 gn.getClosest = function (elem, selector) {
