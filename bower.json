@@ -16,7 +16,8 @@
     "ie"
   ],
   "license": "MIT",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
     "fix-ie": "^1.2.0",
     "es5-shim": "^4.5.7",
     "respond": "^1.4.2",
@@ -24,6 +25,5 @@
     "Selectivizr-bower": "selectivizr-bower#^1.0.3",
     "Units": "https://github.com/heygrady/Units.git",
     "requestAnimationFrame": "https://github.com/darius/requestAnimationFrame.git"
-  },
-  "dependencies": {}
+  }
 }
