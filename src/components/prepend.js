@@ -1,18 +1,18 @@
-// *** prepend *** //
+/* prepend */
 gn.prepend = function(els, data) {
-  var els_new = (gn.isNodeList(els)) ? els : [els];
+  var els_new = (gn.isNodeList(els)) ? els : [els], i;
 
   if (typeof data.nodeType !== "undefined" && data.nodeType === 1) {
-    for (var i = els_new.length; i--;) {
+    for (i = els_new.length; i--;) {
       els_new[i].insertBefore(data, els_new[i].firstChild);
     }
   } else if (typeof data === "string") {
-    for (var i = els_new.length; i--;) {
+    for (i = els_new.length; i--;) {
       els_new[i].insertAdjacentHTML('afterbegin', data);
     }
   } else if (gn.isNodeList(data)) {
     var fragment = document.createDocumentFragment();
-    for (var i = data.length; i--;) {
+    for (i = data.length; i--;) {
       fragment.insertBefore(data[i], fragment.firstChild);
     }
     for (var j = els_new.length; j--;) {

@@ -1,4 +1,4 @@
-// ** extend ** //
+/* extend */
 gn.extend = function () {
   var obj, name, copy,
   target = arguments[0] || {},
@@ -19,4 +19,4 @@ gn.extend = function () {
     }
   }
   return target;
-}
+};

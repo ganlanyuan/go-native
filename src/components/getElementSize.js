@@ -9,7 +9,7 @@ gn.getOuterWidth = function (el) {
 
   width += parseInt(Length.toPx(el, marginLeft)) + parseInt(Length.toPx(el, marginRight));
   return width;
-}
+};
 
 gn.getOuterHeight = function (el) {
   var pattern = /\d/, // check if value contains digital number
@@ -20,7 +20,7 @@ gn.getOuterHeight = function (el) {
 
   height += parseInt(Length.toPx(el, marginTop)) + parseInt(Length.toPx(el, marginBottom));
   return height;
-}
+};
 
 // 2. offset size: content + padding + border //
 //    el.offsetWidth  

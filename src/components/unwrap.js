@@ -1,4 +1,4 @@
-/** unwrap **/
+/* unwrap */
 gn.unwrap = function (els) {
   var elsNew = (gn.isNodeList(els)) ? els : [els];
   for (var i = elsNew.length; i--;) {
@@ -15,4 +15,4 @@ gn.unwrap = function (els) {
     // remove the empty element
     parent.removeChild(el);
   }
-}
+};
