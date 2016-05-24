@@ -13,28 +13,29 @@
 // @codekit-prepend "../bower_components/requestAnimationFrame/requestAnimationFrame.js";
 // @codekit-prepend "../bower_components/Units/Length.js";
 
-// @codekit-prepend "components/number.isNaN.js";
-// @codekit-prepend "components/string.prototype.repeat.js";
-// @codekit-prepend "components/gn.js";
-// @codekit-prepend "components/optimizedResize.js";
-// @codekit-prepend "components/DOM.ready.js";
-// @codekit-prepend "components/extend.js";
-// @codekit-prepend "components/isInViewport.js";
-// @codekit-prepend "components/getSupportedProp.js";
-// @codekit-prepend "components/getElementOffset.js";
-// @codekit-prepend "components/getElementSize.js";
-// @codekit-prepend "components/indexOf.js";
-// @codekit-prepend "components/getClosest.js";
-// @codekit-prepend "components/getParents.js";
-// @codekit-prepend "components/getParentsUntil.js";
-// @codekit-prepend "components/getSiblings.js";
-// @codekit-prepend "components/isNodeList.js";
-// @codekit-prepend "components/createElement.js";
-// @codekit-prepend "components/append.js";
-// @codekit-prepend "components/prepend.js";
-// @codekit-prepend "components/wrap.js";
-// @codekit-prepend "components/wrapAll.js";
-// @codekit-prepend "components/unwrap.js";
+// @codekit-prepend "utilities/number.isNaN.js";
+// @codekit-prepend "utilities/string.prototype.repeat.js";
+
+// @codekit-prepend "gn/gn.js";
+// @codekit-prepend "gn/optimizedResize.js";
+// @codekit-prepend "gn/DOM.ready.js";
+// @codekit-prepend "gn/extend.js";
+// @codekit-prepend "gn/isInViewport.js";
+// @codekit-prepend "gn/getSupportedProp.js";
+// @codekit-prepend "gn/getElementOffset.js";
+// @codekit-prepend "gn/getElementSize.js";
+// @codekit-prepend "gn/indexOf.js";
+// @codekit-prepend "gn/getClosest.js";
+// @codekit-prepend "gn/getParents.js";
+// @codekit-prepend "gn/getParentsUntil.js";
+// @codekit-prepend "gn/getSiblings.js";
+// @codekit-prepend "gn/isNodeList.js";
+// @codekit-prepend "gn/createElement.js";
+// @codekit-prepend "gn/append.js";
+// @codekit-prepend "gn/prepend.js";
+// @codekit-prepend "gn/wrap.js";
+// @codekit-prepend "gn/wrapAll.js";
+// @codekit-prepend "gn/unwrap.js";
 
 /* not includeed */
 // codekit-prepend "../bower_components/fix-ie/src/IE8-addEventListener.js";
