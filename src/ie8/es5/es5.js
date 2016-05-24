@@ -1,3 +1,7 @@
+// @codekit-prepend "date.now.js";
+// @codekit-prepend "object.defineProperties.js";
+// @codekit-prepend "string.prototype.trim.js";
+// @codekit-prepend "array.isArray.js";
 // @codekit-prepend "function.bind.js";
 // @codekit-prepend "object.keys.js";
 
