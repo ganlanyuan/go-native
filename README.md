@@ -206,3 +206,6 @@ ES5 Array, Function, Date, Object and String extensions from [280north/narwhal](
 `el.classList`, `el.childElementCount`, `el.firstElementChild`, `el.lastElementChild`, `el.nextElementSibling`, `el.previousElementSibling`, `ChildNode.remove`, `window.getComputedStyle`, `window.innerWidth`, `window.innerHeight`, `window.pageXOffset`, `window.pageYOffset`, `Array.isArray`, `Number.isNaN` and `String.prototype.repeat` from [Alhadis](https://github.com/Alhadis/Fix-IE).  
 
 `DOM.ready`, `isInViewport`, `getClosest`, `getParents`, `getParentsUntil` and `getSiblings` from [Chris Ferdinandi](http://gomakethings.com/ditching-jquery/).
+
+## License
+This project is available under the [MIT](https://opensource.org/licenses/mit-license.php) license.  
