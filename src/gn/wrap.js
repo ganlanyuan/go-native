@@ -1,4 +1,7 @@
-/** wrap **/
+// wrap
+// @require "/src/gn/gn.js"
+// @require "/src/gn/isNodeList.js"
+
 gn.wrap = function (els, obj) {
     var elsNew = (gn.isNodeList(els)) ? els : [els];
   // Loops backwards to prevent having to clone the wrapper on the

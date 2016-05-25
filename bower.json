@@ -23,9 +23,9 @@
     "respond": "^1.4.2",
     "fix-ie": "^1.2.0",
     "es5-shim": "^4.5.7",
-    "respond": "^1.4.2",
     "matchMedia": "^0.3.0",
     "Units": "https://github.com/heygrady/Units.git",
-    "requestAnimationFrame": "https://github.com/darius/requestAnimationFrame.git"
+    "requestAnimationFrame": "https://github.com/darius/requestAnimationFrame.git",
+    "domtokenlist": "^1.0.0"
   }
 }

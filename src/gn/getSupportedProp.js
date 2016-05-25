@@ -1,4 +1,6 @@
-/* get supported property */
+// get supported property
+// @require "/src/gn/gn.js"
+
 gn.getSupportedProp = function (proparray){
   var root = document.documentElement;
   for (var i=0; i<proparray.length; i++){
@@ -7,5 +9,6 @@ gn.getSupportedProp = function (proparray){
     }
   }
 };
+
 // var getTD = gn.getSupportedProp(['transitionDuration', 'WebkitTransitionDuration', 'MozTransitionDuration', 'OTransitionDuration']),
 // getTransform = gn.getSupportedProp(['transform', 'WebkitTransform', 'MozTransform', 'OTransform']);

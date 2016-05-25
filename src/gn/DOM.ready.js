@@ -1,4 +1,6 @@
-/* DOM ready */
+// DOM ready
+// @require "/src/gn/gn.js"
+
 gn.ready = function ( fn ) {
 
   // Sanity check
@@ -11,5 +13,4 @@ gn.ready = function ( fn ) {
 
   // Otherwise, wait until document is loaded
   document.addEventListener( 'DOMContentLoaded', fn, false );
-
 };

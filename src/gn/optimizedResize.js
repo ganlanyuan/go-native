@@ -1,7 +1,8 @@
-/** 
-  * optimizedResize
-  * https://developer.mozilla.org/en-US/docs/Web/Events/resize#requestAnimationFrame
-  */
+// optimizedResize
+// https://developer.mozilla.org/en-US/docs/Web/Events/resize#requestAnimationFrame
+// @require "/src/gn/gn.js"
+// @require "/src/ie8/es5/arrays/forEach.js"
+// @require "/src/ie8/addEventListener.js"
 
 gn.optimizedResize = (function() {
 
@@ -54,6 +55,6 @@ gn.optimizedResize = (function() {
 }());
 
 // start process
-// optimizedResize.add(function() {
+// gn.optimizedResize.add(function() {
 //   console.log('Resource conscious resize callback!')
 // });

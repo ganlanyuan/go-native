@@ -1,4 +1,7 @@
-// *** getParentsUntil *** //
+// getParentsUntil
+// @require "/src/gn/gn.js"
+// @require "/src/utilities/classList.js"
+
 gn.getParentsUntil = function (elem, parent, selector) {
 
   var parents = [];

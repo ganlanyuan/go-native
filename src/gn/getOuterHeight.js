@@ -1,15 +1,6 @@
-/* get elements size */
-// 1. outer size: content + padding + border + margin //
-gn.getOuterWidth = function (el) {
-  var pattern = /\d/, // check if value contains digital number
-      width = el.offsetWidth,
-      style = el.currentStyle || getComputedStyle(el),
-      marginLeft = (pattern.exec(style.marginLeft) === null) ? '0px' : style.marginLeft,
-      marginRight = (pattern.exec(style.marginRight) === null) ? '0px' : style.marginRight;
-
-  width += parseInt(Length.toPx(el, marginLeft)) + parseInt(Length.toPx(el, marginRight));
-  return width;
-};
+// getOuterHeight
+// @require "/src/gn/gn.js"
+// @require "/bower_components/Units/Length.js"
 
 gn.getOuterHeight = function (el) {
   var pattern = /\d/, // check if value contains digital number

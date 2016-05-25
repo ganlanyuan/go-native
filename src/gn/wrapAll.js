@@ -1,4 +1,6 @@
-/** wrapAll **/
+// wrapAll
+// @require "/src/gn/gn.js"
+
 gn.wrapAll = function (els, wrapper) {
   // Cache the current parent and sibling of the first element.
   var el = els.length ? els[0] : els,

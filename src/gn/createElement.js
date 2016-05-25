@@ -1,4 +1,6 @@
-/** createElement **/
+// createElement
+// @require "/src/gn/gn.js"
+
 gn.createElement = function(obj) {
   if (!obj || !obj.tagName) {
     throw { message : "Invalid argument" };

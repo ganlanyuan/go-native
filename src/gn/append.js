@@ -1,4 +1,7 @@
-/* append */
+// append
+// @require "/src/gn/gn.js"
+// @require "/src/gn/isNodeList.js"
+
 gn.append = function(els, data) {
   var els_new = (gn.isNodeList(els)) ? els : [els], i;
 

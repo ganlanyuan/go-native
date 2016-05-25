@@ -1,4 +1,6 @@
-/* extend */
+// extend
+// @require "/src/gn/gn.js"
+
 gn.extend = function () {
   var obj, name, copy,
   target = arguments[0] || {},

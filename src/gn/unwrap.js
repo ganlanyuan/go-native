@@ -1,4 +1,7 @@
-/* unwrap */
+// unwrap
+// @require "/src/gn/gn.js"
+// @require "/src/gn/isNodeList.js"
+
 gn.unwrap = function (els) {
   var elsNew = (gn.isNodeList(els)) ? els : [els];
   for (var i = elsNew.length; i--;) {

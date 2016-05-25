@@ -1,4 +1,7 @@
-// *** getClosest *** //
+// getClosest
+// @require "/src/gn/gn.js"
+// @require "/src/utilities/classList.js"
+
 gn.getClosest = function (elem, selector) {
 
   var firstChar = selector.charAt(0);

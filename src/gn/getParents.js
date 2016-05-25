@@ -1,4 +1,7 @@
-// *** getParents *** //
+// getParents
+// @require "/src/gn/gn.js"
+// @require "/src/utilities/classList.js"
+
 gn.getParents = function (elem, selector) {
 
   var parents = [];

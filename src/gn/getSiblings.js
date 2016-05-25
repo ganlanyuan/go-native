@@ -1,4 +1,6 @@
-// *** getSiblings *** //
+// getSiblings
+// @require "/src/gn/gn.js"
+
 gn.getSiblings = function (elem) {
   var siblings = [];
   var sibling = elem.parentNode.firstChild;
