@@ -8,6 +8,7 @@
 // @codekit-prepend "pageX.js";
 // @codekit-prepend "pageXOffset.js";
 // @codekit-prepend "innerWidth.js";
+// @codekit-prepend "innerHeight.js";
 
 // @codekit-prepend "textContent.js";
 // @codekit-prepend "getComputedStyle.js";
