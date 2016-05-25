@@ -1,7 +1,7 @@
 ## Go-native
 ![version](https://img.shields.io/badge/Version-0.0.2-green.svg)   
-Javascript polyfills that let you use native javascript.   
-[CSS3 selectors](https://www.w3.org/TR/css3-selectors/), [CSS3 media queries](https://www.w3.org/TR/css3-mediaqueries/), basic ES5 extensions and a bunch of DOM utilities.  
+Javascript polyfills which let you use native javascript.   
+[CSS3 selectors](https://www.w3.org/TR/css3-selectors/), [CSS3 media queries](https://www.w3.org/TR/css3-mediaqueries/), ES5 extensions and a bunch of DOM utilities.  
 
 ## Install
 ```
@@ -10,15 +10,11 @@ bower install go-native --save
 
 ## Contents
 ####go-native.ie8  
-- ES5 Array extensions (`every, filter, forEach, indexOf, lastIndexOf, map, reduce, reduceRight, some`)
-- ES5 Function extensions (`bind`)
 - [HTML5 Shiv 3.7.3](https://github.com/aFarkas/html5shiv)
-- IE8 CSS3 selectors supports ([supported selector list](http://selectivizr.com/))
-  - NWMatcher
-  - selectivizr
-- IE8 media query support ([limitation](https://github.com/scottjehl/Respond#user-content-support--caveats))
-  - matchmedia 
-  - respond
+- [NWMatcher (for selectivizr)](https://github.com/dperini/nwmatcher)
+- [selectivizr](http://selectivizr.com/)
+- [respond.js](https://github.com/scottjehl/Respond)
+- ES5 Array (`every`, `filter`, `forEach`, `indexOf`, `lastIndexOf`, `map`, `reduce`, `reduceRight`, `some`), Date (`now`, `parse`, `toISOString`, `toJSON`), Function (`bind`), Object (`create`, `defineProperties`, `defineProperty`, `freeze`, `getOwnPropertyDescriptor`, `getOwnPropertyNames`, `getPrototypeOf`, `isExtensible`, `isFrozen`, `isSealed`, `keys`, `preventExtensions`, `seal`) and String (`trim`) extensions
 - Event-related methods:
   - `preventDefault`
   - `stopPropagation`
@@ -42,20 +38,15 @@ bower install go-native --save
 
 ####go-native
 - ES5 methods:
-  - `Date.now`
   - `Number.isNaN`
-  - `String.prototype.trim`
   - `String.prototype.repeat`
-  - `Array.isArray`
-  - `Object.defineProperties`
-  - `Object.keys`
 - Element-related properties: 
   - `el.classList`
 - Node-related properties:
   - `ChildNode.remove`
 - [Length](https://github.com/heygrady/Units)
 - requestAnimationFrame
-- optimizedResize (require forEach/ES5-arrays)
+- optimizedResize
 - extend
 - isNodeList
 - DOM related utilities
@@ -79,7 +70,7 @@ bower install go-native --save
   - unwrap
 
 ## Usage
-Include [go-native.ie8.js (39k)](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.ie8.js) and [go-native.js (10k)](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.js) into your markup, and go play with it.
+Include [go-native.ie8.js](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.ie8.js) and [go-native.js](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.js) like below, and go play with it.
 ````html
 <!--[if (lt IE 9)]>
   <script src="path/to/go-native.ie8.js"></script>
@@ -200,11 +191,18 @@ gn.unwrap(container);
 ```
 
 ## Credit:
-`HTML5 Shiv 3.7.3` by [aFarkas](https://github.com/aFarkas/html5shiv), `NWMatcher` by [dperini](https://github.com/dperini/nwmatcher), `selectivizr` by [keithclark](https://github.com/keithclark/selectivizr), matchmedia by [paulirish](https://github.com/paulirish/matchMedia.js), `respond` by [scottjehl](https://github.com/scottjehl/Respond), `Length` by [heygrady](https://github.com/heygrady/Units), `requestAnimationFrame` by [darius](https://github.com/darius/requestAnimationFrame), `indexOf` by [HubSpot/youmightnotneedjquery](https://github.com/HubSpot/YouMightNotNeedjQuery), `Object.keys` by [Craig Constable](http://tokenposts.blogspot.com.au/2012/04/javascript-objectkeys-browser.html).
+`HTML5 Shiv 3.7.3` from [aFarkas](https://github.com/aFarkas/html5shiv).   
+`NWMatcher` from [dperini](https://github.com/dperini/nwmatcher).   
+`selectivizr` from [keithclark](https://github.com/keithclark/selectivizr).   
+`respond` from [scottjehl](https://github.com/scottjehl/Respond).   
+`Length` from [heygrady](https://github.com/heygrady/Units).   
+`requestAnimationFrame` from [darius](https://github.com/darius/requestAnimationFrame).   
+`indexOf` from [HubSpot/youmightnotneedjquery](https://github.com/HubSpot/YouMightNotNeedjQuery).
 
-ES5 Array extensions, ES5 Function extensions (`bind`), 
-`preventDefault`, `stopPropagation`, `addEventListener`, `removeEventListener`, `node.textContent` and `optimizedResize` are from the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).  
+ES5 Array, Function, Date, Object and String extensions from [280north/narwhal](https://github.com/280north/narwhal/blob/master/engines/default/lib/global-es5.js).
 
-`el.classList`, `el.childElementCount`, `el.firstElementChild`, `el.lastElementChild`, `el.nextElementSibling`, `el.previousElementSibling`, `ChildNode.remove`, `window.getComputedStyle`, `window.innerWidth`, `window.innerHeight`, `window.pageXOffset`, `window.pageYOffset`, `Array.isArray`, `Number.isNaN`, `Date.now`, `String.prototype.trim` and `String.prototype.repeat` are from [Alhadis](https://github.com/Alhadis/Fix-IE).  
+`preventDefault`, `stopPropagation`, `addEventListener`, `removeEventListener`, `node.textContent` and `optimizedResize` from the [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array).  
 
-`DOM.ready`, `isInViewport`, `getClosest`, `getParents`, `getParentsUntil` and `getSiblings` are from [Chris Ferdinandi](http://gomakethings.com/ditching-jquery/).
+`el.classList`, `el.childElementCount`, `el.firstElementChild`, `el.lastElementChild`, `el.nextElementSibling`, `el.previousElementSibling`, `ChildNode.remove`, `window.getComputedStyle`, `window.innerWidth`, `window.innerHeight`, `window.pageXOffset`, `window.pageYOffset`, `Array.isArray`, `Number.isNaN` and `String.prototype.repeat` from [Alhadis](https://github.com/Alhadis/Fix-IE).  
+
+`DOM.ready`, `isInViewport`, `getClosest`, `getParents`, `getParentsUntil` and `getSiblings` from [Chris Ferdinandi](http://gomakethings.com/ditching-jquery/).
