@@ -1,5 +1,5 @@
 // getClosest
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 // @require "/src/utilities/classList.js"
 
 gn.getClosest = function (elem, selector) {

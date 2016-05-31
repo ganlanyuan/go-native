@@ -1,5 +1,5 @@
 // get supported property
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 
 gn.getSupportedProp = function (proparray){
   var root = document.documentElement;

@@ -1,5 +1,5 @@
 // prepend
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 // @require "/src/gn/isNodeList.js"
 
 gn.prepend = function(els, data) {

@@ -1,5 +1,5 @@
 // append
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 // @require "/src/gn/isNodeList.js"
 
 gn.append = function(els, data) {

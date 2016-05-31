@@ -1,5 +1,5 @@
 // getOffsetTop
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 
 gn.getOffsetTop = function (el) {
   var rect = el.getBoundingClientRect(),

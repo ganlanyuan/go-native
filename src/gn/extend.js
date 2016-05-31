@@ -1,5 +1,5 @@
 // extend
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 
 gn.extend = function () {
   var obj, name, copy,

@@ -1,5 +1,5 @@
 // indexOf
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 
 gn.indexOf = function (array, item) {
   for (var i = 0; i < array.length; i++) {

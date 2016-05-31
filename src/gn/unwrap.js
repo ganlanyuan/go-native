@@ -1,5 +1,5 @@
 // unwrap
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 // @require "/src/gn/isNodeList.js"
 
 gn.unwrap = function (els) {

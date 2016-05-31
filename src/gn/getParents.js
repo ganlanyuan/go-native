@@ -1,5 +1,5 @@
 // getParents
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 // @require "/src/utilities/classList.js"
 
 gn.getParents = function (elem, selector) {

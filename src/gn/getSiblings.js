@@ -1,5 +1,5 @@
 // getSiblings
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 
 gn.getSiblings = function (elem) {
   var siblings = [];

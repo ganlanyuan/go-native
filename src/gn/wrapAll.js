@@ -1,5 +1,5 @@
 // wrapAll
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 
 gn.wrapAll = function (els, wrapper) {
   // Cache the current parent and sibling of the first element.

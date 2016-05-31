@@ -1,7 +1,7 @@
 // optimizedResize
 // https://developer.mozilla.org/en-US/docs/Web/Events/resize#requestAnimationFrame
-// @require "/src/gn/gn.js"
-// @require "/src/ie8/es5/arrays/forEach.js"
+// @require "/src/gn/base.js"
+// @require "/src/es5/arrays/forEach.js"
 // @require "/src/ie8/addEventListener.js"
 
 gn.optimizedResize = (function() {

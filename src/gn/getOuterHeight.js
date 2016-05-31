@@ -1,5 +1,5 @@
 // getOuterHeight
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 // @require "/bower_components/Units/Length.js"
 
 gn.getOuterHeight = function (el) {

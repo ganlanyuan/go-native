@@ -1,5 +1,5 @@
 // DOM ready
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 
 gn.ready = function ( fn ) {
 

@@ -1,5 +1,5 @@
 // getOuterWidth
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 // @require "/bower_components/Units/Length.js"
 // 1. outer size: content + padding + border + margin //
 

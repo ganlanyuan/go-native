@@ -1,5 +1,5 @@
 // isInViewport
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 
 gn.isInViewport = function ( elem ) {
   var rect = elem.getBoundingClientRect();

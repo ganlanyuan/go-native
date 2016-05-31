@@ -1,5 +1,5 @@
 // createElement
-// @require "/src/gn/gn.js"
+// @require "/src/gn/base.js"
 
 gn.createElement = function(obj) {
   if (!obj || !obj.tagName) {
