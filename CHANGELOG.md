@@ -1,5 +1,9 @@
 ## Change log
 
+#### v0.0.4
+- Fixed: "documentElement.classList" doesn't exist issue in IE8.
+- Removed: version-flags.js
+
 #### v0.0.3
 - Added: ES5 Date (`parse`, `toISOString`, `toJSON`), Object (`create`, `defineProperty`, `freeze`, `getOwnPropertyDescriptor`, `getOwnPropertyNames`, `getPrototypeOf`, `isExtensible`, `isFrozen`, `isSealed`, `preventExtensions`, `seal`) extensions.
 - Improved: re-organize all the files.

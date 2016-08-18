@@ -1,7 +1,7 @@
 /**
   * go-nativ.ie8
   * 
-  * version 0.0.3
+  * version 0.0.4
   * @author William Lin
   * @license The MIT License (MIT)
   * https://github.com/ganlanyuan/go-native
