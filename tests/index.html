@@ -15,59 +15,65 @@
   <link rel="stylesheet" href="css/basis.css">
   <script type="text/javascript" src="../dist/go-native.ie8.js"></script>
   <script type="text/javascript" src="../dist/go-native.js"></script>
-  <style>
-    .list {
-      margin-top: 30px;
-      margin-bottom: 30px;
-      margin: 0 0 40px;
-      padding: 0;
-      border-top: 1px dashed #999;
-    }
-    .list li {
-      margin: 15px 0;
-      line-height: 1.5;
-      list-style: none;
-    }
-    .list a { 
-      display: block; 
-      padding: 10px 16px;
-      background: #f5f5f5;
-      border-radius: 6px;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
     <h2>Go-native Tests</h2>
     <h3>Go-native.ie8</h3>
     <ul class="list">
-      <li><a href="selectivizr/index.html" class="link">selectivizr</a></li>
-      <li><a href="respond/index.html" class="link">respond</a></li>
-      <li><a href="prevent-default.html" class="link">preventDefault</a></li>
-      <li><a href="stop-propagation.html" class="link">stopPropagation</a></li>
-      <li><a href="eventListener-offsets.html" class="link">addEventListener<br>removeEventListener<br>window.innerWidth<br>window.innerHeight<br>window.pageXOffset<br>window.pageYOffset</a></li>
-      <li><a href="get-computed-style.html" class="link">window.getComputedStyle</a></li>
-      <li><a href="child-elements.html" class="link">el.childElementCount<br>el.firstElementChild<br>el.lastElementChild<br>el.nextElementSibling<br>el.previousElementSibling</a></li>
-      <li><a href="text-content.html" class="link">node.textContent</a></li>
+      <li class="normal">
+        <div><a href="selectivizr/index.html" class="link box">selectivizr</a></div>
+      </li>
+      <li class="normal">
+        <div><a href="respond/index.html" class="link box">respond</a></div>
+      </li>
+      <li class="fail">
+        <div class="box"><a href="prevent-default.html">preventDefault</a></div>
+      </li>
+      <li class="fail">
+        <div class="box"><a href="stop-propagation.html">stopPropagation</a></div>
+      </li>
+      <li class="fail">
+        <div class="box"><a href="eventListener-offsets.html">addEventListener<br>removeEventListener<br>window.innerWidth<br>window.innerHeight<br>window.pageXOffset<br>window.pageYOffset</a></div>
+      </li>
+      <li class="normal" id="getComputedStyle">
+        <div class="box"><a href="get-computed-style.html">window.getComputedStyle <span id="getComputedStyle-pseudo">Pseudo</span></a></div>
+      </li>
+      <li class="fail">
+        <div class="box"><a href="child-elements.html">el.childElementCount<br>el.firstElementChild<br>el.lastElementChild<br>el.nextElementSibling<br>el.previousElementSibling</a></div>
+      </li>
+      <li class="fail">
+        <div class="box"><a href="text-content.html">node.textContent</a></div>
+      </li>
     </ul>
     <h3>Go-native.all</h3>
     <ul class="list">
-      <li><a href="class-list.html" class="link">el.classList</a></li>
-      <li><a href="child-remove.html" class="link">ChildNode.remove</a></li>
-      <li><a href="is-in-viewport.html" class="link">isInViewport</a></li>
-      <li><a href="get-size.html" class="link">getOuterWidth<br>getOuterHeight<br>getOffsetLeft<br>getOffsetTop</a></li>
-      <li><a href="dom-ready.html" class="link">DOM.ready</a></li>
-      <li><a href="append-prepend.html" class="link">isNodeList<br>append<br>prepend</a></li>
-      <li><a href="wrap.html" class="link">wrap<br>wrapAll<br>unwrap</a></li>
+      <li class="fail">
+        <div class="box"><a href="class-list.html">el.classList</a></div>
+      </li>
+      <li class="fail">
+        <div class="box"><a href="child-remove.html">ChildNode.remove</a></div>
+      </li>
+      <li class="fail">
+        <div class="box"><a href="is-in-viewport.html">isInViewport</a></div>
+      </li>
+      <li class="fail">
+        <div class="box"><a href="get-size.html">getOuterWidth<br>getOuterHeight<br>getOffsetLeft<br>getOffsetTop</a></div>
+      </li>
+      <li class="fail">
+        <div class="box"><a href="dom-ready.html">DOM.ready</a></div>
+      </li>
+      <li class="fail">
+        <div class="box"><a href="append-prepend.html">isNodeList<br>append<br>prepend</a></div>
+      </li>
+      <li class="fail">
+        <div class="box"><a href="wrap.html">wrap<br>wrapAll<br>unwrap</a></div>
+      </li>
     </ul>
+
+    <!-- test content -->
+    <div id="getComputedStyle-element" class="visually-hidden">getComputedStyle</div>
   </div>
-  <script>
-    var arr = [1, 2, 3, 4],
-        number = 3,
-        string = 'string',
-        el = document.querySelector('ul'),
-        els = document.querySelectorAll('ul');
-    // alert(gn.isNodeList(els));
-  </script>
+  <script type="text/javascript" src="js/go-native.test.js"></script>
 </body>
 </html>
