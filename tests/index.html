@@ -48,9 +48,16 @@
     <h3>Go-native.all</h3>
     <ul class="list">
       <li class="normal" id="classList">
-        <div class="box"><a href="class-list.html">el.classList</a></div>
+        <div class="box"><a href="class-list.html">el.classList 
+          <span id="classList-item">item</span>
+          <span id="classList-contains">contains</span>
+          <span id="classList-add">add</span>
+          <span id="classList-remove">remove</span>
+          <span id="classList-toggle">toggle</span>
+          <span id="classList-toggle-force">toggle-force</span>
+        </a></div>
       </li>
-      <li class="fail">
+      <li class="fail" id="childNodeRemove">
         <div class="box"><a href="child-remove.html">ChildNode.remove</a></div>
       </li>
       <li class="fail">
@@ -73,6 +80,7 @@
     <!-- test content -->
     <div id="getComputedStyle-element" class="visually-hidden">getComputedStyle</div>
     <div id="classList-element" class="visually-hidden classList remove toggle toggle-remove">classList</div>
+    <div id="childNodeRemove-element"><span id="childNodeRemove-element-child">child</span></div>
   </div>
   <script type="text/javascript" src="../dist/go-native.js"></script>
   <script type="text/javascript" src="js/go-native.test.js"></script>

@@ -72,9 +72,9 @@ p a:hover { text-decoration: underline; }
   font-style: italic; 
   margin: 0 0.5em;
   font-size: 0.75em;
-  opacity: 0.5;
   line-height: 1.2;
   padding: 0 0.5em;
+  color: #666;
 }
 
 /* color-theme */
