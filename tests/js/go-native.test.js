@@ -53,7 +53,37 @@ function getComputedStyleElementTest() {
 }
 
 /*
+ * classList
+ */
+function classListTest() {
+  var element = doc.getElementById('classList-element'),
+      display = doc.getElementById('classList'),
+      cl = element.classList,
+      a = 10;
+  if (typeof cl === 'object' &&
+      cl.length !== 'undefined') {
+    // className: 'visually-hidden classList remove toggle toggle-remove'
+    cl.add('add'); // 'visually-hidden classList remove toggle toggle-remove add'
+    cl.remove('remove'); // 'visually-hidden classList toggle toggle-remove add'
+    cl.toggle('toggle'); // 'visually-hidden classList toggle-remove add'
+    cl.toggle('toggle-remove', a > 15); // 'visually-hidden classList add'
+
+    if (cl.item(0) === 'visually-hidden' &&
+        cl.contains('classList') &&
+        element.className === 'visually-hidden classList add') {
+
+      success(display);
+    } else {
+      fail(display);
+    }
+  } else {
+    fail(display);
+  }
+}
+
+/*
  * run tests
  */
 
 getComputedStyleElementTest();
+classListTest();

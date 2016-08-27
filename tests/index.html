@@ -14,7 +14,6 @@
   
   <link rel="stylesheet" href="css/basis.css">
   <script type="text/javascript" src="../dist/go-native.ie8.js"></script>
-  <script type="text/javascript" src="../dist/go-native.js"></script>
 </head>
 <body>
   <div class="container">
@@ -48,7 +47,7 @@
     </ul>
     <h3>Go-native.all</h3>
     <ul class="list">
-      <li class="fail">
+      <li class="normal" id="classList">
         <div class="box"><a href="class-list.html">el.classList</a></div>
       </li>
       <li class="fail">
@@ -73,7 +72,9 @@
 
     <!-- test content -->
     <div id="getComputedStyle-element" class="visually-hidden">getComputedStyle</div>
+    <div id="classList-element" class="visually-hidden classList remove toggle toggle-remove">classList</div>
   </div>
+  <script type="text/javascript" src="../dist/go-native.js"></script>
   <script type="text/javascript" src="js/go-native.test.js"></script>
 </body>
 </html>
