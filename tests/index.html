@@ -19,6 +19,7 @@
   <div class="container">
     <h2>Go-native Tests</h2>
     <h3>Go-native.ie8</h3>
+    <div id="isInViewport-visible"></div>
     <ul class="list">
       <li class="normal">
         <div><a href="selectivizr/index.html" class="link box">selectivizr</a></div>
@@ -38,10 +39,22 @@
       <li class="normal" id="getComputedStyle">
         <div class="box"><a href="get-computed-style.html">window.getComputedStyle <span id="getComputedStyle-pseudo">Pseudo</span></a></div>
       </li>
-      <li class="fail">
-        <div class="box"><a href="child-elements.html">el.childElementCount<br>el.firstElementChild<br>el.lastElementChild<br>el.nextElementSibling<br>el.previousElementSibling</a></div>
+      <li class="normal" id="childElementCount">
+        <div class="box"><a href="child-elements.html">el.childElementCount</a></div>
       </li>
-      <li class="fail">
+      <li class="normal" id="firstElementChild">
+        <div class="box"><a href="child-elements.html">el.firstElementChild</a></div>
+      </li>
+      <li class="normal" id="lastElementChild">
+        <div class="box"><a href="child-elements.html">el.lastElementChild</a></div>
+      </li>
+      <li class="normal" id="previousElementSibling">
+        <div class="box"><a href="child-elements.html">el.previousElementSibling</a></div>
+      </li>
+      <li class="normal" id="nextElementSibling">
+        <div class="box"><a href="child-elements.html">el.nextElementSibling</a></div>
+      </li>
+      <li class="normal" id="textContent">
         <div class="box"><a href="text-content.html">node.textContent</a></div>
       </li>
     </ul>
@@ -60,13 +73,13 @@
       <li class="fail" id="childNodeRemove">
         <div class="box"><a href="child-remove.html">ChildNode.remove</a></div>
       </li>
-      <li class="fail">
+      <li class="normal" id="isInViewport">
         <div class="box"><a href="is-in-viewport.html">isInViewport</a></div>
       </li>
       <li class="fail">
         <div class="box"><a href="get-size.html">getOuterWidth<br>getOuterHeight<br>getOffsetLeft<br>getOffsetTop</a></div>
       </li>
-      <li class="fail">
+      <li class="normal" id="domReady">
         <div class="box"><a href="dom-ready.html">DOM.ready</a></div>
       </li>
       <li class="fail">
@@ -80,7 +93,19 @@
     <!-- test content -->
     <div id="getComputedStyle-element" class="visually-hidden">getComputedStyle</div>
     <div id="classList-element" class="visually-hidden classList remove toggle toggle-remove">classList</div>
-    <div id="childNodeRemove-element"><span id="childNodeRemove-element-child">child</span></div>
+    <div id="childNodeRemove-element" class="visually-hidden"><span id="childNodeRemove-element-child">child</span></div>
+    <div id="textContent-element" class="visually-hidden"><code>textContent</code> returns <code>null</code> if the element is a <a href="/en-US/docs/DOM/document" title="DOM/Document">document</a>, a document type, or a notation. To grab all of the text and CDATA data for the whole document, one could use<code> <a href="/en-US/docs/DOM/document.documentElement" title="DOM/document.documentElement">document.documentElement</a>.textContent</code>.</div>
+    <ul id="elementProp" class="visually-hidden">
+      <li id="firstElement">Lorem.</li>
+      <li>Aliquid?</li>
+      <li id="previousElement">Molestiae.</li>
+      <li id="currentElement">Id.</li>
+      <li id="nextElement">Illum.</li>
+      <li>Iste.</li>
+      <li>Eveniet.</li>
+      <li id="lastElement">Blanditiis!</li>
+    </ul>
+    <div id="isInViewport-hidden" class="visually-hidden"></div>
   </div>
   <script type="text/javascript" src="../dist/go-native.js"></script>
   <script type="text/javascript" src="js/go-native.test.js"></script>

@@ -124,9 +124,129 @@ function childNodeRemoveTest() {
 }
 
 /*
+ * DOM.ready
+ */
+function domReadyTest() {
+  var display = doc.getElementById('domReady'),
+      order = [];
+
+  if (gn.ready) {
+    gn.ready(function () { order.push('ready'); });
+
+    window.onload = function () {
+      order.push('loaded');
+
+      if (order.length === 2 && order[0] === 'ready') {
+        success(display);
+      } else {
+        fail(display);
+      }
+    };
+  } else {
+    fail(display);
+  }
+}
+
+/*
+ * Node.textContent
+ */
+function elementPropTest() {
+  var displayCount = doc.getElementById('childElementCount'),
+      displayFirst = doc.getElementById('firstElementChild'),
+      displayLast = doc.getElementById('lastElementChild'),
+      displayPrevious = doc.getElementById('previousElementSibling'),
+      displayNext = doc.getElementById('nextElementSibling'),
+      element = doc.getElementById('elementProp'),
+      count = 8,
+      current = doc.getElementById('currentElement'),
+      first = doc.getElementById('firstElement'),
+      last = doc.getElementById('lastElement'),
+      previous = doc.getElementById('previousElement'),
+      next = doc.getElementById('nextElement');
+
+  // count
+  if ("childElementCount" in document.documentElement &&
+      element.childElementCount === 8) {
+    success(displayCount);
+  } else {
+    fail(displayCount);
+  }
+
+  // first
+  if ("firstElementChild" in document.documentElement &&
+      element.firstElementChild === first) {
+    success(displayFirst);
+  } else {
+    fail(displayFirst);
+  }
+
+  // last
+  if ("lastElementChild" in document.documentElement &&
+      element.lastElementChild === last) {
+    success(displayLast);
+  } else {
+    fail(displayLast);
+  }
+
+  // previous
+  if ("previousElementSibling" in document.documentElement &&
+      current.previousElementSibling === previous) {
+    success(displayPrevious);
+  } else {
+    fail(displayPrevious);
+  }
+
+  // next
+  if ("nextElementSibling" in document.documentElement &&
+      current.nextElementSibling === next) {
+    success(displayNext);
+  } else {
+    fail(displayNext);
+  }
+}
+
+/*
+ * Node.textContent
+ */
+function textContentTest() {
+  var display = doc.getElementById('textContent'),
+      element = doc.getElementById('textContent-element'),
+      content = "textContent returns null if the element is a document, a document type, or a notation. To grab all of the text and CDATA data for the whole document, one could use document.documentElement.textContent.";
+
+  if ("textContent" in Element.prototype &&
+      element.textContent === content) {
+    success(display);
+  } else {
+    fail(display);
+  }
+}
+
+/*
+ * isInViewport
+ */
+function isInViewportTest() {
+  var display = doc.getElementById('isInViewport'),
+      visible = doc.getElementById('isInViewport-visible'),
+      hidden = doc.getElementById('isInViewport-hidden');
+
+  if (gn.isInViewport && 
+      gn.isInViewport(visible) &&
+      !gn.isInViewport(hidden)) {
+
+    success(display);
+  } else {
+    fail(display);
+  }
+}
+
+/*
  * run tests
  */
 
 getComputedStyleElementTest();
 classListTest();
 childNodeRemoveTest();
+domReadyTest();
+textContentTest();
+elementPropTest();
+isInViewportTest();
