@@ -26,14 +26,37 @@
       <li class="normal">
         <div><a href="respond/index.html" class="link box">respond</a></div>
       </li>
-      <li class="fail">
-        <div class="box"><a href="prevent-default.html">preventDefault</a></div>
+      <li class="normal">
+        <div class="box"><a href="prevent-default.html" class="link">preventDefault</a></div>
       </li>
-      <li class="fail">
-        <div class="box"><a href="stop-propagation.html">stopPropagation</a></div>
+      <li class="normal">
+        <div class="box"><a href="stop-propagation.html" class="link">stopPropagation</a></div>
       </li>
-      <li class="fail">
-        <div class="box"><a href="eventListener-offsets.html">addEventListener<br>removeEventListener<br>window.innerWidth<br>window.innerHeight<br>window.pageXOffset<br>window.pageYOffset</a></div>
+      <li class="normal" id="addEventListener">
+        <div class="box"><a href="eventListener-offsets.html" class="link">addEventListener</a></div>
+      </li>
+      <li class="normal" id="removeEventListener">
+        <div class="box"><a href="" class="link">removeEventListener</a></div>
+      </li>
+      <li class="normal" id="innerWidth">
+        <div class="box">
+          <a href="">window.innerWidth</a>
+        </div>
+      </li>
+      <li class="normal" id="innerHeight">
+        <div class="box">
+          <a href="">window.innerHeight</a>
+        </div>
+      </li>
+      <li class="normal" id="pageXOffset">
+        <div class="box">
+          <a href="">window.pageXOffset</a>
+        </div>
+      </li>
+      <li class="normal" id="pageYOffset">
+        <div class="box">
+          <a href="">window.pageYOffset</a>
+        </div>
       </li>
       <li class="normal" id="getComputedStyle">
         <div class="box"><a href="get-computed-style.html">window.getComputedStyle <span id="getComputedStyle-pseudo">Pseudo</span></a></div>
@@ -99,12 +122,23 @@
       <li class="normal" id="append">
         <div class="box"><a href="append-prepend.html">append</a></div>
       </li>
-      <li class="fail">
-        <div class="box"><a href="wrap.html">wrap<br>wrapAll<br>unwrap</a></div>
+      <li class="normal" id="wrap">
+        <div class="box"><a href="wrap.html">wrap</a></div>
+      </li>
+      <li class="normal" id="wrapAll">
+        <div class="box"><a href="wrap.html">wrapAll</a></div>
+      </li>
+      <li class="normal" id="unwrap">
+        <div class="box"><a href="wrap.html">unwrap</a></div>
       </li>
     </ul>
 
     <!-- test content -->
+    <div id="innerWidth-element" class="visually-hidden"></div>
+    <div id="innerHeight-element" class="visually-hidden"></div>
+    <div id="pageXOffset-element" class="visually-hidden"></div>
+    <div id="pageYOffset-element" class="visually-hidden"></div>
+    <div id="eventListener-element" class="visually-hidden"></div>
     <div id="getComputedStyle-element" class="visually-hidden">getComputedStyle</div>
     <div id="classList-element" class="visually-hidden classList remove toggle toggle-remove">classList</div>
     <div id="childNodeRemove-element" class="visually-hidden"><span id="childNodeRemove-element-child">child</span></div>
@@ -156,6 +190,23 @@
         <li>middle</li>
         <li id="append-list-insert-last">last</li>
       </ol>
+    </div>
+    <div class="wrap-element-parent visually-hidden"></div>
+    <div id="wrap-element">
+      <div id="wrap-element-1"></div>
+      <div id="wrap-element-2"></div>
+      <div id="wrap-element-3"></div>
+    </div>
+    <div id="wrapAll-element-parent"></div>
+    <div id="wrapAll-element-grandparent" class="visually-hidden">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div id="unwrap-element-grandparent" class="visually-hidden">
+      <div id="unwrap-element-parent">
+        <div id="unwrap-element"></div>
+      </div>
     </div>
   </div>
   <script type="text/javascript" src="../dist/go-native.js"></script>

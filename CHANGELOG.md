@@ -1,5 +1,8 @@
 ## Change log
 
+#### v0.0.5
+- Fixed: an `isInViewport` issue.
+
 #### v0.0.4
 - Fixed: "documentElement.classList" doesn't exist issue in IE8.
 - Removed: version-flags.js

@@ -9,6 +9,78 @@ function fail(el) {
 var doc = document, win = window;
 
 /*
+ * innerWidth
+ */
+function innerWidthTest() {
+  var display = doc.getElementById('innerWidth'),
+      element = doc.getElementById('innerWidth-element');
+
+  element.style.cssText = 'position: fixed; width: 100%; height: 100px;';
+
+  if(win.innerWidth && win.innerWidth === element.clientWidth) {
+    success(display);
+  } else {
+    fail(display);
+  }
+}
+
+/*
+ * innerHeight
+ */
+function innerHeightTest() {
+  var display = doc.getElementById('innerHeight'),
+      element = doc.getElementById('innerHeight-element');
+
+  element.style.cssText = 'position: fixed; width: 100px; height: 100%;';
+
+  if(win.innerHeight && win.innerHeight === element.clientHeight) {
+    success(display);
+  } else {
+    fail(display);
+  }
+}
+
+/*
+ * pageXOffset
+ */
+function pageXOffsetTest() {
+  var display = doc.getElementById('pageXOffset'),
+      body = document.getElementsByTagName("BODY")[0];
+
+  body.style.cssText = 'width: 120%;';
+  window.scrollTo(30, 0);
+  if ('pageXOffset' in window && window.pageXOffset === 30) {
+    success(display);
+  } else {
+    fail(display);
+  }
+
+  body.style.cssText = '';
+}
+
+/*
+ * pageYOffset
+ */
+function pageYOffsetTest() {
+  var display = doc.getElementById('pageYOffset'),
+      body = document.getElementsByTagName("BODY")[0];
+
+  body.style.cssText = 'min-height: 5000px;';
+  window.scrollTo(0, 30);
+  if ('pageYOffset' in window && window.pageYOffset === 30) {
+    success(display);
+  } else {
+    fail(display);
+  }
+
+  body.style.cssText = '';
+}
+
+/*
+ * addEventListener & removeEventListener
+ */
+
+/*
  * getComputedStyle
  */
 
@@ -386,7 +458,7 @@ function prependTest() {
     gn.prepend(elementNode, node);
     gn.prepend(elementList, list);
 
-    if (elementData.innerHTML === data &&
+    if (elementData.innerHTML.toLowerCase() === data.toLowerCase() &&
         elementNode.firstChild === node &&
         elementList.firstChild === listFirst) {
       success(display);
@@ -416,7 +488,7 @@ function appendTest() {
     gn.append(elementNode, node);
     gn.append(elementList, list);
 
-    if (elementData.innerHTML === data &&
+    if (elementData.innerHTML.toLowerCase() === data.toLowerCase() &&
         elementNode.lastChild === node &&
         elementList.lastChild === listLast) {
       success(display);
@@ -429,9 +501,82 @@ function appendTest() {
 }
 
 /*
+ * wrap
+ */
+function wrapTest() {
+  var display = doc.getElementById('wrap'),
+      elements = doc.getElementById('wrap-element').children,
+      parent = doc.querySelector('.wrap-element-parent'),
+      parentClassName = parent.className,
+      element1 = doc.getElementById('wrap-element-1'),
+      element2 = doc.getElementById('wrap-element-2'),
+      element3 = doc.getElementById('wrap-element-3');
+
+  if (gn.wrap) {
+    gn.wrap(elements, parent);
+
+    if (element1.parentNode.className === parentClassName &&
+        element2.parentNode.className === parentClassName &&
+        element3.parentNode.className === parentClassName) {
+      success(display);
+    } else {
+      fail(display);
+    }
+  } else {
+    fail(display);
+  }
+}
+
+/*
+ * wrapAll
+ */
+function wrapAllTest() {
+  var display = doc.getElementById('wrapAll'),
+      parent = doc.getElementById('wrapAll-element-parent'),
+      grandparent = doc.getElementById('wrapAll-element-grandparent');
+
+  if (gn.wrapAll) {
+    gn.wrapAll(grandparent.children, parent);
+
+    if (parent.parentNode === grandparent) {
+      success(display);
+    } else {
+      fail(display);
+    }
+  } else {
+    fail(display);
+  }
+}
+
+/*
+ * unwrap
+ */
+function unwrapTest() {
+  var display = doc.getElementById('unwrap'),
+      grandparent = doc.getElementById('unwrap-element-grandparent'),
+      parent = doc.getElementById('unwrap-element-parent'),
+      element = doc.getElementById('unwrap-element');
+
+  if (gn.unwrap) {
+    gn.unwrap(parent);
+
+    if (element.parentNode === grandparent) {
+      success(display);
+    } else {
+      fail(display);
+    }
+  } else {
+    fail(display);
+  }
+}
+
+/*
  * run tests
  */
-
+innerWidthTest();
+innerHeightTest();
+pageXOffsetTest();
+pageYOffsetTest();
 getComputedStyleElementTest();
 classListTest();
 childNodeRemoveTest();
@@ -446,3 +591,6 @@ getOffsetTopTest();
 isNodeListTest();
 prependTest();
 appendTest();
+wrapTest();
+wrapAllTest();
+unwrapTest();
