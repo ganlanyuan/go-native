@@ -33,7 +33,6 @@ if (!Date.now)
     }
 }());
 
-
 (function(window, document, undefined){
 "use strict";
 
@@ -181,16 +180,6 @@ window.Length = {
     toPx: toPx
 };
 }(this, this.document));
-
-// Number.isNaN
-Number.isNaN = Number.isNaN || function(val){ return val !== val; };
-
-
-// String.prototype.repeat
-String.prototype.repeat = String.prototype.repeat || function(num) {
-  return Array(num + 1).join(this);
-};
-
 // ChildNode.remove
 (function () {
   "use strict";
@@ -204,7 +193,18 @@ String.prototype.repeat = String.prototype.repeat || function(num) {
   }
 })();
 
+// @codekit-prepend "../../bower_components/domtokenlist/src/token-list.js";
+// Number.isNaN
+Number.isNaN = Number.isNaN || function(val){ return val !== val; };
 
+// String.prototype.repeat
+String.prototype.repeat = String.prototype.repeat || function(num) {
+  return Array(num + 1).join(this);
+};
+// @codekit-prepend "number.isNaN.js";
+// @codekit-prepend "string.prototype.repeat.js";
+// @codekit-prepend "childNode.remove.js";
+// @codekit-prepend "classList.js";
 /** DOMTokenList polyfill */
 (function(){
 	"use strict";
@@ -559,21 +559,12 @@ String.prototype.repeat = String.prototype.repeat || function(num) {
 	}
 }());
 
-
-// @codekit-prepend "../../bower_components/domtokenlist/src/token-list.js";
-
-// @codekit-prepend "number.isNaN.js";
-// @codekit-prepend "string.prototype.repeat.js";
-// @codekit-prepend "childNode.remove.js";
-// @codekit-prepend "classList.js";
-
 // *** gn *** //
 var gn = (function (g) {
 
   // return gn
   return g;
 })(window.gn || {});
-
 // DOM ready
 // @require "/src/gn/base.js"
 
@@ -590,7 +581,6 @@ gn.ready = function ( fn ) {
   // Otherwise, wait until document is loaded
   document.addEventListener( 'DOMContentLoaded', fn, false );
 };
-
 // optimizedResize
 // https://developer.mozilla.org/en-US/docs/Web/Events/resize#requestAnimationFrame
 // @require "/src/gn/base.js"
@@ -651,7 +641,6 @@ gn.optimizedResize = (function() {
 // gn.optimizedResize.add(function() {
 //   console.log('Resource conscious resize callback!')
 // });
-
 // extend
 // @require "/src/gn/base.js"
 
@@ -676,7 +665,6 @@ gn.extend = function () {
   }
   return target;
 };
-
 // get supported property
 // @require "/src/gn/base.js"
 
@@ -691,7 +679,6 @@ gn.getSupportedProp = function (proparray){
 
 // var getTD = gn.getSupportedProp(['transitionDuration', 'WebkitTransitionDuration', 'MozTransitionDuration', 'OTransitionDuration']),
 // getTransform = gn.getSupportedProp(['transform', 'WebkitTransform', 'MozTransform', 'OTransform']);
-
 // getOffsetLeft
 // @require "/src/gn/base.js"
 
@@ -700,7 +687,6 @@ gn.getOffsetLeft = function (el) {
       left = rect.left + document.body.scrollLeft;
   return Math.round(left);
 };
-
 // getOffsetTop
 // @require "/src/gn/base.js"
 
@@ -709,7 +695,6 @@ gn.getOffsetTop = function (el) {
       top = rect.top + document.body.scrollTop;
   return Math.round(top);
 };
-
 // getOuterWidth
 // @require "/src/gn/base.js"
 // @require "/bower_components/Units/Length.js"
@@ -733,7 +718,6 @@ gn.getOuterWidth = function (el) {
 // 3. client size: content + padding
 //    el.clientWidth  
 //    el.clientHeight
-
 // getOuterHeight
 // @require "/src/gn/base.js"
 // @require "/bower_components/Units/Length.js"
@@ -756,7 +740,6 @@ gn.getOuterHeight = function (el) {
 // 3. client size: content + padding
 //    el.clientWidth  
 //    el.clientHeight
-
 // getClosest
 // @require "/src/gn/base.js"
 // @require "/src/utilities/classList.js"
@@ -804,7 +787,6 @@ gn.getClosest = function (elem, selector) {
 // var closest = getClosest(elem, '.some-class');
 // var closestLink = getClosest(elem, 'a');
 // var closestExcludingElement = getClosest(elem.parentNode, '.some-class');
-
 
 // getParents
 // @require "/src/gn/base.js"
@@ -865,7 +847,6 @@ gn.getParents = function (elem, selector) {
 // var elem = document.querySelector('#some-element');
 // var parents = getParents(elem, '.some-class');
 // var allParents = getParents(elem.parentNode);
-
 
 // getParentsUntil
 // @require "/src/gn/base.js"
@@ -966,7 +947,6 @@ gn.getParentsUntil = function (elem, parent, selector) {
 // var allParentsExcludingElem = getParentsUntil(elem.parentNode);
 
 
-
 // getSiblings
 // @require "/src/gn/base.js"
 
@@ -986,7 +966,6 @@ gn.getSiblings = function (elem) {
 
 
 
-
 // isInViewport
 // @require "/src/gn/base.js"
 
@@ -999,7 +978,6 @@ gn.isInViewport = function ( elem ) {
     rect.left < document.documentElement.clientWidth
     );
 };
-
 // indexOf
 // @require "/src/gn/base.js"
 
@@ -1009,7 +987,6 @@ gn.indexOf = function (array, item) {
   }
   return -1;
 };
-
 // createElement
 // @require "/src/gn/base.js"
 
@@ -1057,7 +1034,6 @@ gn.createElement = function(obj) {
 //    }
 //  }]
 // });
-
 // isNodeList
 // @require "/src/gn/base.js"
 
@@ -1065,7 +1041,6 @@ gn.isNodeList = function (el) {
   // Only NodeList has the "item()" function
   return typeof el.item !== 'undefined'; 
 };
-
 
 // append
 // @require "/src/gn/base.js"
@@ -1094,7 +1069,6 @@ gn.append = function(els, data) {
 };
 
 
-
 // prepend
 // @require "/src/gn/base.js"
 // @require "/src/gn/isNodeList.js"
@@ -1120,7 +1094,6 @@ gn.prepend = function(els, data) {
     }
   }
 };
-
 // wrap
 // @require "/src/gn/base.js"
 // @require "/src/gn/isNodeList.js"
@@ -1152,7 +1125,6 @@ gn.wrap = function (els, obj) {
 };
 
 
-
 // wrapAll
 // @require "/src/gn/base.js"
 
@@ -1180,7 +1152,6 @@ gn.wrapAll = function (els, wrapper) {
 };
 
 
-
 // unwrap
 // @require "/src/gn/base.js"
 // @require "/src/gn/isNodeList.js"
@@ -1202,47 +1173,3 @@ gn.unwrap = function (els) {
     parent.removeChild(el);
   }
 };
-
-// @codekit-prepend "base.js";
-// @codekit-prepend "dom.ready.js";
-// @codekit-prepend "optimizedResize.js";
-// @codekit-prepend "extend.js";
-
-// @codekit-prepend "getSupportedProp.js";
-// @codekit-prepend "getOffsetLeft.js";
-// @codekit-prepend "getOffsetTop.js";
-
-// @codekit-prepend "getOuterWidth.js";
-// @codekit-prepend "getOuterHeight.js";
-
-// @codekit-prepend "getClosest.js";
-// @codekit-prepend "getParents.js";
-// @codekit-prepend "getParentsUntil.js";
-// @codekit-prepend "getSiblings.js";
-
-// @codekit-prepend "isInViewport.js";
-// @codekit-prepend "indexOf.js";
-// @codekit-prepend "createElement.js";
-
-// @codekit-prepend "isNodeList.js";
-// @codekit-prepend "append.js";
-// @codekit-prepend "prepend.js";
-// @codekit-prepend "wrap.js";
-// @codekit-prepend "wrapAll.js";
-// @codekit-prepend "unwrap.js";
-
-/**
-  * go-native
-  * 
-  * version 0.0.4
-  * @author William Lin
-  * @license The MIT License (MIT)
-  * https://github.com/ganlanyuan/go-native
-  */
-  
-// @codekit-prepend "../bower_components/requestAnimationFrame/requestAnimationFrame.js";
-// @codekit-prepend "../bower_components/Units/Length.js";
-
-// @codekit-prepend "utilities/utilities.js";
-// @codekit-prepend "gn/gn.js";
-

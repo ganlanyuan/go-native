@@ -1,10 +1,5 @@
-function success(el) {
-  el.className = 'success';
-}
-
-function fail(el) {
-  el.className = 'fail';
-}
+function success(el) { el.className = 'success'; }
+function fail(el) { el.className = 'fail'; }
 
 var doc = document, win = window;
 
@@ -55,6 +50,7 @@ function pageXOffsetTest() {
     fail(display);
   }
 
+  window.scrollTo(0, 0);
   body.style.cssText = '';
 }
 
@@ -73,6 +69,7 @@ function pageYOffsetTest() {
     fail(display);
   }
 
+  window.scrollTo(0, 0);
   body.style.cssText = '';
 }
 
@@ -256,7 +253,7 @@ function getOffsetLeftTest() {
     var left = 300, 
         offsetLeft = left;
 
-    element.style.cssText = 'left: ' + left + 'px;';
+    element.style.cssText = 'position: absolute; left: ' + left + 'px;';
 
     if (gn.getOffsetLeft(element) === offsetLeft) {
       success(display);
@@ -277,7 +274,7 @@ function getOffsetTopTest() {
     var top = 40, 
         offsetTop = top;
 
-    element.style.cssText = 'top: ' + top + 'px;';
+    element.style.cssText = 'position: absolute; top: ' + top + 'px;';
 
     if (gn.getOffsetTop(element) === offsetTop) {
       success(display);
