@@ -124,6 +124,122 @@ function childNodeRemoveTest() {
 }
 
 /*
+ * getOuterWidth
+ */
+function getOuterWidthTest() {
+  var display = doc.getElementById('getOuterWidth'),
+      element = doc.getElementById('getOuterWidth-element');
+
+  if (gn.getOuterWidth) {
+    var width = 300, 
+        padding = 30, 
+        border = 2, 
+        margin = 10, 
+        height = 20, 
+        outerWidth = width + (padding + border + margin) * 2;
+
+    element.style.cssText = 'width: ' + width + 'px; padding: ' + padding + 'px; border: ' + border + 'px solid #f5f5f5; margin: ' + margin + 'px; height: ' + height + 'px;';
+
+    if (gn.getOuterWidth(element) === outerWidth) {
+      success(display);
+    } else {
+      fail(display);
+    }
+  }
+}
+
+/*
+ * getOuterHeight
+ */
+function getOuterHeightTest() {
+  var display = doc.getElementById('getOuterHeight'),
+      element = doc.getElementById('getOuterHeight-element');
+
+  if (gn.getOuterHeight) {
+    var width = 300, 
+        padding = 30, 
+        border = 2, 
+        margin = 10, 
+        height = 20, 
+        outerHeight = height + (padding + border + margin) * 2;
+
+    element.style.cssText = 'width: ' + width + 'px; padding: ' + padding + 'px; border: ' + border + 'px solid #f5f5f5; margin: ' + margin + 'px; height: ' + height + 'px;';
+
+    if (gn.getOuterHeight(element) === outerHeight) {
+      success(display);
+    } else {
+      fail(display);
+    }
+  }
+}
+
+/*
+ * getOffsetLeft
+ */
+function getOffsetLeftTest() {
+  var display = doc.getElementById('getOffsetLeft'),
+      element = doc.getElementById('getOffsetLeft-element');
+
+  if (gn.getOffsetLeft) {
+    var left = 300, 
+        offsetLeft = left;
+
+    element.style.cssText = 'left: ' + left + 'px;';
+
+    if (gn.getOffsetLeft(element) === offsetLeft) {
+      success(display);
+    } else {
+      fail(display);
+    }
+  }
+}
+
+/*
+ * getOffsetTop
+ */
+function getOffsetTopTest() {
+  var display = doc.getElementById('getOffsetTop'),
+      element = doc.getElementById('getOffsetTop-element');
+
+  if (gn.getOffsetTop) {
+    var top = 40, 
+        offsetTop = top;
+
+    element.style.cssText = 'top: ' + top + 'px;';
+
+    if (gn.getOffsetTop(element) === offsetTop) {
+      success(display);
+    } else {
+      fail(display);
+    }
+  }
+}
+
+/*
+ * isNodeList
+ */
+function isNodeListTest() {
+  var display = doc.getElementById('isNodeList'),
+      nodeList = doc.getElementById('isNodeList-element').children,
+      string = 'string',
+      number = 34,
+      array = [2, 13, 45, 0],
+      object = {left: 100, right: 200},
+      node = doc.getElementById('isNodeList-element');
+
+  if (gn.isNodeList &&
+      gn.isNodeList(nodeList) &&
+      !gn.isNodeList(string) &&
+      !gn.isNodeList(number) &&
+      !gn.isNodeList(array) &&
+      !gn.isNodeList(object) &&
+      !gn.isNodeList(node)) {
+    success(display);
+  } else {
+    fail(display);
+  }
+}
+/*
  * DOM.ready
  */
 function domReadyTest() {
@@ -166,7 +282,7 @@ function elementPropTest() {
 
   // count
   if ("childElementCount" in document.documentElement &&
-      element.childElementCount === 8) {
+      element.childElementCount === count) {
     success(displayCount);
   } else {
     fail(displayCount);
@@ -227,13 +343,86 @@ function textContentTest() {
 function isInViewportTest() {
   var display = doc.getElementById('isInViewport'),
       visible = doc.getElementById('isInViewport-visible'),
-      hidden = doc.getElementById('isInViewport-hidden');
+      hiddenTop = doc.getElementById('isInViewport-hidden-top'),
+      hiddenBottom = doc.getElementById('isInViewport-hidden-bottom'),
+      hiddenLeft = doc.getElementById('isInViewport-hidden-left'),
+      hiddenRight = doc.getElementById('isInViewport-hidden-right');
 
+  visible.style.cssText = "position: fixed; left: 0px; top: 10px; width: 10px; height: 20px;";
+  hiddenTop.style.cssText = "position: fixed; left: 0px; top: -20px; width: 200px; height: 20px; background: red;";
+  hiddenBottom.style.cssText = "position: fixed; left: 0px; bottom: -20px; width: 200px; height: 20px; background: red;";
+  hiddenLeft.style.cssText = "position: fixed; left: -200px; top: 10px; width: 200px; height: 20px; background: red;";
+  hiddenRight.style.cssText = "position: fixed; right: -200px; top: 10px; width: 200px; height: 20px; background: red;";
+
+  // alert(gn.isInViewport(hiddenBottom));
   if (gn.isInViewport && 
       gn.isInViewport(visible) &&
-      !gn.isInViewport(hidden)) {
+      !gn.isInViewport(hiddenTop) &&
+      !gn.isInViewport(hiddenBottom) &&
+      !gn.isInViewport(hiddenLeft) &&
+      !gn.isInViewport(hiddenRight)) {
 
     success(display);
+  } else {
+    fail(display);
+  }
+}
+
+/*
+ * prepend
+ */
+function prependTest() {
+  var display = doc.getElementById('prepend'),
+      elementData = doc.getElementById('prepend-data'),
+      elementNode = doc.getElementById('prepend-node'),
+      elementList = doc.getElementById('prepend-list'),
+      data = '<span>New element</span>',
+      node = doc.getElementById('prepend-node-insert'),
+      list = doc.getElementById('prepend-list-insert').children,
+      listFirst = doc.getElementById('prepend-list-insert-first');
+
+  if (gn.prepend) {
+    gn.prepend(elementData, data);
+    gn.prepend(elementNode, node);
+    gn.prepend(elementList, list);
+
+    if (elementData.innerHTML === data &&
+        elementNode.firstChild === node &&
+        elementList.firstChild === listFirst) {
+      success(display);
+    } else {
+      fail(display);
+    }
+  } else {
+    fail(display);
+  }
+}
+
+/*
+ * append
+ */
+function appendTest() {
+  var display = doc.getElementById('append'),
+      elementData = doc.getElementById('append-data'),
+      elementNode = doc.getElementById('append-node'),
+      elementList = doc.getElementById('append-list'),
+      data = '<span>New element</span>',
+      node = doc.getElementById('append-node-insert'),
+      list = doc.getElementById('append-list-insert').children,
+      listLast = doc.getElementById('append-list-insert-last');
+
+  if (gn.append) {
+    gn.append(elementData, data);
+    gn.append(elementNode, node);
+    gn.append(elementList, list);
+
+    if (elementData.innerHTML === data &&
+        elementNode.lastChild === node &&
+        elementList.lastChild === listLast) {
+      success(display);
+    } else {
+      fail(display);
+    }
   } else {
     fail(display);
   }
@@ -250,3 +439,10 @@ domReadyTest();
 textContentTest();
 elementPropTest();
 isInViewportTest();
+getOuterWidthTest();
+getOuterHeightTest();
+getOffsetLeftTest();
+getOffsetTopTest();
+isNodeListTest();
+prependTest();
+appendTest();

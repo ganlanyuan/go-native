@@ -19,7 +19,6 @@
   <div class="container">
     <h2>Go-native Tests</h2>
     <h3>Go-native.ie8</h3>
-    <div id="isInViewport-visible"></div>
     <ul class="list">
       <li class="normal">
         <div><a href="selectivizr/index.html" class="link box">selectivizr</a></div>
@@ -76,14 +75,29 @@
       <li class="normal" id="isInViewport">
         <div class="box"><a href="is-in-viewport.html">isInViewport</a></div>
       </li>
-      <li class="fail">
-        <div class="box"><a href="get-size.html">getOuterWidth<br>getOuterHeight<br>getOffsetLeft<br>getOffsetTop</a></div>
+      <li class="normal" id="getOuterWidth">
+        <div class="box"><a href="get-size.html">getOuterWidth</a></div>
+      </li>
+      <li class="normal" id="getOuterHeight">
+        <div class="box"><a href="get-size.html">getOuterHeight</a></div>
+      </li>
+      <li class="normal" id="getOffsetLeft">
+        <div class="box"><a href="get-size.html">getOffsetLeft</a></div>
+      </li>
+      <li class="normal" id="getOffsetTop">
+        <div class="box"><a href="get-size.html">getOffsetTop</a></div>
       </li>
       <li class="normal" id="domReady">
         <div class="box"><a href="dom-ready.html">DOM.ready</a></div>
       </li>
-      <li class="fail">
-        <div class="box"><a href="append-prepend.html">isNodeList<br>append<br>prepend</a></div>
+      <li class="normal" id="isNodeList">
+        <div class="box"><a href="append-prepend.html">isNodeList</a></div>
+      </li>
+      <li class="normal" id="prepend">
+        <div class="box"><a href="append-prepend.html">prepend</a></div>
+      </li>
+      <li class="normal" id="append">
+        <div class="box"><a href="append-prepend.html">append</a></div>
       </li>
       <li class="fail">
         <div class="box"><a href="wrap.html">wrap<br>wrapAll<br>unwrap</a></div>
@@ -105,7 +119,44 @@
       <li>Eveniet.</li>
       <li id="lastElement">Blanditiis!</li>
     </ul>
-    <div id="isInViewport-hidden" class="visually-hidden"></div>
+    <div id="isInViewport-hidden-top"></div>
+    <div id="isInViewport-hidden-bottom"></div>
+    <div id="isInViewport-hidden-left"></div>
+    <div id="isInViewport-hidden-right"></div>
+    <div id="isInViewport-visible"></div>
+    <div id="getOuterWidth-element" class="visually-hidden"></div>
+    <div id="getOuterHeight-element" class="visually-hidden"></div>
+    <div id="getOffsetLeft-element" class="visually-hidden"></div>
+    <div id="getOffsetTop-element" class="visually-hidden"></div>
+    <ul id="isNodeList-element" class="visually-hidden">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <div id="prepend-element" class="visually-hidden">
+      <div id="prepend-data"></div>
+      <div id="prepend-node"></div>
+      <div id="prepend-list"></div>
+      <div id="prepend-node-insert">Node need to be inserted.</div>
+      <ol id="prepend-list-insert">
+        <li id="prepend-list-insert-first">first</li>
+        <li>middle</li>
+        <li id="prepend-list-insert-last">last</li>
+      </ol>
+    </div>
+    <div id="append-element" class="visually-hidden">
+      <div id="append-data"></div>
+      <div id="append-node"></div>
+      <div id="append-list"></div>
+      <div id="append-node-insert">Node need to be inserted.</div>
+      <ol id="append-list-insert">
+        <li id="append-list-insert-first">first</li>
+        <li>middle</li>
+        <li id="append-list-insert-last">last</li>
+      </ol>
+    </div>
   </div>
   <script type="text/javascript" src="../dist/go-native.js"></script>
   <script type="text/javascript" src="js/go-native.test.js"></script>
