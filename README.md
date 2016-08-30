@@ -1,12 +1,8 @@
 ## Go-native
 ![version](https://img.shields.io/badge/Version-0.0.4-green.svg)   
-![IE 8+](https://img.shields.io/badge/IE-8+-54c7f6.svg)
-![Firefox 17+](https://img.shields.io/badge/Firefox-17+-e88e08.svg)
-![Chrome 15+](https://img.shields.io/badge/Chrome-15+-5CC15B.svg)
-![Safari 4+](https://img.shields.io/badge/Safari-4+-257BC8.svg)
-![Opera 10+](https://img.shields.io/badge/Opera-10+-F94247.svg)   
 Javascript polyfills which let you use native javascript.   
 [CSS3 selectors](https://www.w3.org/TR/css3-selectors/), [CSS3 media queries](https://www.w3.org/TR/css3-mediaqueries/), ES5 extensions and a bunch of DOM utilities.  
+Tested on *IE 8+, Firefox 17+, Chrome 15+, Safari 4+, Opera 10+*.  
 
 ## Install
 ```
@@ -75,7 +71,7 @@ bower install go-native --save
   - unwrap
 
 ## Usage
-Include [go-native.ie8.js](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.ie8.js) and [go-native.js](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.js) like below, and go play with it.
+Add [go-native.js](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.js) and [go-native.ie8.js](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.ie8.js) to your page.
 ````html
 <!--[if (lt IE 9)]>
   <script src="path/to/go-native.ie8.js"></script>
@@ -85,8 +81,8 @@ Include [go-native.ie8.js](https://raw.githubusercontent.com/ganlanyuan/go-nativ
 ##### DOM.ready
 ```javascript
 gn.ready(function () {
-  // on DOM ready
   // do something
+  // on DOM ready
 });
 ```
 ##### isInViewport
