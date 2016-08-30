@@ -1,6 +1,6 @@
 // getClosest
 // @require "/src/gn/base.js"
-// @require "/src/utilities/classList.js"
+// @require "./bower_components/domtokenlist/src/token-list.js"
 
 gn.getClosest = function (elem, selector) {
 

@@ -193,7 +193,6 @@ window.Length = {
   }
 })();
 
-// @codekit-prepend "../../bower_components/domtokenlist/src/token-list.js";
 // Number.isNaN
 Number.isNaN = Number.isNaN || function(val){ return val !== val; };
 
@@ -201,10 +200,6 @@ Number.isNaN = Number.isNaN || function(val){ return val !== val; };
 String.prototype.repeat = String.prototype.repeat || function(num) {
   return Array(num + 1).join(this);
 };
-// @codekit-prepend "number.isNaN.js";
-// @codekit-prepend "string.prototype.repeat.js";
-// @codekit-prepend "childNode.remove.js";
-// @codekit-prepend "classList.js";
 /** DOMTokenList polyfill */
 (function(){
 	"use strict";
@@ -565,6 +560,14 @@ var gn = (function (g) {
   // return gn
   return g;
 })(window.gn || {});
+// isNodeList
+// @require "/src/gn/base.js"
+
+gn.isNodeList = function (el) {
+  // Only NodeList has the "item()" function
+  return typeof el.item !== 'undefined'; 
+};
+
 // DOM ready
 // @require "/src/gn/base.js"
 
@@ -581,65 +584,79 @@ gn.ready = function ( fn ) {
   // Otherwise, wait until document is loaded
   document.addEventListener( 'DOMContentLoaded', fn, false );
 };
-// optimizedResize
-// https://developer.mozilla.org/en-US/docs/Web/Events/resize#requestAnimationFrame
+// append
 // @require "/src/gn/base.js"
-// @require "/src/es5/arrays/forEach.js"
-// @require "/src/ie8/addEventListener.js"
+// @require "/src/gn/isNodeList.js"
 
-gn.optimizedResize = (function() {
+gn.append = function(els, data) {
+  var els_new = (gn.isNodeList(els)) ? els : [els], i;
 
-  var callbacks = [],
-  running = false;
+  if (typeof data.nodeType !== "undefined" && data.nodeType === 1) {
+    for (i = els_new.length; i--;) {
+      els_new[i].appendChild(data);
+    }
+  } else if (typeof data === "string") {
+    for (i = els_new.length; i--;) {
+      els_new[i].insertAdjacentHTML('beforeend', data);
+    }
+  } else if (gn.isNodeList(data)) {
+    var fragment = document.createDocumentFragment();
+    for (i = data.length; i--;) {
+      fragment.insertBefore(data[i], fragment.firstChild);
+    }
+    for (var j = els_new.length; j--;) {
+      els_new[j].appendChild(fragment);
+    }
+  }
+};
 
-  // fired on resize event
-  function resize() {
 
-    if (!running) {
-      running = true;
+// createElement
+// @require "/src/gn/base.js"
 
-      if (window.requestAnimationFrame) {
-        window.requestAnimationFrame(runCallbacks);
-      } else {
-        setTimeout(runCallbacks, 66);
+gn.createElement = function(obj) {
+  if (!obj || !obj.tagName) {
+    throw { message : "Invalid argument" };
+  }
+
+  var el = document.createElement(obj.tagName);
+  obj.id && (el.id = obj.id);
+  obj.className && (el.className = obj.className);
+  obj.html && (el.innerHTML = obj.html);
+  
+  if (typeof obj.attributes !== "undefined") {
+    var attr = obj.attributes,
+      prop;
+
+    for (prop in attr) {
+      if (attr.hasOwnProperty(prop)) {
+        el.setAttribute(prop, attr[prop]);
       }
     }
-
   }
 
-  // run the actual callbacks
-  function runCallbacks() {
+  if (typeof obj.children !== "undefined") {
+    var child, i = 0;
 
-    callbacks.forEach(function(callback) {
-      callback();
-    });
-
-    running = false;
-  }
-
-  // adds callback to loop
-  function addCallback(callback) {
-
-    if (callback) {
-      callbacks.push(callback);
+    while (child = obj.children[i++]) {
+      el.appendChild(createElement(child));
     }
-
   }
 
-  return {
-    // public method to add additional callback
-    add: function(callback) {
-      if (!callbacks.length) {
-        window.addEventListener('resize', resize);
-      }
-      addCallback(callback);
-    }
-  };
-}());
+  return el;
+};
 
-// start process
-// gn.optimizedResize.add(function() {
-//   console.log('Resource conscious resize callback!')
+// var el = gn.createElement({
+//  tagName: 'div',
+//  id: 'foo',
+//  className: 'foo',
+//  children: [{
+//    tagName: 'div',
+//    html: '<b>Hello, creatElement</b>',
+//    attributes: {
+//      'am-button': 'primary'
+//    }
+//  }]
 // });
 // extend
 // @require "/src/gn/base.js"
@@ -665,84 +682,9 @@ gn.extend = function () {
   }
   return target;
 };
-// get supported property
-// @require "/src/gn/base.js"
-
-gn.getSupportedProp = function (proparray){
-  var root = document.documentElement;
-  for (var i=0; i<proparray.length; i++){
-    if (proparray[i] in root.style){
-      return proparray[i];
-    }
-  }
-};
-
-// var getTD = gn.getSupportedProp(['transitionDuration', 'WebkitTransitionDuration', 'MozTransitionDuration', 'OTransitionDuration']),
-// getTransform = gn.getSupportedProp(['transform', 'WebkitTransform', 'MozTransform', 'OTransform']);
-// getOffsetLeft
-// @require "/src/gn/base.js"
-
-gn.getOffsetLeft = function (el) {
-  var rect = el.getBoundingClientRect(),
-      left = rect.left + document.body.scrollLeft;
-  return Math.round(left);
-};
-// getOffsetTop
-// @require "/src/gn/base.js"
-
-gn.getOffsetTop = function (el) {
-  var rect = el.getBoundingClientRect(),
-      top = rect.top + document.body.scrollTop;
-  return Math.round(top);
-};
-// getOuterWidth
-// @require "/src/gn/base.js"
-// @require "/bower_components/Units/Length.js"
-// 1. outer size: content + padding + border + margin //
-
-gn.getOuterWidth = function (el) {
-  var pattern = /\d/, // check if value contains digital number
-      width = el.offsetWidth,
-      style = el.currentStyle || getComputedStyle(el),
-      marginLeft = (pattern.exec(style.marginLeft) === null) ? '0px' : style.marginLeft,
-      marginRight = (pattern.exec(style.marginRight) === null) ? '0px' : style.marginRight;
-
-  width += parseInt(Length.toPx(el, marginLeft)) + parseInt(Length.toPx(el, marginRight));
-  return width;
-};
-
-// 2. offset size: content + padding + border //
-//    el.offsetWidth  
-//    el.offsetHeight
-
-// 3. client size: content + padding
-//    el.clientWidth  
-//    el.clientHeight
-// getOuterHeight
-// @require "/src/gn/base.js"
-// @require "/bower_components/Units/Length.js"
-
-gn.getOuterHeight = function (el) {
-  var pattern = /\d/, // check if value contains digital number
-      height = el.offsetHeight,
-      style = el.currentStyle || getComputedStyle(el),
-      marginTop = (pattern.exec(style.marginTop) === null) ? '0px' : style.marginTop,
-      marginBottom = (pattern.exec(style.marginBottom) === null) ? '0px' : style.marginBottom;
-
-  height += parseInt(Length.toPx(el, marginTop)) + parseInt(Length.toPx(el, marginBottom));
-  return height;
-};
-
-// 2. offset size: content + padding + border //
-//    el.offsetWidth  
-//    el.offsetHeight
-
-// 3. client size: content + padding
-//    el.clientWidth  
-//    el.clientHeight
 // getClosest
 // @require "/src/gn/base.js"
-// @require "/src/utilities/classList.js"
+// @require "./bower_components/domtokenlist/src/token-list.js"
 
 gn.getClosest = function (elem, selector) {
 
@@ -788,9 +730,70 @@ gn.getClosest = function (elem, selector) {
 // var closestLink = getClosest(elem, 'a');
 // var closestExcludingElement = getClosest(elem.parentNode, '.some-class');
 
+// getOffsetLeft
+// @require "/src/gn/base.js"
+
+gn.getOffsetLeft = function (el) {
+  var rect = el.getBoundingClientRect(),
+      left = rect.left + document.body.scrollLeft;
+  return Math.round(left);
+};
+// getOffsetTop
+// @require "/src/gn/base.js"
+
+gn.getOffsetTop = function (el) {
+  var rect = el.getBoundingClientRect(),
+      top = rect.top + document.body.scrollTop;
+  return Math.round(top);
+};
+// getOuterHeight
+// @require "/src/gn/base.js"
+// @require "/bower_components/Units/Length.js"
+
+gn.getOuterHeight = function (el) {
+  var pattern = /\d/, // check if value contains digital number
+      height = el.offsetHeight,
+      style = el.currentStyle || getComputedStyle(el),
+      marginTop = (pattern.exec(style.marginTop) === null) ? '0px' : style.marginTop,
+      marginBottom = (pattern.exec(style.marginBottom) === null) ? '0px' : style.marginBottom;
+
+  height += parseInt(Length.toPx(el, marginTop)) + parseInt(Length.toPx(el, marginBottom));
+  return height;
+};
+
+// 2. offset size: content + padding + border //
+//    el.offsetWidth  
+//    el.offsetHeight
+
+// 3. client size: content + padding
+//    el.clientWidth  
+//    el.clientHeight
+// getOuterWidth
+// @require "/src/gn/base.js"
+// @require "/bower_components/Units/Length.js"
+// 1. outer size: content + padding + border + margin //
+
+gn.getOuterWidth = function (el) {
+  var pattern = /\d/, // check if value contains digital number
+      width = el.offsetWidth,
+      style = el.currentStyle || getComputedStyle(el),
+      marginLeft = (pattern.exec(style.marginLeft) === null) ? '0px' : style.marginLeft,
+      marginRight = (pattern.exec(style.marginRight) === null) ? '0px' : style.marginRight;
+
+  width += parseInt(Length.toPx(el, marginLeft)) + parseInt(Length.toPx(el, marginRight));
+  return width;
+};
+
+// 2. offset size: content + padding + border //
+//    el.offsetWidth  
+//    el.offsetHeight
+
+// 3. client size: content + padding
+//    el.clientWidth  
+//    el.clientHeight
 // getParents
 // @require "/src/gn/base.js"
-// @require "/src/utilities/classList.js"
+// @require "./bower_components/domtokenlist/src/token-list.js"
 
 gn.getParents = function (elem, selector) {
 
@@ -850,7 +853,7 @@ gn.getParents = function (elem, selector) {
 
 // getParentsUntil
 // @require "/src/gn/base.js"
-// @require "/src/utilities/classList.js"
+// @require "./bower_components/domtokenlist/src/token-list.js"
 
 gn.getParentsUntil = function (elem, parent, selector) {
 
@@ -966,6 +969,29 @@ gn.getSiblings = function (elem) {
 
 
 
+// get supported property
+// @require "/src/gn/base.js"
+
+gn.getSupportedProp = function (proparray){
+  var root = document.documentElement;
+  for (var i=0; i<proparray.length; i++){
+    if (proparray[i] in root.style){
+      return proparray[i];
+    }
+  }
+};
+
+// var getTD = gn.getSupportedProp(['transitionDuration', 'WebkitTransitionDuration', 'MozTransitionDuration', 'OTransitionDuration']),
+// getTransform = gn.getSupportedProp(['transform', 'WebkitTransform', 'MozTransform', 'OTransform']);
+// indexOf
+// @require "/src/gn/base.js"
+
+gn.indexOf = function (array, item) {
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] === item) { return i; }
+  }
+  return -1;
+};
 // isInViewport
 // @require "/src/gn/base.js"
 
@@ -978,97 +1004,66 @@ gn.isInViewport = function ( elem ) {
     rect.left < document.documentElement.clientWidth
     );
 };
-// indexOf
+// optimizedResize
+// https://developer.mozilla.org/en-US/docs/Web/Events/resize#requestAnimationFrame
 // @require "/src/gn/base.js"
+// @require "/src/es5/arrays/forEach.js"
+// @require "/src/ie8/addEventListener.js"
 
-gn.indexOf = function (array, item) {
-  for (var i = 0; i < array.length; i++) {
-    if (array[i] === item) { return i; }
-  }
-  return -1;
-};
-// createElement
-// @require "/src/gn/base.js"
+gn.optimizedResize = (function() {
 
-gn.createElement = function(obj) {
-  if (!obj || !obj.tagName) {
-    throw { message : "Invalid argument" };
-  }
+  var callbacks = [],
+  running = false;
 
-  var el = document.createElement(obj.tagName);
-  obj.id && (el.id = obj.id);
-  obj.className && (el.className = obj.className);
-  obj.html && (el.innerHTML = obj.html);
-  
-  if (typeof obj.attributes !== "undefined") {
-    var attr = obj.attributes,
-      prop;
+  // fired on resize event
+  function resize() {
 
-    for (prop in attr) {
-      if (attr.hasOwnProperty(prop)) {
-        el.setAttribute(prop, attr[prop]);
+    if (!running) {
+      running = true;
+
+      if (window.requestAnimationFrame) {
+        window.requestAnimationFrame(runCallbacks);
+      } else {
+        setTimeout(runCallbacks, 66);
       }
     }
+
   }
 
-  if (typeof obj.children !== "undefined") {
-    var child, i = 0;
+  // run the actual callbacks
+  function runCallbacks() {
 
-    while (child = obj.children[i++]) {
-      el.appendChild(createElement(child));
+    callbacks.forEach(function(callback) {
+      callback();
+    });
+
+    running = false;
+  }
+
+  // adds callback to loop
+  function addCallback(callback) {
+
+    if (callback) {
+      callbacks.push(callback);
     }
+
   }
 
-  return el;
-};
+  return {
+    // public method to add additional callback
+    add: function(callback) {
+      if (!callbacks.length) {
+        window.addEventListener('resize', resize);
+      }
+      addCallback(callback);
+    }
+  };
+}());
 
-// var el = gn.createElement({
-//  tagName: 'div',
-//  id: 'foo',
-//  className: 'foo',
-//  children: [{
-//    tagName: 'div',
-//    html: '<b>Hello, creatElement</b>',
-//    attributes: {
-//      'am-button': 'primary'
-//    }
-//  }]
+// start process
+// gn.optimizedResize.add(function() {
+//   console.log('Resource conscious resize callback!')
 // });
-// isNodeList
-// @require "/src/gn/base.js"
-
-gn.isNodeList = function (el) {
-  // Only NodeList has the "item()" function
-  return typeof el.item !== 'undefined'; 
-};
-
-// append
-// @require "/src/gn/base.js"
-// @require "/src/gn/isNodeList.js"
-
-gn.append = function(els, data) {
-  var els_new = (gn.isNodeList(els)) ? els : [els], i;
-
-  if (typeof data.nodeType !== "undefined" && data.nodeType === 1) {
-    for (i = els_new.length; i--;) {
-      els_new[i].appendChild(data);
-    }
-  } else if (typeof data === "string") {
-    for (i = els_new.length; i--;) {
-      els_new[i].insertAdjacentHTML('beforeend', data);
-    }
-  } else if (gn.isNodeList(data)) {
-    var fragment = document.createDocumentFragment();
-    for (i = data.length; i--;) {
-      fragment.insertBefore(data[i], fragment.firstChild);
-    }
-    for (var j = els_new.length; j--;) {
-      els_new[j].appendChild(fragment);
-    }
-  }
-};
-
-
 // prepend
 // @require "/src/gn/base.js"
 // @require "/src/gn/isNodeList.js"
@@ -1092,6 +1087,27 @@ gn.prepend = function(els, data) {
     for (var j = els_new.length; j--;) {
       els_new[j].insertBefore(fragment, els_new[j].firstChild);
     }
+  }
+};
+// unwrap
+// @require "/src/gn/base.js"
+// @require "/src/gn/isNodeList.js"
+
+gn.unwrap = function (els) {
+  var elsNew = (gn.isNodeList(els)) ? els : [els];
+  for (var i = elsNew.length; i--;) {
+    var el = elsNew[i];
+
+    // get the element's parent node
+    var parent = el.parentNode;
+    
+    // move all children out of the element
+    while (el.firstChild) { 
+      parent.insertBefore(el.firstChild, el); 
+    }
+    
+    // remove the empty element
+    parent.removeChild(el);
   }
 };
 // wrap
@@ -1151,25 +1167,3 @@ gn.wrapAll = function (els, wrapper) {
   }
 };
 
-
-// unwrap
-// @require "/src/gn/base.js"
-// @require "/src/gn/isNodeList.js"
-
-gn.unwrap = function (els) {
-  var elsNew = (gn.isNodeList(els)) ? els : [els];
-  for (var i = elsNew.length; i--;) {
-    var el = elsNew[i];
-
-    // get the element's parent node
-    var parent = el.parentNode;
-    
-    // move all children out of the element
-    while (el.firstChild) { 
-      parent.insertBefore(el.firstChild, el); 
-    }
-    
-    // remove the empty element
-    parent.removeChild(el);
-  }
-};
