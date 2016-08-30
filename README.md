@@ -1,5 +1,5 @@
 ## Go-native
-![version](https://img.shields.io/badge/Version-0.0.4-green.svg)
+![version](https://img.shields.io/badge/Version-0.0.4-green.svg)   
 ![IE 8+](https://img.shields.io/badge/IE-8+-54c7f6.svg)
 ![Firefox 17+](https://img.shields.io/badge/Firefox-17+-e88e08.svg)
 ![Chrome 15+](https://img.shields.io/badge/Chrome-15+-5CC15B.svg)
