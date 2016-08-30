@@ -85,3 +85,5 @@ p a:hover { text-decoration: underline; }
 #getComputedStyle-element:after {
   content: 'getComputedStyle';
 }
+.ie8-test { display: none; }
+.ie8 .ie8-test { display: block; }

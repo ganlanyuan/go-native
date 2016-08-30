@@ -4,6 +4,156 @@ function fail(el) { el.className = 'fail'; }
 var doc = document, win = window;
 
 /*
+ * preventDefault
+ */
+function preventDefaultTest() {
+  var display = doc.getElementById('preventDefault'),
+      link = doc.getElementById('preventDefault-link'),
+      a = 0;
+
+  function onclick(e) { 
+    e.preventDefault();
+    a += 1; 
+  }
+
+  if (Element.prototype.addEventListener) {
+    link.addEventListener('click', onclick);
+  } else {
+    link.attachEvent('onclick', onclick);
+  }
+
+  var event;
+  if (doc.createEvent) {
+    event = doc.createEvent('Event');
+    event.initEvent('click', true, true);
+    // event = new MouseEvent('click', {
+    //   'view': window,
+    //   'bubbles': true,
+    //   'cancelable': true
+    // });
+    link.dispatchEvent(event);
+  } else {
+    event = doc.createEventObject();
+    link.fireEvent('onclick', event);
+  }
+
+  if (a === 1) {
+    success(display);
+  } else {
+    fail(display);
+  }
+}
+
+/*
+ * stopPropagation
+ */
+function stopPropagationTest() {
+  var display = doc.getElementById('stopPropagation'),
+      body = doc.getElementsByTagName('BODY')[0],
+      a = 0;
+
+  function elementOnclick(e) { 
+    e.stopPropagation();
+    a += 1; 
+  }
+  function bodyOnclick(e) {
+    a += 10;
+  }
+
+  if (Element.prototype.addEventListener) {
+    display.addEventListener('click', elementOnclick);
+    body.addEventListener('click', bodyOnclick);
+  } else {
+    display.attachEvent('onclick', elementOnclick);
+    body.attachEvent('onclick', bodyOnclick);
+  }
+
+  var event;
+  if (doc.createEvent) {
+    event = doc.createEvent('Event');
+    event.initEvent('click', true, true);
+    // event = new MouseEvent('click', {
+    //   'view': window,
+    //   'bubbles': true,
+    //   'cancelable': true
+    // });
+    display.dispatchEvent(event);
+  } else {
+    event = doc.createEventObject();
+    display.fireEvent('onclick', event);
+  }
+
+  if (a === 1) {
+    success(display);
+  } else {
+    fail(display);
+  }
+}
+
+/*
+ * addEventListener & removeEventListener
+ */
+function eventListenerTest() {
+  var displayAdd = doc.getElementById('addEventListener'),
+      displayRemove = doc.getElementById('removeEventListener'),
+      body = doc.getElementsByTagName('BODY')[0],
+      a = 0,
+      event;
+
+  function bodyOnclick(e) {
+    a += 1;
+  }
+
+  if (doc.createEvent) {
+    event = doc.createEvent('Event');
+    event.initEvent('click', true, true);
+    // event = new MouseEvent('click', {
+    //   'view': window,
+    //   'bubbles': true,
+    //   'cancelable': true
+    // });
+  } else {
+    event = doc.createEventObject();
+  }
+
+  if (Element.prototype.addEventListener) {
+    body.addEventListener('click', bodyOnclick);
+
+    if (doc.createEvent) {
+      body.dispatchEvent(event);
+    } else {
+      body.fireEvent('onclick', event);
+    }
+
+    if (a === 1) {
+      success(displayAdd);
+    } else {
+      fail(displayAdd);
+    }
+  } else {
+    fail(displayAdd);
+  }
+
+  if (Element.prototype.removeEventListener) {
+    body.removeEventListener('click', bodyOnclick);
+
+    if (doc.createEvent) {
+      body.dispatchEvent(event);
+    } else {
+      body.fireEvent('onclick', event);
+    }
+
+    if (a === 1) {
+      success(displayRemove);
+    } else {
+      fail(displayRemove);
+    }
+  } else {
+    fail(displayRemove);
+  }
+}
+
+/*
  * innerWidth
  */
 function innerWidthTest() {
@@ -11,7 +161,7 @@ function innerWidthTest() {
       element = doc.getElementById('innerWidth-element');
 
   element.style.cssText = 'position: fixed; width: 100%; height: 100px;';
-
+  console.log(win.innerWidth + '|' + element.clientWidth);
   if(win.innerWidth && win.innerWidth === element.clientWidth) {
     success(display);
   } else {
@@ -570,16 +720,22 @@ function unwrapTest() {
 /*
  * run tests
  */
-innerWidthTest();
-innerHeightTest();
-pageXOffsetTest();
-pageYOffsetTest();
-getComputedStyleElementTest();
+if(doc.getElementsByTagName('HTML')[0].className === 'ie8') {
+  preventDefaultTest();
+  stopPropagationTest();
+  eventListenerTest();
+  innerWidthTest();
+  innerHeightTest();
+  pageXOffsetTest();
+  pageYOffsetTest();
+  getComputedStyleElementTest();
+  elementPropTest();
+  textContentTest();
+}
+
 classListTest();
 childNodeRemoveTest();
 domReadyTest();
-textContentTest();
-elementPropTest();
 isInViewportTest();
 getOuterWidthTest();
 getOuterHeightTest();

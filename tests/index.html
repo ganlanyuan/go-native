@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if (IE 8)&!(IEMobile)]><html class="ie8" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
@@ -18,69 +19,63 @@
 <body>
   <div class="container">
     <h2>Go-native Tests</h2>
-    <h3>Go-native.ie8</h3>
-    <ul class="list">
-      <li class="normal">
-        <div><a href="selectivizr/index.html" class="link box">selectivizr</a></div>
-      </li>
-      <li class="normal">
-        <div><a href="respond/index.html" class="link box">respond</a></div>
-      </li>
-      <li class="normal">
-        <div class="box"><a href="prevent-default.html" class="link">preventDefault</a></div>
-      </li>
-      <li class="normal">
-        <div class="box"><a href="stop-propagation.html" class="link">stopPropagation</a></div>
-      </li>
-      <li class="normal" id="addEventListener">
-        <div class="box"><a href="eventListener-offsets.html" class="link">addEventListener</a></div>
-      </li>
-      <li class="normal" id="removeEventListener">
-        <div class="box"><a href="" class="link">removeEventListener</a></div>
-      </li>
-      <li class="normal" id="innerWidth">
-        <div class="box">
-          <a href="">window.innerWidth</a>
-        </div>
-      </li>
-      <li class="normal" id="innerHeight">
-        <div class="box">
-          <a href="">window.innerHeight</a>
-        </div>
-      </li>
-      <li class="normal" id="pageXOffset">
-        <div class="box">
-          <a href="">window.pageXOffset</a>
-        </div>
-      </li>
-      <li class="normal" id="pageYOffset">
-        <div class="box">
-          <a href="">window.pageYOffset</a>
-        </div>
-      </li>
-      <li class="normal" id="getComputedStyle">
-        <div class="box"><a href="get-computed-style.html">window.getComputedStyle <span id="getComputedStyle-pseudo">Pseudo</span></a></div>
-      </li>
-      <li class="normal" id="childElementCount">
-        <div class="box"><a href="child-elements.html">el.childElementCount</a></div>
-      </li>
-      <li class="normal" id="firstElementChild">
-        <div class="box"><a href="child-elements.html">el.firstElementChild</a></div>
-      </li>
-      <li class="normal" id="lastElementChild">
-        <div class="box"><a href="child-elements.html">el.lastElementChild</a></div>
-      </li>
-      <li class="normal" id="previousElementSibling">
-        <div class="box"><a href="child-elements.html">el.previousElementSibling</a></div>
-      </li>
-      <li class="normal" id="nextElementSibling">
-        <div class="box"><a href="child-elements.html">el.nextElementSibling</a></div>
-      </li>
-      <li class="normal" id="textContent">
-        <div class="box"><a href="text-content.html">node.textContent</a></div>
-      </li>
-    </ul>
-    <h3>Go-native.all</h3>
+    <div class="ie8-test">
+      <h3>Go-native.ie8.js</h3>
+      <ul class="list">
+        <li class="normal">
+          <div><a href="selectivizr/index.html" class="link box">selectivizr</a></div>
+        </li>
+        <li class="normal">
+          <div><a href="respond/index.html" class="link box">respond</a></div>
+        </li>
+        <li class="normal" id="preventDefault">
+          <div class="box"><a href="prevent-default.html" id="preventDefault-link">preventDefault</a></div>
+        </li>
+        <li class="normal" id="stopPropagation">
+          <div class="box"><a href="stop-propagation.html">stopPropagation</a></div>
+        </li>
+        <li class="normal" id="addEventListener">
+          <div class="box"><a href="eventListener-offsets.html">addEventListener</a></div>
+        </li>
+        <li class="normal" id="removeEventListener">
+          <div class="box"><a href="">removeEventListener</a></div>
+        </li>
+        <li class="normal" id="innerWidth">
+          <div class="box"><a href="">window.innerWidth</a></div>
+        </li>
+        <li class="normal" id="innerHeight">
+          <div class="box"><a href="">window.innerHeight</a></div>
+        </li>
+        <li class="normal" id="pageXOffset">
+          <div class="box"><a href="">window.pageXOffset</a></div>
+        </li>
+        <li class="normal" id="pageYOffset">
+          <div class="box"><a href="">window.pageYOffset</a></div>
+        </li>
+        <li class="normal" id="getComputedStyle">
+          <div class="box"><a href="get-computed-style.html">window.getComputedStyle <span id="getComputedStyle-pseudo">Pseudo</span></a></div>
+        </li>
+        <li class="normal" id="childElementCount">
+          <div class="box"><a href="child-elements.html">el.childElementCount</a></div>
+        </li>
+        <li class="normal" id="firstElementChild">
+          <div class="box"><a href="child-elements.html">el.firstElementChild</a></div>
+        </li>
+        <li class="normal" id="lastElementChild">
+          <div class="box"><a href="child-elements.html">el.lastElementChild</a></div>
+        </li>
+        <li class="normal" id="previousElementSibling">
+          <div class="box"><a href="child-elements.html">el.previousElementSibling</a></div>
+        </li>
+        <li class="normal" id="nextElementSibling">
+          <div class="box"><a href="child-elements.html">el.nextElementSibling</a></div>
+        </li>
+        <li class="normal" id="textContent">
+          <div class="box"><a href="text-content.html">node.textContent</a></div>
+        </li>
+      </ul>
+    </div>
+    <h3>Go-native.js</h3>
     <ul class="list">
       <li class="normal" id="classList">
         <div class="box"><a href="class-list.html">el.classList 
@@ -92,7 +87,7 @@
           <span id="classList-toggle-force">toggle-force</span>
         </a></div>
       </li>
-      <li class="fail" id="childNodeRemove">
+      <li class="normal" id="childNodeRemove">
         <div class="box"><a href="child-remove.html">ChildNode.remove</a></div>
       </li>
       <li class="normal" id="isInViewport">

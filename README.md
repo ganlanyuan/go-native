@@ -1,5 +1,10 @@
 ## Go-native
-![version](https://img.shields.io/badge/Version-0.0.4-green.svg)   
+![version](https://img.shields.io/badge/Version-0.0.4-green.svg)
+![IE 8+](https://img.shields.io/badge/IE-7+-54c7f6.svg)
+![Firefox 17+](https://img.shields.io/badge/Firefox-4+-e88e08.svg)
+![Chrome 15+](https://img.shields.io/badge/Chrome-19+-5CC15B.svg)
+![Safari 4+](https://img.shields.io/badge/Safari-6+-257BC8.svg)
+![Opera 10+](https://img.shields.io/badge/Opera-15+-F94247.svg)   
 Javascript polyfills which let you use native javascript.   
 [CSS3 selectors](https://www.w3.org/TR/css3-selectors/), [CSS3 media queries](https://www.w3.org/TR/css3-mediaqueries/), ES5 extensions and a bunch of DOM utilities.  
 
