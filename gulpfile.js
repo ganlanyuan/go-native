@@ -21,9 +21,12 @@ function errorlog (error) {
 }  
 
 // browser-sync
-gulp.task('browser-sync', ['js'], function() {
+gulp.task('browser-sync', function() {
   browserSync.init(config.browserSync);
+});
 
+// Watch
+gulp.task('watch', function () {
   gulp.watch(config.watch.js, ['js']);
   gulp.watch(config.watch.html).on('change', browserSync.reload);
 });
@@ -37,7 +40,7 @@ gulp.task('gn', function () {
     .pipe(browserSync.stream());
 });  
 
-gulp.task('gn-min', function () {  
+gulp.task('gn-min', ['gn'], function () {  
   return gulp.src(config.dest + '/go-native.js')
     .pipe(sourcemaps.init())
     .pipe(rename('go-native.min.js'))
@@ -56,7 +59,7 @@ gulp.task('gnie8', function () {
     .pipe(browserSync.stream());
 });  
 
-gulp.task('gnie8-min', function () {  
+gulp.task('gnie8-min', ['gnie8'], function () {  
   return gulp.src(config.dest + '/go-native.ie8.js')
     .pipe(sourcemaps.init())
     .pipe(rename('go-native.ie8.min.js'))
@@ -69,14 +72,13 @@ gulp.task('gnie8-min', function () {
 
 // js tasks
 gulp.task('js', [
-  'gn', 
   'gn-min', 
-  'gnie8', 
   'gnie8-min', 
 ]);  
 
 // Default Task
 gulp.task('default', [
   'browser-sync', 
-  'js', 
+  'js',
+  'watch', 
 ]);  
