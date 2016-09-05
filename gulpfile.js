@@ -95,7 +95,7 @@ gulp.task('js', function () {
       .pipe(browserSync.stream());
 });
 
-gulp.task('js_min',  function () {
+gulp.task('js_min', ['js'], function () {
   var tasks = [],
       name = config.js.name;
       
@@ -103,10 +103,19 @@ gulp.task('js_min',  function () {
     tasks.push(
       gulp.src(config.js.dest + '/' + name[i])
           .pipe(sourcemaps.init())
-          .pipe(uglify())
+          .pipe(uglify({
+            mangle: false,
+            output: {
+              quote_keys: true,
+            },
+            compress: {
+              properties: false,
+            }
+          }))
           .pipe(rename(function (path) {
             path.basename += '.min';
           }))
+          .on('error', errorlog)  
           .pipe(sourcemaps.write(config.map_dest))
           .pipe(gulp.dest(config.js.dest))
     );
@@ -117,7 +126,7 @@ gulp.task('js_min',  function () {
 
 // Default Task
 gulp.task('default', [
-  'browser-sync', 
   'js_min',
+  'browser-sync', 
   'watch', 
 ]);  

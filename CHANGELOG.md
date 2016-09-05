@@ -1,5 +1,8 @@
 ## Change log
 
+#### v0.0.7
+- Fixed: a `gulp-uglify` compresser issue.
+
 #### v0.0.6
 - Updated: `selectivizr` which fixed an issue when using compressed css file.
 
