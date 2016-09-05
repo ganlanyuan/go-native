@@ -180,26 +180,6 @@ window.Length = {
     toPx: toPx
 };
 }(this, this.document));
-// ChildNode.remove
-(function () {
-  "use strict";
-
-  if(!("remove" in Element.prototype)){
-  	Element.prototype.remove = function(){
-  		if(this.parentNode) {
-  			this.parentNode.removeChild(this);
-      }
-  	};
-  }
-})();
-
-// Number.isNaN
-Number.isNaN = Number.isNaN || function(val){ return val !== val; };
-
-// String.prototype.repeat
-String.prototype.repeat = String.prototype.repeat || function(num) {
-  return Array(num + 1).join(this);
-};
 /** DOMTokenList polyfill */
 (function(){
 	"use strict";
@@ -554,6 +534,26 @@ String.prototype.repeat = String.prototype.repeat || function(num) {
 	}
 }());
 
+// ChildNode.remove
+(function () {
+  "use strict";
+
+  if(!("remove" in Element.prototype)){
+  	Element.prototype.remove = function(){
+  		if(this.parentNode) {
+  			this.parentNode.removeChild(this);
+      }
+  	};
+  }
+})();
+
+// Number.isNaN
+Number.isNaN = Number.isNaN || function(val){ return val !== val; };
+
+// String.prototype.repeat
+String.prototype.repeat = String.prototype.repeat || function(num) {
+  return Array(num + 1).join(this);
+};
 // *** gn *** //
 var gn = (function (g) {
 

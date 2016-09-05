@@ -161,7 +161,6 @@ function innerWidthTest() {
       element = doc.getElementById('innerWidth-element');
 
   element.style.cssText = 'position: fixed; width: 100%; height: 100px;';
-  console.log(win.innerWidth + '|' + element.clientWidth);
   if(win.innerWidth && win.innerWidth === element.clientWidth) {
     success(display);
   } else {

@@ -5,6 +5,7 @@
 
 /.codekit-cache/
 /bower_components/
+/node_modules/
 
 LICENSE
 package.json
