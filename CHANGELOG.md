@@ -1,5 +1,8 @@
 ## Change log
 
+#### v0.0.6
+- Updated: `selectivizr` which fixed an issue when using compressed css file.
+
 #### v0.0.5
 - Fixed: an `isInViewport` issue.
 
