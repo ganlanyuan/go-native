@@ -1,13 +1,7 @@
 version: '2'
 services:
-  # db:
-  #   image: eboraas/apache-php
-  #   ports:
-  #     - "8000:80"
-  #   volumes:
-  #     - .:/var/www/html/
   web:
-    image: frontend
+    image: cmcdev/web
     ports:
       - 8000:8000
       - 3000:3000
@@ -16,7 +10,7 @@ services:
       - .:/www/web/
     working_dir: /www/web
     command: sh
+    # entrypoint: sh /www/docker-start.sh
     container_name: web
     stdin_open: true
     tty: true
-    # entrypoint: /www/docker-start.sh
