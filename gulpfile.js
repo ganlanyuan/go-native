@@ -31,7 +31,7 @@ var config = {
       ],
       [
         "bower_components/nwmatcher/src/nwmatcher.js",
-        "bower_components/selectivizr-update/selectivizr.js",
+        "bower_components/selectivizr_will/selectivizr.js",
         "bower_components/respond/dest/respond.src.js",
 
         "src/es5/*.js",

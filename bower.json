@@ -24,6 +24,6 @@
     "Units": "https://github.com/heygrady/Units.git",
     "requestAnimationFrame": "https://github.com/darius/requestAnimationFrame.git",
     "domtokenlist": "^1.0.0",
-    "selectivizr-update": "git@gitlab.com:will1028/selectivizr.git#^1.0.0"
+    "selectivizr_will": "^1.0.0"
   }
 }
