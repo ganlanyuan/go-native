@@ -1,5 +1,9 @@
 ## Change log
 
+#### v0.0.8
+- Update `selectivizr` source
+- Set different compress options for *go-native.min.js* and *go-native.ie8.min.js*.
+
 #### v0.0.7
 - Fixed: a `gulp-uglify` compresser issue.
 

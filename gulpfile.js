@@ -39,6 +39,16 @@ var config = {
       ],
     ],
     name: ['go-native.js', 'go-native.ie8.js'],
+    options:[{}, {
+        mangle: false,
+        output: {
+          quote_keys: true,
+        },
+        compress: {
+          properties: false,
+        }
+      }
+    ],
     dest: 'dist',
   },
 };
@@ -103,15 +113,7 @@ gulp.task('js_min', ['js'], function () {
     tasks.push(
       gulp.src(config.js.dest + '/' + name[i])
           .pipe(sourcemaps.init())
-          .pipe(uglify({
-            mangle: false,
-            output: {
-              quote_keys: true,
-            },
-            compress: {
-              properties: false,
-            }
-          }))
+          .pipe(uglify(config.js.options[i]))
           .pipe(rename(function (path) {
             path.basename += '.min';
           }))

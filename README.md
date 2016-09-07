@@ -1,5 +1,5 @@
 ## Go-native
-![version](https://img.shields.io/badge/Version-0.0.7-green.svg)   
+![version](https://img.shields.io/badge/Version-0.0.8-green.svg)   
 Javascript polyfills which let you use native javascript.   
 [CSS3 selectors](https://www.w3.org/TR/css3-selectors/), [CSS3 media queries](https://www.w3.org/TR/css3-mediaqueries/), ES5 extensions and a bunch of DOM utilities.  
 Tested on *IE 8+, Firefox 17+, Chrome 15+, Safari 4+, Opera 10+*.  
@@ -11,7 +11,6 @@ bower install go-native --save
 
 ## Contents
 ####go-native.ie8  
-- [HTML5 Shiv 3.7.3](https://github.com/aFarkas/html5shiv)
 - [NWMatcher (for selectivizr)](https://github.com/dperini/nwmatcher)
 - [selectivizr](http://selectivizr.com/)
 - [respond.js](https://github.com/scottjehl/Respond)
@@ -192,7 +191,6 @@ gn.unwrap(container);
 ```
 
 ## Credit:
-`HTML5 Shiv 3.7.3` from [aFarkas](https://github.com/aFarkas/html5shiv).   
 `NWMatcher` from [dperini](https://github.com/dperini/nwmatcher).   
 `selectivizr` from [keithclark](https://github.com/keithclark/selectivizr).   
 `respond` from [scottjehl](https://github.com/scottjehl/Respond).   
