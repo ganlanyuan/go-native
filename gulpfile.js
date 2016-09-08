@@ -60,6 +60,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var modernizr = require('gulp-modernizr');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
+var jshint = require('gulp-jshint');
 var imagemin = require('gulp-imagemin');
 var svgstore = require('gulp-svgstore');
 var path = require('path');
@@ -95,6 +96,8 @@ gulp.task('js', function () {
   for (var i = 0; i < srcs.length; i++) {
     tasks.push(
       gulp.src(srcs[i])
+          // .pipe(jshint())
+          // .pipe(jshint.reporter('default'))
           .pipe(concat(names[i]))
           .on('error', errorlog)  
           .pipe(gulp.dest(config.js.dest))
