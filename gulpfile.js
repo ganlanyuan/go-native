@@ -61,6 +61,7 @@ var modernizr = require('gulp-modernizr');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
 var imagemin = require('gulp-imagemin');
 var svgstore = require('gulp-svgstore');
 var path = require('path');
@@ -96,10 +97,15 @@ gulp.task('js', function () {
   for (var i = 0; i < srcs.length; i++) {
     tasks.push(
       gulp.src(srcs[i])
-          // .pipe(jshint())
-          // .pipe(jshint.reporter('default'))
+          .pipe(sourcemaps.init())
+          .pipe(jshint())
+          .pipe(jshint.reporter(stylish))
           .pipe(concat(names[i]))
           .on('error', errorlog)  
+          .pipe(gulp.dest(config.js.dest))
+          .pipe(rename(names[i].replace('.js', '.min.js')))
+          .pipe(uglify(config.js.options[i]))
+          .pipe(sourcemaps.write(config.sourcemaps))
           .pipe(gulp.dest(config.js.dest))
     );
   }
@@ -108,30 +114,10 @@ gulp.task('js', function () {
       .pipe(browserSync.stream());
 });
 
-gulp.task('js_min', ['js'], function () {
-  var tasks = [],
-      name = config.js.name;
-      
-  for (var i = 0; i < name.length; i++) {
-    tasks.push(
-      gulp.src(config.js.dest + '/' + name[i])
-          .pipe(sourcemaps.init())
-          .pipe(uglify(config.js.options[i]))
-          .pipe(rename(function (path) {
-            path.basename += '.min';
-          }))
-          .on('error', errorlog)  
-          .pipe(sourcemaps.write(config.sourcemaps))
-          .pipes(gulp.dest(config.js.dest))
-    );
-  }
-
-  return mergeStream(tasks);
-});
-
 // Default Task
 gulp.task('default', [
-  'js_min',
+  // 'js_min',
+  'js',
   'sync', 
   'watch', 
 ]);  
