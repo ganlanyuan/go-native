@@ -1,7 +1,6 @@
 var config = {
   sassLang: 'libsass',
-  map_dest: 'sourcemap',
-  
+  sourcemaps: 'sourcemaps',
   browserSync: {
     server: {
       baseDir: './'
@@ -55,7 +54,8 @@ var config = {
 
 var gulp = require('gulp');
 var php = require('gulp-connect-php');
-var sass;
+var libsass = require('gulp-sass');
+var rubysass = require('gulp-ruby-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var modernizr = require('gulp-modernizr');
 var concat = require('gulp-concat');
@@ -77,7 +77,7 @@ function errorlog (error) {
 }  
 
 // browser-sync
-gulp.task('browser-sync', function() {
+gulp.task('sync', function() {
   browserSync.init(config.browserSync);
 });
 
@@ -121,8 +121,8 @@ gulp.task('js_min', ['js'], function () {
             path.basename += '.min';
           }))
           .on('error', errorlog)  
-          .pipe(sourcemaps.write(config.map_dest))
-          .pipe(gulp.dest(config.js.dest))
+          .pipe(sourcemaps.write(config.sourcemaps))
+          .pipes(gulp.dest(config.js.dest))
     );
   }
 
@@ -132,6 +132,6 @@ gulp.task('js_min', ['js'], function () {
 // Default Task
 gulp.task('default', [
   'js_min',
-  'browser-sync', 
+  'sync', 
   'watch', 
 ]);  
