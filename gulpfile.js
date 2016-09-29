@@ -11,7 +11,7 @@ var config = {
   },
 
   watch: {
-    js: ['src/**/*.js', 'tests/js/*.js'],
+    js: 'tests/js/*.js',
     html: '**/*.html'
   },
 
@@ -84,7 +84,8 @@ gulp.task('sync', function() {
 
 // Watch
 gulp.task('watch', function () {
-  gulp.watch(config.watch.js, ['js_min']);
+  gulp.watch(config.js.src, ['js']);
+  gulp.watch(config.watch.js).on('change', browserSync.reload);
   gulp.watch(config.watch.html).on('change', browserSync.reload);
 });
 

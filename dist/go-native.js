@@ -730,6 +730,31 @@ gn.getClosest = function (elem, selector) {
 // var closestLink = getClosest(elem, 'a');
 // var closestExcludingElement = getClosest(elem.parentNode, '.some-class');
 
+// getHeight
+// @require "/src/gn/base.js"
+// @require "/bower_components/Units/Length.js"
+// 1. outer size: content + padding + border + margin //
+
+// 2. offset size: content + padding + border //
+//    el.offsetWidth  
+//    el.offsetHeight
+
+// 3. client size: content + padding
+//    el.clientWidth  
+//    el.clientHeight
+
+// 4. size: content
+
+gn.getHeight = function (el) {
+  var pattern = /\d/, // check if value contains digital number
+      height = el.clientHeight,
+      style = el.currentStyle || getComputedStyle(el),
+      paddingTop = (pattern.exec(style.paddingTop) === null) ? '0px' : style.paddingTop,
+      paddingBottom = (pattern.exec(style.paddingBottom) === null) ? '0px' : style.paddingBottom;
+
+  height -= (parseInt(Length.toPx(el, paddingTop)) + parseInt(Length.toPx(el, paddingBottom)));
+  return height;
+};
 // getOffsetLeft
 // @require "/src/gn/base.js"
 
@@ -983,6 +1008,31 @@ gn.getSupportedProp = function (proparray){
 
 // var getTD = gn.getSupportedProp(['transitionDuration', 'WebkitTransitionDuration', 'MozTransitionDuration', 'OTransitionDuration']),
 // getTransform = gn.getSupportedProp(['transform', 'WebkitTransform', 'MozTransform', 'OTransform']);
+// getWidth
+// @require "/src/gn/base.js"
+// @require "/bower_components/Units/Length.js"
+// 1. outer size: content + padding + border + margin //
+
+// 2. offset size: content + padding + border //
+//    el.offsetWidth  
+//    el.offsetHeight
+
+// 3. client size: content + padding
+//    el.clientWidth  
+//    el.clientHeight
+
+// 4. size: content
+
+gn.getWidth = function (el) {
+  var pattern = /\d/, // check if value contains digital number
+      width = el.clientWidth,
+      style = el.currentStyle || getComputedStyle(el),
+      paddingLeft = (pattern.exec(style.paddingLeft) === null) ? '0px' : style.paddingLeft,
+      paddingRight = (pattern.exec(style.paddingRight) === null) ? '0px' : style.paddingRight;
+
+  width -= (parseInt(Length.toPx(el, paddingLeft)) + parseInt(Length.toPx(el, paddingRight)));
+  return width;
+};
 // indexOf
 // @require "/src/gn/base.js"
 

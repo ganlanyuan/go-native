@@ -1,5 +1,8 @@
 ## Change log
 
+#### v0.1.0
+- Added: `getWidth` and `getHeight` to get element content size. (Without padding, border and margin.)
+
 #### v0.0.8
 - Update `selectivizr` source
 - Set different compress options for *go-native.min.js* and *go-native.ie8.min.js*.

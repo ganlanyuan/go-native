@@ -392,6 +392,54 @@ function getOuterHeightTest() {
 }
 
 /*
+ * getWidth
+ */
+function getWidthTest() {
+  var display = doc.getElementById('getWidth'),
+      element = doc.getElementById('getWidth-element');
+
+  if (gn.getWidth) {
+    var width = 300, 
+        padding = 3, 
+        height = 200, 
+        fontSize = 16,
+        expectedWidth = width - (padding * fontSize) * 2;
+
+    element.style.cssText = 'width: ' + width + 'px; padding: ' + padding + 'em; height: ' + height + 'px; font-size: ' + fontSize + 'px; box-sizing: border-box;';
+
+    if (gn.getWidth(element) === expectedWidth) {
+      success(display);
+    } else {
+      fail(display);
+    }
+  }
+}
+
+/*
+ * getHeight
+ */
+function getHeightTest() {
+  var display = doc.getElementById('getHeight'),
+      element = doc.getElementById('getHeight-element');
+
+  if (gn.getHeight) {
+    var height = 300, 
+        padding = 3, 
+        height = 200, 
+        fontSize = 16,
+        expectedHeight = height - (padding * fontSize) * 2;
+
+    element.style.cssText = 'height: ' + height + 'px; padding: ' + padding + 'em; height: ' + height + 'px; font-size: ' + fontSize + 'px; box-sizing: border-box;';
+
+    if (gn.getHeight(element) === expectedHeight) {
+      success(display);
+    } else {
+      fail(display);
+    }
+  }
+}
+
+/*
  * getOffsetLeft
  */
 function getOffsetLeftTest() {
@@ -423,7 +471,7 @@ function getOffsetTopTest() {
     var top = 40, 
         offsetTop = top;
 
-    element.style.cssText = 'position: absolute; top: ' + top + 'px;';
+    element.style.cssText = 'position: fixed; top: ' + top + 'px;';
 
     if (gn.getOffsetTop(element) === offsetTop) {
       success(display);
@@ -738,6 +786,8 @@ domReadyTest();
 isInViewportTest();
 getOuterWidthTest();
 getOuterHeightTest();
+getWidthTest();
+getHeightTest();
 getOffsetLeftTest();
 getOffsetTopTest();
 isNodeListTest();

@@ -1,5 +1,5 @@
 ## Go-native
-![version](https://img.shields.io/badge/Version-0.0.8-green.svg)   
+![version](https://img.shields.io/badge/Version-0.1.0-green.svg)   
 Javascript polyfills which let you use native javascript.   
 [CSS3 selectors](https://www.w3.org/TR/css3-selectors/), [CSS3 media queries](https://www.w3.org/TR/css3-mediaqueries/), ES5 extensions and a bunch of DOM utilities.  
 Tested on *IE 8+, Firefox 17+, Chrome 15+, Safari 4+, Opera 10+*.  
@@ -111,6 +111,18 @@ var box = document.querySelector('.box'),
 // content + padding + border + margin
 var box = document.querySelector('.box'),
     boxHeight = gn.getOuterHeight(box);
+```
+##### getWidth
+```javascript
+// content width
+var box = document.querySelector('.box'),
+    boxWidth = gn.getWidth(box);
+```
+##### getHeight
+```javascript
+// content height
+var box = document.querySelector('.box'),
+    boxHeight = gn.getHeight(box);
 ```
 ##### getOffsetLeft
 ```javascript
