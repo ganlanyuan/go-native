@@ -1,6 +1,3 @@
-// *** gn *** //
-var gn = (function (g) {
-
-  // return gn
+export var gn = (function (g) {
   return g;
 })(window.gn || {});

@@ -1,7 +1,4 @@
-// extend
-// @require "/src/gn/base.js"
-
-gn.extend = function () {
+export var extend = function () {
   var obj, name, copy,
   target = arguments[0] || {},
   i = 1,

@@ -1,7 +1,4 @@
-// createElement
-// @require "/src/gn/base.js"
-
-gn.createElement = function(obj) {
+export var createElement = function(obj) {
   if (!obj || !obj.tagName) {
     throw { message : "Invalid argument" };
   }
@@ -34,14 +31,14 @@ gn.createElement = function(obj) {
 };
 
 // var el = gn.createElement({
-//  tagName: 'div',
-//  id: 'foo',
-//  className: 'foo',
+//  tagName: "div",
+//  id: "foo",
+//  className: "foo",
 //  children: [{
-//    tagName: 'div',
-//    html: '<b>Hello, creatElement</b>',
+//    tagName: "div",
+//    html: "<b>Hello, creatElement</b>",
 //    attributes: {
-//      'am-button': 'primary'
+//      "am-button": "primary"
 //    }
 //  }]
 // });

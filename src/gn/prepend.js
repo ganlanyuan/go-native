@@ -1,8 +1,4 @@
-// prepend
-// @require "/src/gn/base.js"
-// @require "/src/gn/isNodeList.js"
-
-gn.prepend = function(els, data) {
+export var prepend = function(els, data) {
   var els_new = (gn.isNodeList(els)) ? els : [els], i;
 
   if (typeof data.nodeType !== "undefined" && data.nodeType === 1) {

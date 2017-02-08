@@ -1,8 +1,4 @@
-// wrap
-// @require "/src/gn/base.js"
-// @require "/src/gn/isNodeList.js"
-
-gn.wrap = function (els, obj) {
+export var wrap = function (els, obj) {
     var elsNew = (gn.isNodeList(els)) ? els : [els];
   // Loops backwards to prevent having to clone the wrapper on the
   // first element (see `wrapper` below).
@@ -27,4 +23,3 @@ gn.wrap = function (els, obj) {
       }
   }
 };
-

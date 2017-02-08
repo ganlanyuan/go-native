@@ -1,7 +1,4 @@
-// get supported property
-// @require "/src/gn/base.js"
-
-gn.getSupportedProp = function (proparray){
+export var getSupportedProp = function (proparray){
   var root = document.documentElement;
   for (var i=0; i<proparray.length; i++){
     if (proparray[i] in root.style){

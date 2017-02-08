@@ -1,7 +1,4 @@
-// getSiblings
-// @require "/src/gn/base.js"
-
-gn.getSiblings = function (elem) {
+export var getSiblings = function (elem) {
   var siblings = [];
   var sibling = elem.parentNode.firstChild;
   for ( ; sibling; sibling = sibling.nextSibling ) {
@@ -14,5 +11,3 @@ gn.getSiblings = function (elem) {
 
 // var elem = document.querySelector('#some-element');
 // var siblings = getSiblings(elem);
-
-

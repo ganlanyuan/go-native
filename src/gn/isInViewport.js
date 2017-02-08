@@ -1,7 +1,4 @@
-// isInViewport
-// @require "/src/gn/base.js"
-
-gn.isInViewport = function ( elem ) {
+export var isInViewport = function ( elem ) {
   var rect = elem.getBoundingClientRect();
   return (
     rect.bottom > 0 &&

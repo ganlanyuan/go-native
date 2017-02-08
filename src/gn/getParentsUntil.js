@@ -1,8 +1,6 @@
-// getParentsUntil
-// @require "/src/gn/base.js"
-// @require "./bower_components/domtokenlist/src/token-list.js"
+import { token_list } from "../vendors/token-list.js";
 
-gn.getParentsUntil = function (elem, parent, selector) {
+export var getParentsUntil = function (elem, parent, selector) {
 
   var parents = [];
   if ( parent ) {

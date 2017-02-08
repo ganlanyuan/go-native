@@ -1,8 +1,4 @@
-// unwrap
-// @require "/src/gn/base.js"
-// @require "/src/gn/isNodeList.js"
-
-gn.unwrap = function (els) {
+export var unwrap = function (els) {
   var elsNew = (gn.isNodeList(els)) ? els : [els];
   for (var i = elsNew.length; i--;) {
     var el = elsNew[i];

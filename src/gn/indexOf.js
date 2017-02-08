@@ -1,7 +1,4 @@
-// indexOf
-// @require "/src/gn/base.js"
-
-gn.indexOf = function (array, item) {
+export var indexOf = function (array, item) {
   for (var i = 0; i < array.length; i++) {
     if (array[i] === item) { return i; }
   }

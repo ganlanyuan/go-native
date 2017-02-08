@@ -1,7 +1,4 @@
-// isNodeList
-// @require "/src/gn/base.js"
-
-gn.isNodeList = function (el) {
+export var isNodeList = function (el) {
   // Only NodeList has the "item()" function
-  return typeof el.item !== 'undefined'; 
+  return typeof el.item !== "undefined"; 
 };

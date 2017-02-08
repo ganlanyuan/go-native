@@ -1,8 +1,4 @@
-// append
-// @require "/src/gn/base.js"
-// @require "/src/gn/isNodeList.js"
-
-gn.append = function(els, data) {
+export var append = function(els, data) {
   var els_new = (gn.isNodeList(els)) ? els : [els], i;
 
   if (typeof data.nodeType !== "undefined" && data.nodeType === 1) {
@@ -11,7 +7,7 @@ gn.append = function(els, data) {
     }
   } else if (typeof data === "string") {
     for (i = els_new.length; i--;) {
-      els_new[i].insertAdjacentHTML('beforeend', data);
+      els_new[i].insertAdjacentHTML("beforeend", data);
     }
   } else if (gn.isNodeList(data)) {
     var fragment = document.createDocumentFragment();
@@ -23,4 +19,3 @@ gn.append = function(els, data) {
     }
   }
 };
-

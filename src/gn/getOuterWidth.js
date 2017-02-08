@@ -1,9 +1,6 @@
-// getOuterWidth
-// @require "/src/gn/base.js"
-// @require "/bower_components/Units/Length.js"
-// 1. outer size: content + padding + border + margin //
+import { Length } from "../vendors/Length.js";
 
-gn.getOuterWidth = function (el) {
+export var getOuterWidth = function (el) {
   var pattern = /\d/, // check if value contains digital number
       width = el.offsetWidth,
       style = el.currentStyle || getComputedStyle(el),
@@ -14,10 +11,10 @@ gn.getOuterWidth = function (el) {
   return width;
 };
 
+// 1. outer size: content + padding + border + margin //
 // 2. offset size: content + padding + border //
 //    el.offsetWidth  
 //    el.offsetHeight
-
 // 3. client size: content + padding
 //    el.clientWidth  
 //    el.clientHeight

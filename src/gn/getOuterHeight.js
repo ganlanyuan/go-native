@@ -1,8 +1,6 @@
-// getOuterHeight
-// @require "/src/gn/base.js"
-// @require "/bower_components/Units/Length.js"
+import { Length } from "../vendors/Length.js";
 
-gn.getOuterHeight = function (el) {
+export var getOuterHeight = function (el) {
   var pattern = /\d/, // check if value contains digital number
       height = el.offsetHeight,
       style = el.currentStyle || getComputedStyle(el),
@@ -13,6 +11,7 @@ gn.getOuterHeight = function (el) {
   return height;
 };
 
+// 1. outer size: content + padding + border + margin //
 // 2. offset size: content + padding + border //
 //    el.offsetWidth  
 //    el.offsetHeight

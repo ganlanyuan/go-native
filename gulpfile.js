@@ -1,14 +1,18 @@
-var config = {
-  sassLang: 'libsass',
+const gulp = require('gulp');
+const babel = require("gulp-babel");
+const sourcemaps = require('gulp-sourcemaps');
+const concat = require('gulp-concat');
+const uglify = require('gulp-uglify');
+const jshint = require('gulp-jshint');
+const stylish = require('jshint-stylish');
+const path = require('path');
+const inject = require('gulp-inject');
+const browserSync = require('browser-sync').create();
+const rename = require('gulp-rename');
+const mergeStream = require('merge-stream');
+
+let config = {
   sourcemaps: 'sourcemaps',
-  browserSync: {
-    server: {
-      baseDir: './'
-    },
-    port: '3000',
-    open: true,
-    notify: false
-  },
 
   watch: {
     js: 'tests/js/*.js',
@@ -52,25 +56,6 @@ var config = {
   },
 };
 
-var gulp = require('gulp');
-var php = require('gulp-connect-php');
-var libsass = require('gulp-sass');
-var rubysass = require('gulp-ruby-sass');
-var sourcemaps = require('gulp-sourcemaps');
-var modernizr = require('gulp-modernizr');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var jshint = require('gulp-jshint');
-var stylish = require('jshint-stylish');
-var imagemin = require('gulp-imagemin');
-var svgstore = require('gulp-svgstore');
-var path = require('path');
-var svgmin = require('gulp-svgmin');
-var svg2png = require('gulp-svg2png');
-var inject = require('gulp-inject');
-var browserSync = require('browser-sync').create();
-var rename = require('gulp-rename');
-var mergeStream = require('merge-stream');
 
 function errorlog (error) {  
   console.error.bind(error);  
@@ -78,47 +63,67 @@ function errorlog (error) {
 }  
 
 // browser-sync
-gulp.task('sync', function() {
-  browserSync.init(config.browserSync);
+gulp.task('browserSync', function() {
+  browserSync.init({
+    server: {
+      baseDir: './'
+    },
+    port: '3000',
+    open: false,
+    notify: false
+  });
 });
 
 // Watch
 gulp.task('watch', function () {
-  gulp.watch(config.js.src, ['js']);
+  gulp.watch('src/**/*.js', ['js']).on('change', browserSync.reload);
   gulp.watch(config.watch.js).on('change', browserSync.reload);
   gulp.watch(config.watch.html).on('change', browserSync.reload);
 });
 
 // JS Task  
-gulp.task('js', function () {  
-  var tasks = [], 
-      srcs = config.js.src,
-      names = config.js.name;
-      
-  for (var i = 0; i < srcs.length; i++) {
-    tasks.push(
-      gulp.src(srcs[i])
-          .pipe(sourcemaps.init())
-          .pipe(jshint())
-          .pipe(jshint.reporter(stylish))
-          .pipe(concat(names[i]))
-          .on('error', errorlog)  
-          .pipe(gulp.dest(config.js.dest))
-          .pipe(rename(names[i].replace('.js', '.min.js')))
-          .pipe(uglify(config.js.options[i]))
-          .pipe(sourcemaps.write(config.sourcemaps))
-          .pipe(gulp.dest(config.js.dest))
-    );
-  }
-
-  return mergeStream(tasks)
-      .pipe(browserSync.stream());
+gulp.task('js', function () {
+  return gulp.src('src/**/*.js')
+    .pipe(sourcemaps.init())
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    // .pipe(concat('all.js'))
+    // .pipe(gulp.dest('dist'))
+    // .pipe(rename())
+    // .pipe(uglify(config.js.options[i]))
+    // .pipe(sourcemaps.write(config.sourcemaps))
+    .pipe(gulp.dest('dist'));
 });
+// gulp.task('js', function () {  
+//   let tasks = [], 
+//       srcs = config.js.src,
+//       names = config.js.name;
+      
+//   for (let i = 0; i < srcs.length; i++) {
+//     tasks.push(
+//       gulp.src(srcs[i])
+//           .pipe(sourcemaps.init())
+//           .pipe(jshint())
+//           .pipe(jshint.reporter(stylish))
+//           .pipe(concat(names[i]))
+//           .on('error', errorlog)  
+//           .pipe(gulp.dest(config.js.dest))
+//           .pipe(rename(names[i].replace('.js', '.min.js')))
+//           .pipe(uglify(config.js.options[i]))
+//           .pipe(sourcemaps.write(config.sourcemaps))
+//           .pipe(gulp.dest(config.js.dest))
+//     );
+//   }
+
+//   return mergeStream(tasks)
+//       .pipe(browserSync.stream());
+// });
 
 // Default Task
 gulp.task('default', [
   // 'js_min',
   'js',
-  'sync', 
+  'browserSync', 
   'watch', 
 ]);  

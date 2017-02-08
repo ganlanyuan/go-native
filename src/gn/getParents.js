@@ -1,8 +1,6 @@
-// getParents
-// @require "/src/gn/base.js"
-// @require "./bower_components/domtokenlist/src/token-list.js"
+import { token_list } from "../vendors/token-list.js";
 
-gn.getParents = function (elem, selector) {
+export var getParents = function (elem, selector) {
 
   var parents = [];
   if ( selector ) {
