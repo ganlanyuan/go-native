@@ -6,6 +6,7 @@ const eslint = require('rollup-plugin-eslint');
 const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const uglify = require('rollup-plugin-uglify');
+const multiEntry = require('rollup-plugin-multi-entry');
 
 const browserSync = require('browser-sync').create();
 // const rename = require('gulp-rename');
@@ -92,6 +93,40 @@ gulp.task('script', function () {
   })
 });
 
+gulp.task('script-ie8', function () {
+  return rollup({
+    entry: [
+      "bower_components/nwmatcher/src/nwmatcher.js",
+      "bower_components/selectivizr_will/selectivizr.js",
+      "bower_components/respond/dest/respond.src.js",
+
+      "src/es5/**/*.js",
+      "src/ie8/**/*.js"
+    ],
+    legacy: true,
+    plugins: [
+      multiEntry(),
+      // resolve + commonjs: translate commonjs module to es module
+      // resolve({
+      //   jsnext: true,
+      //   main: true,
+      //   browser: true,
+      // }),
+      // commonjs(),
+      // eslint(),
+      // buble(),
+      // uglify(),
+    ],
+  }).then(function (bundle) {
+    return bundle.write({
+      dest: 'dist/go-native.ie8.js',
+      format: 'iife',
+      moduleName: 'window',
+      sourceMap: 'true',
+    })
+  })
+});
+
 // JS Task  
 // gulp.task('js', function () {
 //   return gulp.src('src/**/*.js')
@@ -154,6 +189,7 @@ gulp.task('watch', function () {
 gulp.task('default', [
   // 'js_min',
   'script',
+  'script-ie8',
   'browserSync', 
   // 'watch', 
 ]);  
