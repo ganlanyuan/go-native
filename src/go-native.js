@@ -50,6 +50,3 @@ export var gn = (function (g) {
 
   return g;
 })(window.gn || {});
-
-var myFun = () => 19;
-myFun();
