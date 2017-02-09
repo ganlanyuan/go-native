@@ -46,7 +46,7 @@ export var optimizedResize = (function() {
     // public method to add additional callback
     add: function(callback) {
       if (!callbacks.length) {
-        window.addEventListener('resize', resize);
+        window.addEventListener("resize", resize);
       }
       addCallback(callback);
     }
@@ -55,5 +55,5 @@ export var optimizedResize = (function() {
 
 // start process
 // gn.optimizedResize.add(function() {
-//   console.log('Resource conscious resize callback!')
+//   console.log("Resource conscious resize callback!")
 // });

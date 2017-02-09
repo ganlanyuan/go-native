@@ -1,9 +1,7 @@
-import { token_list } from "../vendors/token-list.js";
+import "../../bower_components/domtokenlist/src/token-list.js";
 
-export var getClosest = function (elem, selector) {
-
+export function getClosest(elem, selector) {
   var firstChar = selector.charAt(0);
-
   // Get closest match
   for ( ; elem && elem !== document; elem = elem.parentNode ) {
 
@@ -34,10 +32,8 @@ export var getClosest = function (elem, selector) {
     }
 
   }
-
   return false;
-
-};
+}
 
 // var elem = document.querySelector("#some-element");
 // var closest = getClosest(elem, ".some-class");

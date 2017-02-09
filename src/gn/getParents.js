@@ -1,7 +1,6 @@
-import { token_list } from "../vendors/token-list.js";
+import "../../bower_components/domtokenlist/src/token-list.js";
 
-export var getParents = function (elem, selector) {
-
+export function getParents(elem, selector) {
   var parents = [];
   if ( selector ) {
     var firstChar = selector.charAt(0);
@@ -12,21 +11,21 @@ export var getParents = function (elem, selector) {
     if ( selector ) {
 
       // If selector is a class
-      if ( firstChar === '.' ) {
+      if ( firstChar === "." ) {
         if ( elem.classList.contains( selector.substr(1) ) ) {
           parents.push( elem );
         }
       }
 
       // If selector is an ID
-      if ( firstChar === '#' ) {
+      if ( firstChar === "#" ) {
         if ( elem.id === selector.substr(1) ) {
           parents.push( elem );
         }
       }
 
       // If selector is a data attribute
-      if ( firstChar === '[' ) {
+      if ( firstChar === "[" ) {
         if ( elem.hasAttribute( selector.substr(1, selector.length - 1) ) ) {
           parents.push( elem );
         }
@@ -49,9 +48,8 @@ export var getParents = function (elem, selector) {
   } else {
     return parents;
   }
+}
 
-};
-
-// var elem = document.querySelector('#some-element');
-// var parents = getParents(elem, '.some-class');
+// var elem = document.querySelector("#some-element");
+// var parents = getParents(elem, ".some-class");
 // var allParents = getParents(elem.parentNode);

@@ -1,4 +1,5 @@
-export function token_list(){
+/** DOMTokenList polyfill */
+(function(){
 	"use strict";
 	
 	/*<*/
@@ -349,4 +350,4 @@ export function token_list(){
 				return !!force;
 			};
 	}
-};
+}());

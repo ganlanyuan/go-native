@@ -1,4 +1,4 @@
-export var wrapAll = function (els, wrapper) {
+export function wrapAll(els, wrapper) {
   // Cache the current parent and sibling of the first element.
   var el = els.length ? els[0] : els,
       parent  = el.parentNode,
@@ -19,4 +19,4 @@ export var wrapAll = function (els, wrapper) {
   } else {
     parent.appendChild(wrapper);
   }
-};
+}

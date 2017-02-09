@@ -1,6 +1,6 @@
-import { Length } from "../vendors/Length.js";
+import "../vendors/Length.js";
 
-export var getHeight = function (el) {
+export function getHeight(el) {
   var pattern = /\d/, // check if value contains digital number
       height = el.clientHeight,
       style = el.currentStyle || getComputedStyle(el),
@@ -9,7 +9,7 @@ export var getHeight = function (el) {
 
   height -= (parseInt(Length.toPx(el, paddingTop)) + parseInt(Length.toPx(el, paddingBottom)));
   return height;
-};
+}
 
 // 1. outer size: content + padding + border + margin //
 // 2. offset size: content + padding + border //

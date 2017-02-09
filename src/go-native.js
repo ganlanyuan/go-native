@@ -1,7 +1,7 @@
 import { isNodeList } from "./gn/isNodeList";
 import { append } from "./gn/append";
 import { createElement } from "./gn/createElement";
-import { ready } from "./gn/dom.ready";
+import { ready } from "./gn/ready";
 import { extend } from "./gn/extend";
 import { getClosest } from "./gn/getClosest";
 import { getHeight } from "./gn/getHeight";
@@ -49,3 +49,6 @@ export var gn = (function (g) {
 
   return g;
 })(window.gn || {});
+
+var myFun = () => 19;
+myFun();

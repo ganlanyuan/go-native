@@ -1,4 +1,4 @@
-export var createElement = function(obj) {
+export function createElement(obj) {
   if (!obj || !obj.tagName) {
     throw { message : "Invalid argument" };
   }
@@ -20,15 +20,16 @@ export var createElement = function(obj) {
   }
 
   if (typeof obj.children !== "undefined") {
-    var child, i = 0;
+    var i = 0, len = obj.children.length;
 
-    while (child = obj.children[i++]) {
-      el.appendChild(createElement(child));
-    }
+    while (i < len) {
+      el.appendChild(createElement(obj.children[i]));
+      i++;
+    } 
   }
 
   return el;
-};
+}
 
 // var el = gn.createElement({
 //  tagName: "div",

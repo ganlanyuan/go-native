@@ -1,5 +1,7 @@
-export var prepend = function(els, data) {
-  var els_new = (gn.isNodeList(els)) ? els : [els], i;
+import { isNodeList } from "./isNodeList";
+
+export function prepend(els, data) {
+  var els_new = (isNodeList(els)) ? els : [els], i;
 
   if (typeof data.nodeType !== "undefined" && data.nodeType === 1) {
     for (i = els_new.length; i--;) {
@@ -7,9 +9,9 @@ export var prepend = function(els, data) {
     }
   } else if (typeof data === "string") {
     for (i = els_new.length; i--;) {
-      els_new[i].insertAdjacentHTML('afterbegin', data);
+      els_new[i].insertAdjacentHTML("afterbegin", data);
     }
-  } else if (gn.isNodeList(data)) {
+  } else if (isNodeList(data)) {
     var fragment = document.createDocumentFragment();
     for (i = data.length; i--;) {
       fragment.insertBefore(data[i], fragment.firstChild);
@@ -18,4 +20,4 @@ export var prepend = function(els, data) {
       els_new[j].insertBefore(fragment, els_new[j].firstChild);
     }
   }
-};
+}

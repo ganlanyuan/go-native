@@ -1,5 +1,4 @@
-export var ready = function ( fn ) {
-
+export function ready(fn) {
   // Sanity check
   if ( typeof fn !== "function" ) { return; }
 
@@ -10,4 +9,4 @@ export var ready = function ( fn ) {
 
   // Otherwise, wait until document is loaded
   document.addEventListener( "DOMContentLoaded", fn, false );
-};
+}

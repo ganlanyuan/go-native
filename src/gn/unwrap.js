@@ -1,5 +1,7 @@
-export var unwrap = function (els) {
-  var elsNew = (gn.isNodeList(els)) ? els : [els];
+import { isNodeList } from "./isNodeList";
+
+export function unwrap(els) {
+  var elsNew = (isNodeList(els)) ? els : [els];
   for (var i = elsNew.length; i--;) {
     var el = elsNew[i];
 
@@ -14,4 +16,4 @@ export var unwrap = function (els) {
     // remove the empty element
     parent.removeChild(el);
   }
-};
+}

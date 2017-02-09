@@ -1,5 +1,7 @@
-export var append = function(els, data) {
-  var els_new = (gn.isNodeList(els)) ? els : [els], i;
+import { isNodeList } from "./isNodeList";
+
+export function append(els, data) {
+  var els_new = (isNodeList(els)) ? els : [els], i;
 
   if (typeof data.nodeType !== "undefined" && data.nodeType === 1) {
     for (i = els_new.length; i--;) {
@@ -9,7 +11,7 @@ export var append = function(els, data) {
     for (i = els_new.length; i--;) {
       els_new[i].insertAdjacentHTML("beforeend", data);
     }
-  } else if (gn.isNodeList(data)) {
+  } else if (isNodeList(data)) {
     var fragment = document.createDocumentFragment();
     for (i = data.length; i--;) {
       fragment.insertBefore(data[i], fragment.firstChild);
@@ -18,4 +20,4 @@ export var append = function(els, data) {
       els_new[j].appendChild(fragment);
     }
   }
-};
+}

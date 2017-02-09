@@ -11,7 +11,7 @@
       var wrapper=function(e) {
         e.target=e.srcElement;
         e.currentTarget=self;
-        if (typeof listener.handleEvent != 'undefined') {
+        if (typeof listener.handleEvent != "undefined") {
           listener.handleEvent(e);
         } else {
           listener.call(self,e);

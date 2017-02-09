@@ -1,8 +1,8 @@
-export var extend = function () {
+export function extend() {
   var obj, name, copy,
-  target = arguments[0] || {},
-  i = 1,
-  length = arguments.length;
+      target = arguments[0] || {},
+      i = 1,
+      length = arguments.length;
 
   for (; i < length; i++) {
     if ((obj = arguments[i]) !== null) {
@@ -18,4 +18,4 @@ export var extend = function () {
     }
   }
   return target;
-};
+}

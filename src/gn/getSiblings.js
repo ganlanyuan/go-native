@@ -1,4 +1,4 @@
-export var getSiblings = function (elem) {
+export function getSiblings(elem) {
   var siblings = [];
   var sibling = elem.parentNode.firstChild;
   for ( ; sibling; sibling = sibling.nextSibling ) {
@@ -7,7 +7,7 @@ export var getSiblings = function (elem) {
     }
   }
   return siblings;
-};
+}
 
 // var elem = document.querySelector('#some-element');
 // var siblings = getSiblings(elem);
