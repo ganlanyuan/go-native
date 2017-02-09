@@ -1,3 +1,4 @@
+import "../bower_components/requestAnimationFrame/requestAnimationFrame.js";
 import { isNodeList } from "./gn/isNodeList";
 import { append } from "./gn/append";
 import { createElement } from "./gn/createElement";
