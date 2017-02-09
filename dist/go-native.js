@@ -484,7 +484,9 @@ function getClosest(elem, selector) {
 // var closestLink = getClosest(elem, "a");
 // var closestExcludingElement = getClosest(elem.parentNode, ".some-class");
 
-var Length$1 = function (Length) {
+var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+(function (window, document, undefined) {
     "use strict";
 
     // create a test element
@@ -631,7 +633,7 @@ var Length$1 = function (Length) {
     window.Length = {
         toPx: toPx
     };
-}(window.Length || {});
+})(commonjsGlobal, commonjsGlobal.document);
 
 function getHeight(el) {
     var pattern = /\d/,
