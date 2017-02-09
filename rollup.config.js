@@ -7,9 +7,9 @@ import commonjs from 'rollup-plugin-commonjs';
 export default {
   entry: 'src/go-native.js',
   dest: 'dist/go-native.js',
-  format: 'umd',
+  format: 'iife',
   sourceMap: 'true',
-  moduleName: 'gn',
+  moduleName: 'window',
   plugins: [
     // resolve + commonjs: translate commonjs module to es module
     resolve({

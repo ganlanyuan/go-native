@@ -1,8 +1,5 @@
-(function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.gn = global.gn || {})));
-}(this, (function (exports) { 'use strict';
+(function (exports) {
+'use strict';
 
 // Adapted from https://gist.github.com/paulirish/1579671 which derived from 
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
@@ -1204,7 +1201,5 @@ var gn = function (g) {
 
 exports.gn = gn;
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
-})));
+}((this.window = this.window || {})));
 //# sourceMappingURL=go-native.js.map
