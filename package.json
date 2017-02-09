@@ -1,0 +1,32 @@
+{
+  "name": "go-native",
+  "version": "1.0.0",
+  "description": "![version](https://img.shields.io/badge/Version-0.1.0-green.svg)    Javascript polyfills which let you use native javascript.    [CSS3 selectors](https://www.w3.org/TR/css3-selectors/), [CSS3 media queries](https://www.w3.org/TR/css3-mediaqueries/), ES5 extensions and a bunch of DOM utilities.   Tested on *IE 8+, Firefox 17+, Chrome 15+, Safari 4+, Opera 10+*.",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ganlanyuan/go-native.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ganlanyuan/go-native/issues"
+  },
+  "homepage": "https://github.com/ganlanyuan/go-native#readme",
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "rollup": "^0.41.4",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^7.0.0",
+    "rollup-plugin-eslint": "^3.0.0",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-watch": "^3.2.2"
+  }
+}

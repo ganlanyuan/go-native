@@ -1,11 +1,5 @@
-*.DS_Store
-*.codekit
-*.sublime-project
-*.sublime-workspace
-
-/.codekit-cache/
 /bower_components/
 /node_modules/
 
 LICENSE
-package.json
+*.DS_Store
