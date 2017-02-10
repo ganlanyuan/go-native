@@ -1,3 +1,5 @@
+import "../../dist/go-native.js"
+
 function success(el) { el.className = 'success'; }
 function fail(el) { el.className = 'fail'; }
 

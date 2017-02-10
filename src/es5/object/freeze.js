@@ -1,16 +1,26 @@
-// freeze
 if (!Object.freeze) {
-    Object.freeze = function (object) {
-        return object;
+    Object.freeze = function freeze(object) {
+      if (Object(object) !== object) {
+        throw new TypeError('Object.freeze can only be called on Objects.');
+      }
+      // this is misleading and breaks feature-detection, but
+      // allows "securable" code to "gracefully" degrade to working
+      // but insecure code.
+      return object;
     };
-} else if (require("system").engine.indexOf("rhino") >= 0) {
-    // XXX workaround for a Rhino bug.
-    var freeze = Object.freeze;
-    Object.freeze = function (object) {
-        if (typeof object == "function") {
-            return object;
+  }
+
+  // detect a Rhino bug and patch it
+  try {
+    Object.freeze(function () {});
+  } catch (exception) {
+    Object.freeze = (function (freezeObject) {
+      return function freeze(object) {
+        if (typeof object === 'function') {
+          return object;
         } else {
-            return freeze(object);
+          return freezeObject(object);
         }
-    };
+      };
+    }(Object.freeze));
 }

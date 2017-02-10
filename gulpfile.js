@@ -47,13 +47,57 @@ gulp.task('script', function () {
       buble(),
       // uglifyRollup(),
     ],
+    treeshake: false,
     // legacy: true,
   }).then(function (bundle) {
     return bundle.write({
       dest: 'dist/go-native.js',
-      // format: 'iife',
+      format: 'es',
       // moduleName: 'window',
       // sourceMap: 'true',
+    })
+  })
+});
+
+gulp.task('test', function () {
+  return rollup({
+    entry: 'tests/js/go-native.test.js',
+    plugins: [
+      // resolve + commonjs: translate commonjs module to es module
+      resolve({
+        jsnext: true,
+        main: true,
+        browser: true,
+      }),
+      commonjs(),
+      // eslint({
+      //   exclude: [
+      //     'src/vendors/**'
+      //   ],
+      // }),
+      // buble(),
+      // uglifyRollup(),
+    ],
+    treeshake: false,
+    // legacy: true,
+  }).then(function (bundle) {
+    return bundle.write({
+      dest: 'tests/js/test.min.js',
+      format: 'iife',
+      moduleName: 'window',
+      // sourceMap: 'true',
+    })
+  })
+});
+
+gulp.task('test1', function () {
+  return rollup({
+    entry: 'c.js',
+    treeshake: false,
+  }).then(function (bundle) {
+    return bundle.write({
+      dest: 'bundle.js',
+      format: 'es',
     })
   })
 });
@@ -117,9 +161,10 @@ gulp.task('watch', function () {
 
 // Default Task
 gulp.task('default', [
-  'browserSync', 
-  'script',
-  'script-ie8',
-  'min',
-  'watch', 
+  // 'browserSync', 
+  // 'script',
+  // 'script-ie8',
+  // 'min',
+  // 'watch', 
+  'test1'
 ]);  

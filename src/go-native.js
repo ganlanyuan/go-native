@@ -27,30 +27,28 @@ import { unwrap } from "./gn/unwrap";
 import { wrap } from "./gn/wrap";
 import { wrapAll } from "./gn/wrapAll";
 
-var gn = (function (g) {
-  g.isNodeList = isNodeList;
-  g.append = append;
-  g.createElement = createElement;
-  g.ready = ready;
-  g.extend = extend;
-  g.getClosest = getClosest;
-  g.getHeight = getHeight;
-  g.getOffsetLeft = getOffsetLeft;
-  g.getOffsetTop = getOffsetTop;
-  g.getOuterHeight = getOuterHeight;
-  g.getOuterWidth = getOuterWidth;
-  g.getParents = getParents;
-  g.getParentsUntil = getParentsUntil;
-  g.getSiblings = getSiblings;
-  g.getSupportedProp = getSupportedProp;
-  g.getWidth = getWidth;
-  g.indexOf = indexOf;
-  g.isInViewport = isInViewport;
-  g.optimizedResize = optimizedResize;
-  g.prepend = prepend;
-  g.unwrap = unwrap;
-  g.wrap = wrap;
-  g.wrapAll = wrapAll;
-
-  return g;
-})(window.gn || {});
+var gn = {
+  isNodeList: isNodeList,
+  append: append,
+  createElement: createElement,
+  ready: ready,
+  extend: extend,
+  getClosest: getClosest,
+  getHeight: getHeight,
+  getOffsetLeft: getOffsetLeft,
+  getOffsetTop: getOffsetTop,
+  getOuterHeight: getOuterHeight,
+  getOuterWidth: getOuterWidth,
+  getParents: getParents,
+  getParentsUntil: getParentsUntil,
+  getSiblings: getSiblings,
+  getSupportedProp: getSupportedProp,
+  getWidth: getWidth,
+  indexOf: indexOf,
+  isInViewport: isInViewport,
+  optimizedResize: optimizedResize,
+  prepend: prepend,
+  unwrap: unwrap,
+  wrap: wrap,
+  wrapAll: wrapAll,
+};
