@@ -27,7 +27,7 @@ import { unwrap } from "./gn/unwrap";
 import { wrap } from "./gn/wrap";
 import { wrapAll } from "./gn/wrapAll";
 
-export var gn = (function (g) {
+var gn = (function (g) {
   g.isNodeList = isNodeList;
   g.append = append;
   g.createElement = createElement;

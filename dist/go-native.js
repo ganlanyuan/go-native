@@ -1,6 +1,3 @@
-(function (exports) {
-'use strict';
-
 // ChildNode.remove
 (function () {
   "use strict";
@@ -1254,7 +1251,3 @@ var gn = (function (g) {
 
   return g;
 })(window.gn || {});
-
-exports.gn = gn;
-
-}((this.window = this.window || {})));

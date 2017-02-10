@@ -51,8 +51,8 @@ gulp.task('script', function () {
   }).then(function (bundle) {
     return bundle.write({
       dest: 'dist/go-native.js',
-      format: 'iife',
-      moduleName: 'window',
+      // format: 'iife',
+      // moduleName: 'window',
       // sourceMap: 'true',
     })
   })
@@ -100,9 +100,17 @@ gulp.task('browserSync', function() {
   });
 });
 
+gulp.task('min', function () {
+  return gulp.src('dist/go-native.js')
+    .pipe(uglify())
+    .pipe(rename('go-native.min.js'))
+    .pipe(gulp.dest('dist'))
+});
+
 // Watch
 gulp.task('watch', function () {
   gulp.watch('src/**/*.js', ['script']).on('change', browserSync.reload);
+  gulp.watch('src/**/*.js', ['min']);
   gulp.watch(watch.js).on('change', browserSync.reload);
   gulp.watch(watch.html).on('change', browserSync.reload);
 });
@@ -112,5 +120,6 @@ gulp.task('default', [
   'browserSync', 
   'script',
   'script-ie8',
+  'min',
   'watch', 
 ]);  
