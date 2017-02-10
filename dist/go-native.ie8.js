@@ -1,6 +1,3 @@
-(function (exports) {
-'use strict';
-
 /*
  * Copyright (C) 2007-2015 Diego Perini
  * All rights reserved.
@@ -3491,6 +3488,4 @@ if (!String.prototype.trim) {
     }
   } 
 })();
-
-}((this.window = this.window || {})));
 //# sourceMappingURL=go-native.ie8.js.map

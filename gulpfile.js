@@ -66,7 +66,6 @@ function errorlog (error) {
 gulp.task('script', function () {
   return rollup({
     entry: 'src/go-native.js',
-    legacy: true,
     plugins: [
       // resolve + commonjs: translate commonjs module to es module
       resolve({
@@ -75,20 +74,22 @@ gulp.task('script', function () {
         browser: true,
       }),
       commonjs(),
-      eslint({
-        exclude: [
-          'src/vendors/**'
-        ],
-      }),
-      buble(),
-      uglify(),
+      // eslint({
+      //   exclude: [
+      //     'src/vendors/**'
+      //   ],
+      // }),
+      // buble(),
+      // uglify(),
     ],
+    // legacy: true,
   }).then(function (bundle) {
     return bundle.write({
       dest: 'dist/go-native.js',
       format: 'iife',
       moduleName: 'window',
       sourceMap: 'true',
+      // exports: 'none',
     })
   })
 });
@@ -103,7 +104,6 @@ gulp.task('script-ie8', function () {
       "src/es5/**/*.js",
       "src/ie8/**/*.js"
     ],
-    legacy: true,
     plugins: [
       multiEntry(),
       // resolve + commonjs: translate commonjs module to es module
@@ -117,11 +117,12 @@ gulp.task('script-ie8', function () {
       // buble(),
       // uglify(),
     ],
+    legacy: true,
   }).then(function (bundle) {
     return bundle.write({
       dest: 'dist/go-native.ie8.js',
-      format: 'iife',
-      moduleName: 'window',
+      // format: 'iife',
+      // moduleName: 'window',
       sourceMap: 'true',
     })
   })
@@ -188,8 +189,8 @@ gulp.task('watch', function () {
 // Default Task
 gulp.task('default', [
   // 'js_min',
+  'browserSync', 
   'script',
   'script-ie8',
-  'browserSync', 
   // 'watch', 
 ]);  
