@@ -768,14 +768,14 @@ function unwrapTest() {
  * run tests
  */
 if(doc.getElementsByTagName('HTML')[0].className === 'ie8') {
-  // preventDefaultTest();
-  // stopPropagationTest();
+  preventDefaultTest();
+  stopPropagationTest();
   eventListenerTest();
   innerWidthTest();
   innerHeightTest();
   pageXOffsetTest();
   pageYOffsetTest();
-  // getComputedStyleElementTest();
+  getComputedStyleElementTest();
   elementPropTest();
   textContentTest();
 }

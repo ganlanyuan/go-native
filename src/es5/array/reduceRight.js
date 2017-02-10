@@ -7,12 +7,12 @@ if (!Array.prototype.reduceRight) {
             throw new TypeError();
 
         // no value to return if no initial value, empty array
-        if (len == 0 && arguments.length == 1)
+        if (len === 0 && arguments.length === 1)
             throw new TypeError();
 
-        var i = len - 1;
+        var i = len - 1, rv;
         if (arguments.length >= 2) {
-            var rv = arguments[1];
+            rv = arguments[1];
         } else {
             do {
                 if (i in this) {
