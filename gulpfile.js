@@ -123,49 +123,44 @@ gulp.task('script-ie8', function () {
       dest: 'dist/go-native.ie8.js',
       // format: 'iife',
       // moduleName: 'window',
-      sourceMap: 'true',
     })
   })
 });
 
 // JS Task  
-// gulp.task('js', function () {
-//   return gulp.src('src/**/*.js')
-//     .pipe(sourcemaps.init())
-//     .pipe(babel({
-//       presets: ['es2015']
-//     }))
-    // .pipe(concat('all.js'))
-    // .pipe(gulp.dest('dist'))
-    // .pipe(rename())
-    // .pipe(uglify(config.js.options[i]))
-    // .pipe(sourcemaps.write(config.sourcemaps))
-//     .pipe(gulp.dest('dist'));
-// });
-// gulp.task('js', function () {  
-//   let tasks = [], 
-//       srcs = config.js.src,
-//       names = config.js.name;
+gulp.task('js', function () {  
+  let tasks = [], 
+      srcs = config.js.src,
+      names = config.js.name;
       
-//   for (let i = 0; i < srcs.length; i++) {
-//     tasks.push(
-//       gulp.src(srcs[i])
-//           .pipe(sourcemaps.init())
-//           .pipe(jshint())
-//           .pipe(jshint.reporter(stylish))
-//           .pipe(concat(names[i]))
-//           .on('error', errorlog)  
-//           .pipe(gulp.dest(config.js.dest))
-//           .pipe(rename(names[i].replace('.js', '.min.js')))
-//           .pipe(uglify(config.js.options[i]))
-//           .pipe(sourcemaps.write(config.sourcemaps))
-//           .pipe(gulp.dest(config.js.dest))
-//     );
-//   }
+  return gulp.src([
+      "bower_components/nwmatcher/src/nwmatcher.js",
+      "bower_components/selectivizr_will/selectivizr.js",
+      "bower_components/respond/dest/respond.src.js",
 
-//   return mergeStream(tasks)
-//       .pipe(browserSync.stream());
-// });
+      "src/es5/*.js",
+      "src/ie8/*.js"
+    ])
+    .pipe(sourcemaps.init())
+    .pipe(jshint())
+    .pipe(jshint.reporter(stylish))
+    .pipe(concat('go-native.ie8.js'))
+    .on('error', errorlog)  
+    .pipe(gulp.dest('dist'))
+    .pipe(rename('go-native.ie8.min.js'))
+    .pipe(uglify({
+      mangle: false,
+      output: {
+        quote_keys: true,
+      },
+      compress: {
+        properties: false,
+      }
+    }))
+    .pipe(sourcemaps.write(config.sourcemaps))
+    .pipe(gulp.dest('dist'))
+    .pipe(browserSync.stream());
+});
 
 // browser-sync
 gulp.task('browserSync', function() {
