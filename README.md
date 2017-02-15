@@ -1,6 +1,6 @@
 # Go-native
 ![version](https://img.shields.io/badge/Version-1.0.0-green.svg)   
-Javascript polyfills which let you use native javascript. Rewrite with ES2015 module.   
+Javascript polyfills which let you use native javascript. **Rewrite with ES2015 module**.   
 [CSS3 selectors](https://www.w3.org/TR/css3-selectors/), [CSS3 media queries](https://www.w3.org/TR/css3-mediaqueries/), ES5 extensions and a bunch of DOM utilities.  
 Tested on *IE 8+, Firefox 17+, Chrome 15+, Safari 4+, Opera 10+*.  
 
