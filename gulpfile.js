@@ -69,7 +69,7 @@ gulp.task('test', function () {
         main: true,
         browser: true,
       }),
-      commonjs(),
+      // commonjs(),
       // eslint({
       //   exclude: [
       //     'src/vendors/**'
@@ -161,10 +161,10 @@ gulp.task('watch', function () {
 
 // Default Task
 gulp.task('default', [
-  // 'browserSync', 
-  // 'script',
+  'browserSync', 
+  'watch', 
+  'script',
   // 'script-ie8',
-  // 'min',
-  // 'watch', 
-  'test1'
+  'min',
+  // 'test1'
 ]);  

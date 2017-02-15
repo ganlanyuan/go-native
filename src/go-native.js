@@ -1,8 +1,8 @@
 import "./utilities/childNode.remove";
 import "./utilities/number.isNaN";
 import "./utilities/string.prototype.repeat";
+import "./vendors/requestAnimationFrame";
 
-import "../bower_components/requestAnimationFrame/requestAnimationFrame";
 import { isNodeList } from "./gn/isNodeList";
 import { append } from "./gn/append";
 import { createElement } from "./gn/createElement";
