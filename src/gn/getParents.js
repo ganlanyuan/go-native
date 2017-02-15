@@ -1,4 +1,4 @@
-import "../../bower_components/domtokenlist/src/token-list.js";
+import "../vendors/token-list.js";
 
 export function getParents(elem, selector) {
   var parents = [];

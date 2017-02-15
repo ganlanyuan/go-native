@@ -1,4 +1,4 @@
-import "../../bower_components/Units/Length.js";
+import "../vendors/Length.js";
 
 export function getOuterWidth(el) {
   var pattern = /\d/, // check if value contains digital number

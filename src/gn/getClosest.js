@@ -1,4 +1,4 @@
-import "../../bower_components/domtokenlist/src/token-list.js";
+import "../vendors/token-list.js";
 
 export function getClosest(elem, selector) {
   var firstChar = selector.charAt(0);
