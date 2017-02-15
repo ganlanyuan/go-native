@@ -1,15 +1,15 @@
-## Go-native
+# Go-native
 ![version](https://img.shields.io/badge/Version-1.0.0-green.svg)   
 Javascript polyfills which let you use native javascript. Rewrite with ES2015 module.   
 [CSS3 selectors](https://www.w3.org/TR/css3-selectors/), [CSS3 media queries](https://www.w3.org/TR/css3-mediaqueries/), ES5 extensions and a bunch of DOM utilities.  
 Tested on *IE 8+, Firefox 17+, Chrome 15+, Safari 4+, Opera 10+*.  
 
-## Install
+# Install
 ```
 bower install go-native --save
 ```
 
-## Contents
+# Contents
 ####go-native.ie8  
 - [NWMatcher (for selectivizr)](https://github.com/dperini/nwmatcher)
 - [selectivizr](http://selectivizr.com/)
@@ -69,7 +69,7 @@ bower install go-native --save
   - wrapAll
   - unwrap
 
-## Usage
+# Usage
 `import` go-native in your script (make sure link to src folder, not dist folder)
 ```javascript
 import * as gn from "../../src/go-native";
@@ -81,6 +81,7 @@ Or add [go-native.js](https://raw.githubusercontent.com/ganlanyuan/go-native/mas
 <![endif]-->
 <script src="path/to/go-native.js"></script>
 ````
+# Methods
 ##### DOM.ready
 ```javascript
 gn.ready(function () {
