@@ -31,73 +31,40 @@ function errorlog (error) {
 gulp.task('script', function () {
   return rollup({
     entry: 'src/go-native.js',
+    context: 'window',
+    treeshake: false,
     plugins: [
-      // resolve + commonjs: translate commonjs module to es module
       resolve({
         jsnext: true,
         main: true,
         browser: true,
       }),
-      commonjs(),
-      eslint({
-        exclude: [
-          'src/vendors/**'
-        ],
-      }),
-      buble(),
-      // uglifyRollup(),
     ],
-    treeshake: false,
-    // legacy: true,
   }).then(function (bundle) {
     return bundle.write({
       dest: 'dist/go-native.js',
       format: 'es',
-      // moduleName: 'window',
-      // sourceMap: 'true',
+      // moduleName: 'gn',
     })
   })
 });
 
 gulp.task('test', function () {
   return rollup({
-    entry: 'tests/js/go-native.test.js',
+    entry: 'tests/js/test.es2015.src.js',
+    context: 'window',
     plugins: [
-      // resolve + commonjs: translate commonjs module to es module
       resolve({
         jsnext: true,
         main: true,
         browser: true,
       }),
-      // commonjs(),
-      // eslint({
-      //   exclude: [
-      //     'src/vendors/**'
-      //   ],
-      // }),
-      // buble(),
-      // uglifyRollup(),
     ],
-    treeshake: false,
-    // legacy: true,
   }).then(function (bundle) {
     return bundle.write({
-      dest: 'tests/js/test.min.js',
+      dest: 'tests/js/test.es2015.js',
       format: 'iife',
       moduleName: 'window',
-      // sourceMap: 'true',
-    })
-  })
-});
-
-gulp.task('test1', function () {
-  return rollup({
-    entry: 'c.js',
-    treeshake: false,
-  }).then(function (bundle) {
-    return bundle.write({
-      dest: 'bundle.js',
-      format: 'es',
     })
   })
 });
@@ -144,27 +111,38 @@ gulp.task('browserSync', function() {
   });
 });
 
-gulp.task('min', function () {
+gulp.task('min', ['script'], function () {
   return gulp.src('dist/go-native.js')
     .pipe(uglify())
     .pipe(rename('go-native.min.js'))
     .pipe(gulp.dest('dist'))
 });
 
+// gulp.task('test1', function () {
+//   return rollup({
+//     entry: 'c.js',
+//     treeshake: false,
+//   }).then(function (bundle) {
+//     return bundle.write({
+//       dest: 'bundle.js',
+//       format: 'es',
+//     })
+//   })
+// });
+
 // Watch
 gulp.task('watch', function () {
-  gulp.watch('src/**/*.js', ['script']).on('change', browserSync.reload);
-  gulp.watch('src/**/*.js', ['min']);
-  gulp.watch(watch.js).on('change', browserSync.reload);
-  gulp.watch(watch.html).on('change', browserSync.reload);
+  gulp.watch('src/**/*.js', ['min']).on('change', browserSync.reload);
+  // gulp.watch(watch.js).on('change', browserSync.reload);
+  // gulp.watch(watch.html).on('change', browserSync.reload);
 });
 
 // Default Task
 gulp.task('default', [
   'browserSync', 
-  'watch', 
+  // 'watch', 
   'script',
-  // 'script-ie8',
   'min',
-  // 'test1'
+  'test'
+  // 'script-ie8',
 ]);  

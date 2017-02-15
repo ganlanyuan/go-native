@@ -1,6 +1,8 @@
 import "../vendors/token-list.js";
 
 export function getClosest(elem, selector) {
+  if (!selector || typeof selector !== 'string') { return; }
+  
   var firstChar = selector.charAt(0);
   // Get closest match
   for ( ; elem && elem !== document; elem = elem.parentNode ) {

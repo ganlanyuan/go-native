@@ -29,7 +29,7 @@ String.prototype.repeat = String.prototype.repeat || function(num) {
 // MIT license
 
 if (!Date.now)
-    { Date.now = function() { return new Date().getTime(); }; }
+    Date.now = function() { return new Date().getTime(); };
 
 (function() {
     'use strict';
@@ -141,15 +141,13 @@ function ready(fn) {
 }
 
 function extend() {
-  var arguments$1 = arguments;
-
   var obj, name, copy,
       target = arguments[0] || {},
       i = 1,
       length = arguments.length;
 
   for (; i < length; i++) {
-    if ((obj = arguments$1[i]) !== null) {
+    if ((obj = arguments[i]) !== null) {
       for (name in obj) {
         copy = obj[name];
 
@@ -210,12 +208,12 @@ function extend() {
 	/** Wrapper for Object.defineProperty that falls back to using the legacy __defineGetter__ method if available. */
 	defineGetter    = function(object, name, fn, configurable){
 		if(OBJ[ DEFINE_PROPERTY ])
-			{ OBJ[ DEFINE_PROPERTY ](object, name, {
+			OBJ[ DEFINE_PROPERTY ](object, name, {
 				configurable: FALSE === dpSupport ? TRUE : !!configurable,
 				get:          fn
-			}); }
+			});
 		
-		else { object[ DEFINE_GETTER ](name, fn); }
+		else object[ DEFINE_GETTER ](name, fn);
 	},
 	
 	
@@ -236,14 +234,14 @@ function extend() {
 			
 			/** Define getter functions for array-like access to the tokenList's contents. */
 			if(length >= maxLength)
-				{ for(; maxLength < length; ++maxLength) { (function(i){
+				for(; maxLength < length; ++maxLength) (function(i){
 					
 					defineGetter(THIS, i, function(){
 						preop();
 						return tokens[i];
 					}, FALSE);
 					
-				})(maxLength); } }
+				})(maxLength);
 		},
 		
 		
@@ -256,25 +254,25 @@ function extend() {
 			
 			/** Validate the token/s passed to an instance method, if any. */
 			if(args[ LENGTH ])
-				{ for(i = 0; i < args[ LENGTH ]; ++i)
-					{ if(rSpace.test(args[i])){
+				for(i = 0; i < args[ LENGTH ]; ++i)
+					if(rSpace.test(args[i])){
 						error       = new SyntaxError('String "' + args[i] + '" ' + CONTAINS + ' an invalid character');
 						error.code  = 5;
 						error.name  = "InvalidCharacterError";
 						throw error;
-					} } }
+					}
 			
 			
 			/** Split the new value apart by whitespace*/
 			tokens = ("" + el[prop]).replace(/^\s+|\s+$/g, "").split(rSpace);
 			
 			/** Avoid treating blank strings as single-item token lists */
-			if("" === tokens[0]) { tokens = []; }
+			if("" === tokens[0]) tokens = [];
 			
 			/** Repopulate the internal token lists */
 			tokenMap = {};
 			for(i = 0; i < tokens[ LENGTH ]; ++i)
-				{ tokenMap[tokens[i]] = TRUE; }
+				tokenMap[tokens[i]] = TRUE;
 			length = tokens[ LENGTH ];
 			reindex();
 		};
@@ -351,7 +349,7 @@ function extend() {
 			
 			/** Run through our tokens list and reassign only those that aren't defined in the hash declared above. */
 			for(i = 0; i < tokens[ LENGTH ]; ++i)
-				{ if(!ignore[tokens[i]]) { t.push(tokens[i]); } }
+				if(!ignore[tokens[i]]) t.push(tokens[i]);
 			
 			tokens   = t;
 			length   = t[ LENGTH ] >>> 0;
@@ -388,8 +386,8 @@ function extend() {
 		/** Mark our newly-assigned methods as non-enumerable. */
 		(function(o, defineProperty){
 			if(defineProperty)
-				{ for(var i = 0; i < 7; ++i)
-					{ defineProperty(o, METHODS[i], {enumerable: FALSE}); } }
+				for(var i = 0; i < 7; ++i)
+					defineProperty(o, METHODS[i], {enumerable: FALSE});
 		}(THIS, OBJ[ DEFINE_PROPERTY ]));
 		
 		return THIS;
@@ -406,7 +404,7 @@ function extend() {
 			
 			/** Prevent this from firing twice for some reason. What the hell, IE. */
 			gibberishProperty           = DEFINE_GETTER + DEFINE_PROPERTY + name;
-			if(THIS[gibberishProperty]) { return tokenList; }
+			if(THIS[gibberishProperty]) return tokenList;
 			THIS[gibberishProperty]     = TRUE;
 			
 			
@@ -429,10 +427,10 @@ function extend() {
 				i = 0;
 				
 				for(; i < l; ++i)
-					{ if(reflections[i]._R === THIS){
+					if(reflections[i]._R === THIS){
 						visage = reflections[i];
 						break;
-					} }
+					}
 				
 				/** Couldn't find an element's reflection inside the mirror. Materialise one. */
 				visage || (visage = mirror.appendChild(DOC[ CREATE_ELEMENT ](DIV)));
@@ -440,7 +438,7 @@ function extend() {
 				tokenList = DOMTokenList.call(visage, THIS, attr);
 			}
 			
-			else { tokenList = new DOMTokenList(THIS, attr); }
+			else tokenList = new DOMTokenList(THIS, attr);
 			
 			
 			defineGetter(THIS, name, function(){ return tokenList; });
@@ -463,8 +461,8 @@ function extend() {
 		
 		/** Ensure the browser allows Object.defineProperty to be used on native JavaScript objects. */
 		if(dpSupport)
-			{ try{ defineGetter({}, "support"); }
-			catch(e){ dpSupport = FALSE; } }
+			try{ defineGetter({}, "support"); }
+			catch(e){ dpSupport = FALSE; }
 		
 		
 		DOMTokenList.polyfill   = TRUE;
@@ -497,32 +495,30 @@ function extend() {
 			nativeRemove   = PROTOTYPE[REMOVE];
 			
 			PROTOTYPE[ADD] = function(){
-				var this$1 = this;
-
 				for(var i = 0, args = arguments; i < args[LENGTH]; ++i)
-					{ nativeAdd.call(this$1, args[i]); }
+					nativeAdd.call(this, args[i]);
 			};
 			
 			PROTOTYPE[REMOVE] = function(){
-				var this$1 = this;
-
 				for(var i = 0, args = arguments; i < args[LENGTH]; ++i)
-					{ nativeRemove.call(this$1, args[i]); }
+					nativeRemove.call(this, args[i]);
 			};
 		}
 		
 		
 		/** Check if the "force" option of .toggle is supported. */
 		if(testList[TOGGLE](LIST, FALSE))
-			{ PROTOTYPE[TOGGLE] = function(token, force){
+			PROTOTYPE[TOGGLE] = function(token, force){
 				var THIS = this;
 				THIS[(force = UNDEF === force ? !THIS[CONTAINS](token) : force) ? ADD : REMOVE](token);
 				return !!force;
-			}; }
+			};
 	}
 }());
 
 function getClosest(elem, selector) {
+  if (!selector || typeof selector !== 'string') { return; }
+  
   var firstChar = selector.charAt(0);
   // Get closest match
   for ( ; elem && elem !== document; elem = elem.parentNode ) {
@@ -561,20 +557,6 @@ function getClosest(elem, selector) {
 // var closest = getClosest(elem, ".some-class");
 // var closestLink = getClosest(elem, "a");
 // var closestExcludingElement = getClosest(elem.parentNode, ".some-class");
-
-var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-function commonjsRequire () {
-	throw new Error('Dynamic requires are not currently supported by rollup-plugin-commonjs');
-}
-
-function unwrapExports (x) {
-	return x && x.__esModule ? x['default'] : x;
-}
-
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
 
 (function(window, document, undefined){
 "use strict";
@@ -722,13 +704,7 @@ function curCSS(elem, prop) {
 window.Length = {
     toPx: toPx
 };
-}(commonjsGlobal, commonjsGlobal.document));
-
-var Length$1 = {
-
-};
-
-var Length$1 = Length;
+}(window, window.document));
 
 function getHeight(el) {
   var pattern = /\d/, // check if value contains digital number
@@ -1016,12 +992,10 @@ function isInViewport(elem) {
 
 if (!Array.prototype.forEach) {
   Array.prototype.forEach =  function(block, thisObject) {
-    var this$1 = this;
-
     var len = this.length >>> 0;
     for (var i = 0; i < len; i++) {
-      if (i in this$1) {
-        block.call(thisObject, this$1[i], i, this$1);
+      if (i in this) {
+        block.call(thisObject, this[i], i, this);
       }
     }
   };
@@ -1066,16 +1040,14 @@ if (!Array.prototype.forEach) {
       }
     };
     var removeEventListener=function(type,listener /*, useCapture (will be ignored) */) {
-      var this$1 = this;
-
       var counter=0;
       while (counter<eventListeners.length) {
         var eventListener=eventListeners[counter];
-        if (eventListener.object==this$1 && eventListener.type==type && eventListener.listener==listener) {
+        if (eventListener.object==this && eventListener.type==type && eventListener.listener==listener) {
           if (type=="DOMContentLoaded") {
-            this$1.detachEvent("onreadystatechange",eventListener.wrapper);
+            this.detachEvent("onreadystatechange",eventListener.wrapper);
           } else {
-            this$1.detachEvent("on"+type,eventListener.wrapper);
+            this.detachEvent("on"+type,eventListener.wrapper);
           }
           eventListeners.splice(counter, 1);
           break;

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<!--[if (IE 8)&!(IEMobile)]><html class="ie8" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--><html lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Go-native tests</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  
+  <link rel="stylesheet" href="../css/basis.css">
+  <script type="text/javascript" src="../../dist/go-native.ie8.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Go-native Tests</h2>
+    <div class="ie8-test">
+      <h3>Go-native.ie8.js</h3>
+      <ul class="list">
+        <li class="normal">
+          <div><a href="selectivizr/index.html" class="link box">selectivizr</a></div>
+        </li>
+        <li class="normal">
+          <div><a href="respond/index.html" class="link box">respond</a></div>
+        </li>
+        <li class="normal" id="preventDefault">
+          <div class="box"><a href="prevent-default.html" id="preventDefault-link">preventDefault</a></div>
+        </li>
+        <li class="normal" id="stopPropagation">
+          <div class="box">stopPropagation</div>
+        </li>
+        <li class="normal" id="addEventListener">
+          <div class="box">addEventListener</div>
+        </li>
+        <li class="normal" id="removeEventListener">
+          <div class="box">removeEventListener</div>
+        </li>
+        <li class="normal" id="innerWidth">
+          <div class="box">window.innerWidth</div>
+        </li>
+        <li class="normal" id="innerHeight">
+          <div class="box">window.innerHeight</div>
+        </li>
+        <li class="normal" id="pageXOffset">
+          <div class="box">window.pageXOffset</div>
+        </li>
+        <li class="normal" id="pageYOffset">
+          <div class="box">window.pageYOffset</div>
+        </li>
+        <li class="normal" id="getComputedStyle">
+          <div class="box">window.getComputedStyle <span id="getComputedStyle-pseudo">Pseudo</span></div>
+        </li>
+        <li class="normal" id="childElementCount">
+          <div class="box">el.childElementCount</div>
+        </li>
+        <li class="normal" id="firstElementChild">
+          <div class="box">el.firstElementChild</div>
+        </li>
+        <li class="normal" id="lastElementChild">
+          <div class="box">el.lastElementChild</div>
+        </li>
+        <li class="normal" id="previousElementSibling">
+          <div class="box">el.previousElementSibling</div>
+        </li>
+        <li class="normal" id="nextElementSibling">
+          <div class="box">el.nextElementSibling</div>
+        </li>
+        <li class="normal" id="textContent">
+          <div class="box">node.textContent</div>
+        </li>
+      </ul>
+    </div>
+    <h3>Go-native.js</h3>
+    <ul class="list">
+      <li class="normal" id="classList">
+        <div class="box">el.classList 
+          <span id="classList-item">item</span>
+          <span id="classList-contains">contains</span>
+          <span id="classList-add">add</span>
+          <span id="classList-remove">remove</span>
+          <span id="classList-toggle">toggle</span>
+          <span id="classList-toggle-force">toggle-force</span></div>
+      </li>
+      <li class="normal" id="childNodeRemove">
+        <div class="box">ChildNode.remove</div>
+      </li>
+      <li class="normal" id="isInViewport">
+        <div class="box">isInViewport</div>
+      </li>
+      <li class="normal" id="getOuterWidth">
+        <div class="box">getOuterWidth</div>
+      </li>
+      <li class="normal" id="getOuterHeight">
+        <div class="box">getOuterHeight</div>
+      </li>
+      <li class="normal" id="getWidth">
+        <div class="box">getWidth</div>
+      </li>
+      <li class="normal" id="getHeight">
+        <div class="box">getHeight</div>
+      </li>
+      <li class="normal" id="getOffsetLeft">
+        <div class="box">getOffsetLeft</div>
+      </li>
+      <li class="normal" id="getOffsetTop">
+        <div class="box">getOffsetTop</div>
+      </li>
+      <li class="normal" id="domReady">
+        <div class="box">DOM.ready</div>
+      </li>
+      <li class="normal" id="isNodeList">
+        <div class="box">isNodeList</div>
+      </li>
+      <li class="normal" id="prepend">
+        <div class="box">prepend</div>
+      </li>
+      <li class="normal" id="append">
+        <div class="box">append</div>
+      </li>
+      <li class="normal" id="wrap">
+        <div class="box">wrap</div>
+      </li>
+      <li class="normal" id="wrapAll">
+        <div class="box">wrapAll</div>
+      </li>
+      <li class="normal" id="unwrap">
+        <div class="box">unwrap</div>
+      </li>
+    </ul>
+
+    <!-- test content -->
+    <div id="innerWidth-element" class="visually-hidden"></div>
+    <div id="innerHeight-element" class="visually-hidden"></div>
+    <div id="pageXOffset-element" class="visually-hidden"></div>
+    <div id="pageYOffset-element" class="visually-hidden"></div>
+    <div id="eventListener-element" class="visually-hidden"></div>
+    <div id="getComputedStyle-element" class="visually-hidden">getComputedStyle</div>
+    <div id="classList-element" class="visually-hidden classList remove toggle toggle-remove">classList</div>
+    <div id="childNodeRemove-element" class="visually-hidden"><span id="childNodeRemove-element-child">child</span></div>
+    <div id="textContent-element" class="visually-hidden"><code>textContent</code> returns <code>null</code> if the element is a <a href="/en-US/docs/DOM/document" title="DOM/Document">document</a>, a document type, or a notation. To grab all of the text and CDATA data for the whole document, one could use<code> <a href="/en-US/docs/DOM/document.documentElement" title="DOM/document.documentElement">document.documentElement</a>.textContent</code>.</div>
+    <ul id="elementProp" class="visually-hidden">
+      <li id="firstElement">Lorem.</li>
+      <li>Aliquid?</li>
+      <li id="previousElement">Molestiae.</li>
+      <li id="currentElement">Id.</li>
+      <li id="nextElement">Illum.</li>
+      <li>Iste.</li>
+      <li>Eveniet.</li>
+      <li id="lastElement">Blanditiis!</li>
+    </ul>
+    <div id="isInViewport-hidden-top"></div>
+    <div id="isInViewport-hidden-bottom"></div>
+    <div id="isInViewport-hidden-left"></div>
+    <div id="isInViewport-hidden-right"></div>
+    <div id="isInViewport-visible"></div>
+    <div id="getOuterWidth-element" class="visually-hidden"></div>
+    <div id="getOuterHeight-element" class="visually-hidden"></div>
+    <div id="getWidth-element" class="visually-hidden"></div>
+    <div id="getHeight-element" class="visually-hidden"></div>
+    <div id="getOffsetLeft-element" class="visually-hidden"></div>
+    <div id="getOffsetTop-element" class="visually-hidden"></div>
+    <ul id="isNodeList-element" class="visually-hidden">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <div id="prepend-element" class="visually-hidden">
+      <div id="prepend-data"></div>
+      <div id="prepend-node"></div>
+      <div id="prepend-list"></div>
+      <div id="prepend-node-insert">Node need to be inserted.</div>
+      <ol id="prepend-list-insert">
+        <li id="prepend-list-insert-first">first</li>
+        <li>middle</li>
+        <li id="prepend-list-insert-last">last</li>
+      </ol>
+    </div>
+    <div id="append-element" class="visually-hidden">
+      <div id="append-data"></div>
+      <div id="append-node"></div>
+      <div id="append-list"></div>
+      <div id="append-node-insert">Node need to be inserted.</div>
+      <ol id="append-list-insert">
+        <li id="append-list-insert-first">first</li>
+        <li>middle</li>
+        <li id="append-list-insert-last">last</li>
+      </ol>
+    </div>
+    <div class="wrap-element-parent visually-hidden"></div>
+    <div id="wrap-element">
+      <div id="wrap-element-1"></div>
+      <div id="wrap-element-2"></div>
+      <div id="wrap-element-3"></div>
+    </div>
+    <div id="wrapAll-element-parent"></div>
+    <div id="wrapAll-element-grandparent" class="visually-hidden">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div id="unwrap-element-grandparent" class="visually-hidden">
+      <div id="unwrap-element-parent">
+        <div id="unwrap-element"></div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="../js/test.es2015.js"></script>
+</body>
+</html>
