@@ -1,6 +1,6 @@
 ## Go-native
-![version](https://img.shields.io/badge/Version-0.1.0-green.svg)   
-Javascript polyfills which let you use native javascript.   
+![version](https://img.shields.io/badge/Version-1.0.0-green.svg)   
+Javascript polyfills which let you use native javascript. Rewrite with ES2015 module.   
 [CSS3 selectors](https://www.w3.org/TR/css3-selectors/), [CSS3 media queries](https://www.w3.org/TR/css3-mediaqueries/), ES5 extensions and a bunch of DOM utilities.  
 Tested on *IE 8+, Firefox 17+, Chrome 15+, Safari 4+, Opera 10+*.  
 
@@ -70,7 +70,11 @@ bower install go-native --save
   - unwrap
 
 ## Usage
-Add [go-native.js](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.js) and [go-native.ie8.js](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.ie8.js) to your page.
+`import` go-native in your script (make sure link to src folder, not dist folder)
+```javascript
+import * as gn from "../../src/go-native";
+```
+Or add [go-native.js](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.js) and [go-native.ie8.js](https://raw.githubusercontent.com/ganlanyuan/go-native/master/dist/go-native.ie8.js) to your page.
 ````html
 <!--[if (lt IE 9)]>
   <script src="path/to/go-native.ie8.js"></script>
