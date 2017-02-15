@@ -32,7 +32,6 @@ gulp.task('script', function () {
   return rollup({
     entry: 'src/go-native.js',
     context: 'window',
-    treeshake: false,
     plugins: [
       resolve({
         jsnext: true,
@@ -43,30 +42,17 @@ gulp.task('script', function () {
   }).then(function (bundle) {
     return bundle.write({
       dest: 'dist/go-native.js',
-      format: 'es',
-      // moduleName: 'gn',
+      format: 'iife',
+      moduleName: 'gn',
     })
   })
 });
 
-gulp.task('test', function () {
-  return rollup({
-    entry: 'tests/js/test.es2015.src.js',
-    context: 'window',
-    plugins: [
-      resolve({
-        jsnext: true,
-        main: true,
-        browser: true,
-      }),
-    ],
-  }).then(function (bundle) {
-    return bundle.write({
-      dest: 'tests/js/test.es2015.js',
-      format: 'iife',
-      moduleName: 'window',
-    })
-  })
+gulp.task('min', ['script'], function () {
+  return gulp.src('dist/go-native.js')
+    .pipe(uglify())
+    .pipe(rename('go-native.min.js'))
+    .pipe(gulp.dest('dist'))
 });
 
 gulp.task('script-ie8', function () {  
@@ -99,6 +85,26 @@ gulp.task('script-ie8', function () {
     .pipe(browserSync.stream());
 });
 
+gulp.task('test', function () {
+  return rollup({
+    entry: 'tests/js/test.es2015.src.js',
+    context: 'window',
+    plugins: [
+      resolve({
+        jsnext: true,
+        main: true,
+        browser: true,
+      }),
+    ],
+  }).then(function (bundle) {
+    return bundle.write({
+      dest: 'tests/js/test.es2015.js',
+      format: 'iife',
+      moduleName: 'gn',
+    })
+  })
+});
+
 // browser-sync
 gulp.task('browserSync', function() {
   browserSync.init({
@@ -111,38 +117,19 @@ gulp.task('browserSync', function() {
   });
 });
 
-gulp.task('min', ['script'], function () {
-  return gulp.src('dist/go-native.js')
-    .pipe(uglify())
-    .pipe(rename('go-native.min.js'))
-    .pipe(gulp.dest('dist'))
-});
-
-// gulp.task('test1', function () {
-//   return rollup({
-//     entry: 'c.js',
-//     treeshake: false,
-//   }).then(function (bundle) {
-//     return bundle.write({
-//       dest: 'bundle.js',
-//       format: 'es',
-//     })
-//   })
-// });
-
 // Watch
 gulp.task('watch', function () {
   gulp.watch('src/**/*.js', ['min']).on('change', browserSync.reload);
-  // gulp.watch(watch.js).on('change', browserSync.reload);
-  // gulp.watch(watch.html).on('change', browserSync.reload);
+  gulp.watch(watch.js).on('change', browserSync.reload);
+  gulp.watch(watch.html).on('change', browserSync.reload);
 });
 
 // Default Task
 gulp.task('default', [
   'browserSync', 
-  // 'watch', 
-  'script',
-  'min',
-  'test'
+  'watch',
+  // 'script',
+  // 'min',
+  // 'test'
   // 'script-ie8',
 ]);  

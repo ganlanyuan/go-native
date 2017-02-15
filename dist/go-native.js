@@ -1,3 +1,6 @@
+(function (exports) {
+'use strict';
+
 // ChildNode.remove
 (function () {
   "use strict";
@@ -1214,28 +1217,28 @@ function wrapAll(els, wrapper) {
   }
 }
 
-var gn = {
-  isNodeList: isNodeList,
-  append: append,
-  createElement: createElement,
-  ready: ready,
-  extend: extend,
-  getClosest: getClosest,
-  getHeight: getHeight,
-  getOffsetLeft: getOffsetLeft,
-  getOffsetTop: getOffsetTop,
-  getOuterHeight: getOuterHeight,
-  getOuterWidth: getOuterWidth,
-  getParents: getParents,
-  getParentsUntil: getParentsUntil,
-  getSiblings: getSiblings,
-  getSupportedProp: getSupportedProp,
-  getWidth: getWidth,
-  indexOf: indexOf,
-  isInViewport: isInViewport,
-  optimizedResize: optimizedResize,
-  prepend: prepend,
-  unwrap: unwrap,
-  wrap: wrap,
-  wrapAll: wrapAll,
-};
+exports.isNodeList = isNodeList;
+exports.append = append;
+exports.createElement = createElement;
+exports.ready = ready;
+exports.extend = extend;
+exports.getClosest = getClosest;
+exports.getHeight = getHeight;
+exports.getOffsetLeft = getOffsetLeft;
+exports.getOffsetTop = getOffsetTop;
+exports.getOuterHeight = getOuterHeight;
+exports.getOuterWidth = getOuterWidth;
+exports.getParents = getParents;
+exports.getParentsUntil = getParentsUntil;
+exports.getSiblings = getSiblings;
+exports.getSupportedProp = getSupportedProp;
+exports.getWidth = getWidth;
+exports.indexOf = indexOf;
+exports.isInViewport = isInViewport;
+exports.optimizedResize = optimizedResize;
+exports.prepend = prepend;
+exports.unwrap = unwrap;
+exports.wrap = wrap;
+exports.wrapAll = wrapAll;
+
+}((this.gn = this.gn || {})));

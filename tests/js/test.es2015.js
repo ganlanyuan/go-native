@@ -84,39 +84,6 @@ function append(els, data) {
   }
 }
 
-function createElement(obj) {
-  if (!obj || !obj.tagName) {
-    throw { message : "Invalid argument" };
-  }
-
-  var el = document.createElement(obj.tagName);
-  obj.id && (el.id = obj.id);
-  obj.className && (el.className = obj.className);
-  obj.html && (el.innerHTML = obj.html);
-  
-  if (typeof obj.attributes !== "undefined") {
-    var attr = obj.attributes,
-      prop;
-
-    for (prop in attr) {
-      if (attr.hasOwnProperty(prop)) {
-        el.setAttribute(prop, attr[prop]);
-      }
-    }
-  }
-
-  if (typeof obj.children !== "undefined") {
-    var i = 0, len = obj.children.length;
-
-    while (i < len) {
-      el.appendChild(createElement(obj.children[i]));
-      i++;
-    } 
-  }
-
-  return el;
-}
-
 // var el = gn.createElement({
 //  tagName: "div",
 //  id: "foo",
@@ -141,28 +108,6 @@ function ready(fn) {
 
   // Otherwise, wait until document is loaded
   document.addEventListener( "DOMContentLoaded", fn, false );
-}
-
-function extend() {
-  var obj, name, copy,
-      target = arguments[0] || {},
-      i = 1,
-      length = arguments.length;
-
-  for (; i < length; i++) {
-    if ((obj = arguments[i]) !== null) {
-      for (name in obj) {
-        copy = obj[name];
-
-        if (target === copy) {
-          continue;
-        } else if (copy !== undefined) {
-          target[name] = copy;
-        }
-      }
-    }
-  }
-  return target;
 }
 
 /** DOMTokenList polyfill */
@@ -519,43 +464,6 @@ function extend() {
 	}
 }());
 
-function getClosest(elem, selector) {
-  if (!selector || typeof selector !== 'string') { return; }
-  
-  var firstChar = selector.charAt(0);
-  // Get closest match
-  for ( ; elem && elem !== document; elem = elem.parentNode ) {
-
-    // If selector is a class
-    if ( firstChar === "." ) {
-      if ( elem.classList.contains( selector.substr(1) ) ) {
-        return elem;
-      }
-    }
-
-    // If selector is an ID
-    if ( firstChar === "#" ) {
-      if ( elem.id === selector.substr(1) ) {
-        return elem;
-      }
-    } 
-
-    // If selector is a data attribute
-    if ( firstChar === "[" ) {
-      if ( elem.hasAttribute( selector.substr(1, selector.length - 2) ) ) {
-        return elem;
-      }
-    }
-
-    // If selector is a tag
-    if ( elem.tagName.toLowerCase() === selector ) {
-      return elem;
-    }
-
-  }
-  return false;
-}
-
 // var elem = document.querySelector("#some-element");
 // var closest = getClosest(elem, ".some-class");
 // var closestLink = getClosest(elem, "a");
@@ -780,145 +688,9 @@ function getOuterWidth(el) {
 //    el.clientWidth  
 //    el.clientHeight
 
-function getParents(elem, selector) {
-  var parents = [];
-  if ( selector ) {
-    var firstChar = selector.charAt(0);
-  }
-
-  // Get matches
-  for ( ; elem && elem !== document; elem = elem.parentNode ) {
-    if ( selector ) {
-
-      // If selector is a class
-      if ( firstChar === "." ) {
-        if ( elem.classList.contains( selector.substr(1) ) ) {
-          parents.push( elem );
-        }
-      }
-
-      // If selector is an ID
-      if ( firstChar === "#" ) {
-        if ( elem.id === selector.substr(1) ) {
-          parents.push( elem );
-        }
-      }
-
-      // If selector is a data attribute
-      if ( firstChar === "[" ) {
-        if ( elem.hasAttribute( selector.substr(1, selector.length - 1) ) ) {
-          parents.push( elem );
-        }
-      }
-
-      // If selector is a tag
-      if ( elem.tagName.toLowerCase() === selector ) {
-        parents.push( elem );
-      }
-
-    } else {
-      parents.push( elem );
-    }
-
-  }
-
-  // Return parents if any exist
-  if ( parents.length === 0 ) {
-    return null;
-  } else {
-    return parents;
-  }
-}
-
 // var elem = document.querySelector("#some-element");
 // var parents = getParents(elem, ".some-class");
 // var allParents = getParents(elem.parentNode);
-
-function getParentsUntil(elem, parent, selector) {
-
-  var parents = [];
-  if ( parent ) {
-    var parentType = parent.charAt(0);
-  }
-  if ( selector ) {
-    var selectorType = selector.charAt(0);
-  }
-
-    // Get matches
-  for ( ; elem && elem !== document; elem = elem.parentNode ) {
-
-      // Check if parent has been reached
-      if ( parent ) {
-
-      // If parent is a class
-      if ( parentType === "." ) {
-        if ( elem.classList.contains( parent.substr(1) ) ) {
-          break;
-        }
-      }
-
-      // If parent is an ID
-      if ( parentType === "#" ) {
-        if ( elem.id === parent.substr(1) ) {
-          break;
-        }
-      }
-
-      // If parent is a data attribute
-      if ( parentType === "[" ) {
-        if ( elem.hasAttribute( parent.substr(1, parent.length - 1) ) ) {
-          break;
-        }
-      }
-
-      // If parent is a tag
-      if ( elem.tagName.toLowerCase() === parent ) {
-        break;
-      }
-
-    }
-
-    if ( selector ) {
-
-      // If selector is a class
-      if ( selectorType === "." ) {
-        if ( elem.classList.contains( selector.substr(1) ) ) {
-          parents.push( elem );
-        }
-      }
-
-      // If selector is an ID
-      if ( selectorType === "#" ) {
-        if ( elem.id === selector.substr(1) ) {
-          parents.push( elem );
-        }
-      }
-
-      // If selector is a data attribute
-      if ( selectorType === "[" ) {
-        if ( elem.hasAttribute( selector.substr(1, selector.length - 1) ) ) {
-          parents.push( elem );
-        }
-      }
-
-      // If selector is a tag
-      if ( elem.tagName.toLowerCase() === selector ) {
-        parents.push( elem );
-      }
-
-    } else {
-      parents.push( elem );
-    }
-
-  }
-
-  // Return parents if any exist
-  if ( parents.length === 0 ) {
-    return null;
-  } else {
-    return parents;
-  }
-}
 
 // Examples
 // var elem = document.querySelector("#some-element");
@@ -927,28 +699,8 @@ function getParentsUntil(elem, parent, selector) {
 // var allParentsUntil = getParentsUntil(elem);
 // var allParentsExcludingElem = getParentsUntil(elem.parentNode);
 
-function getSiblings(elem) {
-  var siblings = [];
-  var sibling = elem.parentNode.firstChild;
-  for ( ; sibling; sibling = sibling.nextSibling ) {
-    if ( sibling.nodeType === 1 && sibling !== elem ) {
-      siblings.push( sibling );
-    }
-  }
-  return siblings;
-}
-
 // var elem = document.querySelector('#some-element');
 // var siblings = getSiblings(elem);
-
-function getSupportedProp(proparray){
-  var root = document.documentElement;
-  for (var i=0; i<proparray.length; i++){
-    if (proparray[i] in root.style){
-      return proparray[i];
-    }
-  }
-}
 
 // var getTD = gn.getSupportedProp(['transitionDuration', 'WebkitTransitionDuration', 'MozTransitionDuration', 'OTransitionDuration']),
 // getTransform = gn.getSupportedProp(['transform', 'WebkitTransform', 'MozTransform', 'OTransform']);
@@ -973,13 +725,6 @@ function getWidth(el) {
 //    el.clientWidth  
 //    el.clientHeight
 // 4. size: content
-
-function indexOf(array, item) {
-  for (var i = 0; i < array.length; i++) {
-    if (array[i] === item) { return i; }
-  }
-  return -1;
-}
 
 function isInViewport(elem) {
   var rect = elem.getBoundingClientRect();
@@ -1073,55 +818,7 @@ if (!Array.prototype.forEach) {
 
 // https://developer.mozilla.org/en-US/docs/Web/Events/resize#requestAnimationFrame
 
-var optimizedResize = (function() {
 
-  var callbacks = [],
-  running = false;
-
-  // fired on resize event
-  function resize() {
-
-    if (!running) {
-      running = true;
-
-      if (window.requestAnimationFrame) {
-        window.requestAnimationFrame(runCallbacks);
-      } else {
-        setTimeout(runCallbacks, 66);
-      }
-    }
-
-  }
-
-  // run the actual callbacks
-  function runCallbacks() {
-
-    callbacks.forEach(function(callback) {
-      callback();
-    });
-
-    running = false;
-  }
-
-  // adds callback to loop
-  function addCallback(callback) {
-
-    if (callback) {
-      callbacks.push(callback);
-    }
-
-  }
-
-  return {
-    // public method to add additional callback
-    add: function(callback) {
-      if (!callbacks.length) {
-        window.addEventListener("resize", resize);
-      }
-      addCallback(callback);
-    }
-  };
-}());
 
 // start process
 // gn.optimizedResize.add(function() {
@@ -1217,31 +914,31 @@ function wrapAll(els, wrapper) {
   }
 }
 
-var gn = {
-  isNodeList: isNodeList,
-  append: append,
-  createElement: createElement,
-  ready: ready,
-  extend: extend,
-  getClosest: getClosest,
-  getHeight: getHeight,
-  getOffsetLeft: getOffsetLeft,
-  getOffsetTop: getOffsetTop,
-  getOuterHeight: getOuterHeight,
-  getOuterWidth: getOuterWidth,
-  getParents: getParents,
-  getParentsUntil: getParentsUntil,
-  getSiblings: getSiblings,
-  getSupportedProp: getSupportedProp,
-  getWidth: getWidth,
-  indexOf: indexOf,
-  isInViewport: isInViewport,
-  optimizedResize: optimizedResize,
-  prepend: prepend,
-  unwrap: unwrap,
-  wrap: wrap,
-  wrapAll: wrapAll,
-};
+// export var gn = {
+//   isNodeList: isNodeList,
+//   append: append,
+//   createElement: createElement,
+//   ready: ready,
+//   extend: extend,
+//   getClosest: getClosest,
+//   getHeight: getHeight,
+//   getOffsetLeft: getOffsetLeft,
+//   getOffsetTop: getOffsetTop,
+//   getOuterHeight: getOuterHeight,
+//   getOuterWidth: getOuterWidth,
+//   getParents: getParents,
+//   getParentsUntil: getParentsUntil,
+//   getSiblings: getSiblings,
+//   getSupportedProp: getSupportedProp,
+//   getWidth: getWidth,
+//   indexOf: indexOf,
+//   isInViewport: isInViewport,
+//   optimizedResize: optimizedResize,
+//   prepend: prepend,
+//   unwrap: unwrap,
+//   wrap: wrap,
+//   wrapAll: wrapAll,
+// };
 
 function success(el) { el.className = 'success'; }
 function fail(el) { el.className = 'fail'; }
@@ -1594,7 +1291,7 @@ function getOuterWidthTest() {
   var display = doc.getElementById('getOuterWidth'),
       element = doc.getElementById('getOuterWidth-element');
 
-  if (gn.getOuterWidth) {
+  if (getOuterWidth) {
     var width = 300, 
         padding = 30, 
         border = 2, 
@@ -1604,7 +1301,7 @@ function getOuterWidthTest() {
 
     element.style.cssText = 'width: ' + width + 'px; padding: ' + padding + 'px; border: ' + border + 'px solid #f5f5f5; margin: ' + margin + 'px; height: ' + height + 'px;';
 
-    if (gn.getOuterWidth(element) === outerWidth) {
+    if (getOuterWidth(element) === outerWidth) {
       success(display);
     } else {
       fail(display);
@@ -1619,7 +1316,7 @@ function getOuterHeightTest() {
   var display = doc.getElementById('getOuterHeight'),
       element = doc.getElementById('getOuterHeight-element');
 
-  if (gn.getOuterHeight) {
+  if (getOuterHeight) {
     var width = 300, 
         padding = 30, 
         border = 2, 
@@ -1629,7 +1326,7 @@ function getOuterHeightTest() {
 
     element.style.cssText = 'width: ' + width + 'px; padding: ' + padding + 'px; border: ' + border + 'px solid #f5f5f5; margin: ' + margin + 'px; height: ' + height + 'px;';
 
-    if (gn.getOuterHeight(element) === outerHeight) {
+    if (getOuterHeight(element) === outerHeight) {
       success(display);
     } else {
       fail(display);
@@ -1644,7 +1341,7 @@ function getWidthTest() {
   var display = doc.getElementById('getWidth'),
       element = doc.getElementById('getWidth-element');
 
-  if (gn.getWidth) {
+  if (getWidth) {
     var width = 300, 
         padding = 3, 
         height = 200, 
@@ -1653,7 +1350,7 @@ function getWidthTest() {
 
     element.style.cssText = 'width: ' + width + 'px; padding: ' + padding + 'em; height: ' + height + 'px; font-size: ' + fontSize + 'px; box-sizing: border-box;';
 
-    if (gn.getWidth(element) === expectedWidth) {
+    if (getWidth(element) === expectedWidth) {
       success(display);
     } else {
       fail(display);
@@ -1668,7 +1365,7 @@ function getHeightTest() {
   var display = doc.getElementById('getHeight'),
       element = doc.getElementById('getHeight-element');
 
-  if (gn.getHeight) {
+  if (getHeight) {
     var height = 300, 
         padding = 3, 
         height = 200, 
@@ -1677,7 +1374,7 @@ function getHeightTest() {
 
     element.style.cssText = 'height: ' + height + 'px; padding: ' + padding + 'em; height: ' + height + 'px; font-size: ' + fontSize + 'px; box-sizing: border-box;';
 
-    if (gn.getHeight(element) === expectedHeight) {
+    if (getHeight(element) === expectedHeight) {
       success(display);
     } else {
       fail(display);
@@ -1692,13 +1389,13 @@ function getOffsetLeftTest() {
   var display = doc.getElementById('getOffsetLeft'),
       element = doc.getElementById('getOffsetLeft-element');
 
-  if (gn.getOffsetLeft) {
+  if (getOffsetLeft) {
     var left = 300, 
         offsetLeft = left;
 
     element.style.cssText = 'position: absolute; left: ' + left + 'px;';
 
-    if (gn.getOffsetLeft(element) === offsetLeft) {
+    if (getOffsetLeft(element) === offsetLeft) {
       success(display);
     } else {
       fail(display);
@@ -1713,13 +1410,13 @@ function getOffsetTopTest() {
   var display = doc.getElementById('getOffsetTop'),
       element = doc.getElementById('getOffsetTop-element');
 
-  if (gn.getOffsetTop) {
+  if (getOffsetTop) {
     var top = 40, 
         offsetTop = top;
 
     element.style.cssText = 'position: fixed; top: ' + top + 'px;';
 
-    if (gn.getOffsetTop(element) === offsetTop) {
+    if (getOffsetTop(element) === offsetTop) {
       success(display);
     } else {
       fail(display);
@@ -1739,13 +1436,13 @@ function isNodeListTest() {
       object = {left: 100, right: 200},
       node = doc.getElementById('isNodeList-element');
 
-  if (gn.isNodeList &&
-      gn.isNodeList(nodeList) &&
-      !gn.isNodeList(string) &&
-      !gn.isNodeList(number) &&
-      !gn.isNodeList(array) &&
-      !gn.isNodeList(object) &&
-      !gn.isNodeList(node)) {
+  if (isNodeList &&
+      isNodeList(nodeList) &&
+      !isNodeList(string) &&
+      !isNodeList(number) &&
+      !isNodeList(array) &&
+      !isNodeList(object) &&
+      !isNodeList(node)) {
     success(display);
   } else {
     fail(display);
@@ -1758,8 +1455,8 @@ function domReadyTest() {
   var display = doc.getElementById('domReady'),
       order = [];
 
-  if (gn.ready) {
-    gn.ready(function () { order.push('ready'); });
+  if (ready) {
+    ready(function () { order.push('ready'); });
 
     window.onload = function () {
       order.push('loaded');
@@ -1867,12 +1564,12 @@ function isInViewportTest() {
   hiddenRight.style.cssText = "position: fixed; right: -200px; top: 10px; width: 200px; height: 20px; background: red;";
 
   // alert(gn.isInViewport(hiddenBottom));
-  if (gn.isInViewport && 
-      gn.isInViewport(visible) &&
-      !gn.isInViewport(hiddenTop) &&
-      !gn.isInViewport(hiddenBottom) &&
-      !gn.isInViewport(hiddenLeft) &&
-      !gn.isInViewport(hiddenRight)) {
+  if (isInViewport && 
+      isInViewport(visible) &&
+      !isInViewport(hiddenTop) &&
+      !isInViewport(hiddenBottom) &&
+      !isInViewport(hiddenLeft) &&
+      !isInViewport(hiddenRight)) {
 
     success(display);
   } else {
@@ -1893,10 +1590,10 @@ function prependTest() {
       list = doc.getElementById('prepend-list-insert').children,
       listFirst = doc.getElementById('prepend-list-insert-first');
 
-  if (gn.prepend) {
-    gn.prepend(elementData, data);
-    gn.prepend(elementNode, node);
-    gn.prepend(elementList, list);
+  if (prepend) {
+    prepend(elementData, data);
+    prepend(elementNode, node);
+    prepend(elementList, list);
 
     if (elementData.innerHTML.toLowerCase() === data.toLowerCase() &&
         elementNode.firstChild === node &&
@@ -1923,10 +1620,10 @@ function appendTest() {
       list = doc.getElementById('append-list-insert').children,
       listLast = doc.getElementById('append-list-insert-last');
 
-  if (gn.append) {
-    gn.append(elementData, data);
-    gn.append(elementNode, node);
-    gn.append(elementList, list);
+  if (append) {
+    append(elementData, data);
+    append(elementNode, node);
+    append(elementList, list);
 
     if (elementData.innerHTML.toLowerCase() === data.toLowerCase() &&
         elementNode.lastChild === node &&
@@ -1952,8 +1649,8 @@ function wrapTest() {
       element2 = doc.getElementById('wrap-element-2'),
       element3 = doc.getElementById('wrap-element-3');
 
-  if (gn.wrap) {
-    gn.wrap(elements, parent);
+  if (wrap) {
+    wrap(elements, parent);
 
     if (element1.parentNode.className === parentClassName &&
         element2.parentNode.className === parentClassName &&
@@ -1975,8 +1672,8 @@ function wrapAllTest() {
       parent = doc.getElementById('wrapAll-element-parent'),
       grandparent = doc.getElementById('wrapAll-element-grandparent');
 
-  if (gn.wrapAll) {
-    gn.wrapAll(grandparent.children, parent);
+  if (wrapAll) {
+    wrapAll(grandparent.children, parent);
 
     if (parent.parentNode === grandparent) {
       success(display);
@@ -1997,8 +1694,8 @@ function unwrapTest() {
       parent = doc.getElementById('unwrap-element-parent'),
       element = doc.getElementById('unwrap-element');
 
-  if (gn.unwrap) {
-    gn.unwrap(parent);
+  if (unwrap) {
+    unwrap(parent);
 
     if (element.parentNode === grandparent) {
       success(display);

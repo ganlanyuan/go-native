@@ -3,52 +3,26 @@ import "./utilities/number.isNaN";
 import "./utilities/string.prototype.repeat";
 import "./vendors/requestAnimationFrame";
 
-import { isNodeList } from "./gn/isNodeList";
-import { append } from "./gn/append";
-import { createElement } from "./gn/createElement";
-import { ready } from "./gn/ready";
-import { extend } from "./gn/extend";
-import { getClosest } from "./gn/getClosest";
-import { getHeight } from "./gn/getHeight";
-import { getOffsetLeft } from "./gn/getOffsetLeft";
-import { getOffsetTop } from "./gn/getOffsetTop";
-import { getOuterHeight } from "./gn/getOuterHeight";
-import { getOuterWidth } from "./gn/getOuterWidth";
-import { getParents } from "./gn/getParents";
-import { getParentsUntil } from "./gn/getParentsUntil";
-import { getSiblings } from "./gn/getSiblings";
-import { getSupportedProp } from "./gn/getSupportedProp";
-import { getWidth } from "./gn/getWidth";
-import { indexOf } from "./gn/indexOf";
-import { isInViewport } from "./gn/isInViewport";
-import { optimizedResize } from "./gn/optimizedResize";
-import { prepend } from "./gn/prepend";
-import { unwrap } from "./gn/unwrap";
-import { wrap } from "./gn/wrap";
-import { wrapAll } from "./gn/wrapAll";
-
-var gn = {
-  isNodeList: isNodeList,
-  append: append,
-  createElement: createElement,
-  ready: ready,
-  extend: extend,
-  getClosest: getClosest,
-  getHeight: getHeight,
-  getOffsetLeft: getOffsetLeft,
-  getOffsetTop: getOffsetTop,
-  getOuterHeight: getOuterHeight,
-  getOuterWidth: getOuterWidth,
-  getParents: getParents,
-  getParentsUntil: getParentsUntil,
-  getSiblings: getSiblings,
-  getSupportedProp: getSupportedProp,
-  getWidth: getWidth,
-  indexOf: indexOf,
-  isInViewport: isInViewport,
-  optimizedResize: optimizedResize,
-  prepend: prepend,
-  unwrap: unwrap,
-  wrap: wrap,
-  wrapAll: wrapAll,
-};
+export { isNodeList } from "./gn/isNodeList";
+export { append } from "./gn/append";
+export { createElement } from "./gn/createElement";
+export { ready } from "./gn/ready";
+export { extend } from "./gn/extend";
+export { getClosest } from "./gn/getClosest";
+export { getHeight } from "./gn/getHeight";
+export { getOffsetLeft } from "./gn/getOffsetLeft";
+export { getOffsetTop } from "./gn/getOffsetTop";
+export { getOuterHeight } from "./gn/getOuterHeight";
+export { getOuterWidth } from "./gn/getOuterWidth";
+export { getParents } from "./gn/getParents";
+export { getParentsUntil } from "./gn/getParentsUntil";
+export { getSiblings } from "./gn/getSiblings";
+export { getSupportedProp } from "./gn/getSupportedProp";
+export { getWidth } from "./gn/getWidth";
+export { indexOf } from "./gn/indexOf";
+export { isInViewport } from "./gn/isInViewport";
+export { optimizedResize } from "./gn/optimizedResize";
+export { prepend } from "./gn/prepend";
+export { unwrap } from "./gn/unwrap";
+export { wrap } from "./gn/wrap";
+export { wrapAll } from "./gn/wrapAll";

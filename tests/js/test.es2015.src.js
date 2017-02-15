@@ -1,4 +1,4 @@
-import { gn } from "../../src/go-native.es2015";
+import * as gn from "../../src/go-native";
 
 function success(el) { el.className = 'success'; }
 function fail(el) { el.className = 'fail'; }
