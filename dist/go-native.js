@@ -730,15 +730,11 @@ function getHeight(el) {
 // 4. size: content
 
 function getOffsetLeft(el) {
-  var rect = el.getBoundingClientRect(),
-      left = rect.left + document.body.scrollLeft;
-  return Math.round(left);
+  return el.getBoundingClientRect().left + document.documentElement.scrollLeft;
 }
 
 function getOffsetTop(el) {
-  var rect = el.getBoundingClientRect(),
-      top = rect.top + document.body.scrollTop;
-  return Math.round(top);
+  return el.getBoundingClientRect().top + document.documentElement.scrollTop;
 }
 
 function getOuterHeight(el) {

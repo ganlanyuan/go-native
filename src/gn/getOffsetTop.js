@@ -1,5 +1,3 @@
 export function getOffsetTop(el) {
-  var rect = el.getBoundingClientRect(),
-      top = rect.top + document.body.scrollTop;
-  return Math.round(top);
+  return el.getBoundingClientRect().top + document.documentElement.scrollTop;
 }
