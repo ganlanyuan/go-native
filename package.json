@@ -1,0 +1,40 @@
+{
+  "name": "go-native",
+  "version": "1.0.0",
+  "description": "A Javascript polyfills' collection which let you use native javascript.",
+  "main": "dist/go-native.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ganlanyuan/go-native.git"
+  },
+  "keywords": [
+    "native",
+    "javascript",
+    "ie",
+    "utility"
+  ],
+  "devDependencies": {
+    "nwmatcher": "^1.3.6",
+    "respond": "^1.4.2",
+    "fix-ie": "^1.2.0",
+    "matchMedia": "^0.3.0",
+    "Units": "https://github.com/heygrady/Units.git",
+    "requestAnimationFrame": "https://github.com/darius/requestAnimationFrame.git",
+    "domtokenlist": "^1.0.0",
+    "selectivizr_will": "^1.0.0"
+  },
+  "author": "ganlanyuan <ganlanyuan@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ganlanyuan/go-native/issues"
+  },
+  "homepage": "https://github.com/ganlanyuan/go-native#readme"
+}
